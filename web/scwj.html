@@ -1,0 +1,100 @@
+<html lang="zh"  xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>register</title>
+</head>
+
+<!-- 页面的样式文件 -->
+<style type="text/css">
+    body{
+        background-color : #eee;
+    }
+    #first{
+        width:500px;
+        margin:30px auto;
+    }
+
+    #c1{
+        color:red;
+        font-size: 20px;
+    }
+    #c3{
+        font-size: 10px;
+    }
+    #c4but{
+        width: 100px;
+        height: 30px;
+    }
+
+
+
+</style>
+
+<body>
+<meta name="viewport" content="width=device-width" initial-scale="1"/>
+<div id="first">
+    <body background="img/banner1.png" onload="fun()">
+
+    <p id="c1">只允许上传与战队相关的图片上传其他文件直接封IP</p>
+    <div style="width:500px;margin:0 auto;">
+      <p id="c2" style ="color:red">(需解除联系群主)</p>
+    <h1 style ="color:red"></h1>
+    <form action="register.do"  enctype="multipart/form-data"  method="post">
+        <table align="center" cellpadding="5" cellspacing="5" border="1">
+
+        <span style="background-color: rgb(255, 0, 0);">
+              <tr>
+        <td>
+            <p style="text-align:center">个人收款码(微信)：</p>
+             <tr>
+                <td>
+            <input type="file" name="filename" size="30" value="123"><br>
+                </td>
+            </tr>
+        </span>
+        </td>
+    </tr>
+
+
+            <!-- 上传多个文件的代码 -->
+<!--            <p>本周战队赛/内战截图(打开文件的时候可以长按里面的图片进行多选)：</p>-->
+            <tr>
+                <td style="text-align:center">
+
+                    <p>本周战队赛截图:</p>
+                    <p>(通过王者营地等截图提交 一张图片包括打的所有战队赛次数)</p>
+            <tr>
+                <td>
+            <input type="file" multiple name="filename1" size="30"><br>
+              </td>
+        </tr>
+            <br><br>
+              </td>
+          </tr>
+
+
+
+
+            <tr>
+                <td>
+                    联系qq：&nbsp&nbsp&nbsp<input type="text" name="qq"> <br>
+                    游戏名称:：<input type="text" name="name"> <br><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="确认" id="c4but">
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+        <p id="c3" style ="color:red" th:text="${session.show2}">！提交失败！请注意看收款码与战队赛截图是否填写！</p>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+    </body>
+</div>
+</body>
+</html>

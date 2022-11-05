@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编程博客登入界面</title>
+  <style>
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: wheat;
+        }
+        input {
+            border: none;
+            border-bottom: 1px solid #dfdfdf;
+            padding: 0px 0px 5px 15px;
+            margin-left: 15px;
+            font-size: 15px;
+            /*color: #dfdfdf;*/
+            color: #000000;
+        }
+        .outer_box {
+            position: relative;
+            height: calc(100vh);
+        }
+
+        /* 背景颜色 */
+        .back_one {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 0px;
+            background-color: #7BB6B6;
+        }
+        .back_two {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 0px;
+            background-color: #E3D0AD;
+        }
+
+        /* 登录窗口 */
+        .login_box {
+            width: 300px;
+            height: 350px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 10px 10px #80808079;
+        }
+
+        /* 标题 */
+        .login_box .title {
+            width: 100%;
+            text-align: center;
+            margin: 35px 0px 35px 0px;
+            font-size: 30px;
+            color: #52565B;
+        }
+
+        /* p标签的公共样式 */
+        .login_box p {
+            width: 100%;
+            height: 40px;
+            margin-top: 15px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* iconfont */
+        .login_box p i {
+            color: #52565B;
+            font-size: 20px;
+        }
+
+        /* 登录按钮的样式 */
+        .login_box .logIn_btn {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            margin-left: 100px;
+            background-color: #EBF7F3;
+            color: #7BB6B6;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px #e6e5e5;
+            font-weight: bold;
+            display: flex;
+        }
+        .login_box .logIn_btn span {
+            display: block;
+            width: 33%;
+            /* height: 100%; */
+        }
+        .login_box .logIn_btn .left_line {
+            height: 20px;
+            margin-top: 20px;
+            border-left: 2px solid #7BB6B6;
+        }
+        .login_box .logIn_btn .right_line {
+            height: 20px;
+            border-right: 2px solid #7BB6B6;
+        }
+
+        /* 注册按钮 */
+        .login_box .login {
+            width: 100px;
+            height: 40px;
+            margin: 20px 0px 0px 100px;
+            color: #E3D0AD;
+            font-weight: bold;
+            line-height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<audio controls autoplay="autoplay" loop="loop">
+  <source src="http://sr.sycdn.kuwo.cn/2a3b210df17987959d4e40eaa924cd40/630b50c0/resource/n2/91/3/3498253902.mp3" type="audio/mpeg" />
+  如果不播放，说明你的浏览器不支持！
+</audio>
+
+<form  method="post"   th:action="@{/dr(operate='index')}"    >
+  <div class="outer_box">
+    <div class="back_one"></div>
+    <div class="back_two"></div>
+    <div class="login_box">
+      <h3 class="title">博客登入</h3>
+
+      <p><i class="iconfont">Uid:</i><input type="text" name="xm"></p>
+      <p><i class="iconfont" >Pwd::</i><input type="text" name="mhm"></p>
+      <p style ="color:red" th:text="${session.show}">登入失败请注意查看账号密码!!</p>
+
+      <!--      <p>      该账号密码不为qq密码!!!!</p>-->
+      <p class="logIn_btn">
+        <span class="left_line"></span>
+        <input type="submit" value="登入      " >
+        <span class="right_line"></span>
+      </p>
+
+
+      <a class="login"  th:href="@{/main(operate='register_login')}" ><span>注册博客</span></a>
+
+    </div>
+  </div>
+</form>
+</body>
+</html>
