@@ -17,9 +17,9 @@ public class DaoConnect {
             Driver driver=new com.mysql.cj.jdbc.Driver(); //最后应该Driver最后导入一下
             DriverManager.registerDriver(driver);
 
-            String url="jdbc:mysql://127.0.0.1:3306/qqzhondb?characterEncoding=utf8";//数据库名stdio
-            String user="root";//账号
-            String password="root";//密码
+            String url="jdbc:mysql://43.142.237.246:3306/qqzhondb?characterEncoding=utf8";//数据库名stdio
+            String user="name";//账号
+            String password="dzqdb123";//密码
 
             conn=DriverManager.getConnection(url,user,password);//传输字符串语句
             stmt=conn.createStatement();
