@@ -19,9 +19,10 @@ public class LoginAction extends Action{
     IServiceDao dao;
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+           Login login= (Login) father; //转换为账号密码类
 
-
-        Login from = dao.user_pwd(new Login("张三", "111"));
+        Login from = dao.user_pwd(login); //放入账号密码进行判断
+        System.out.println("5555");
         if(from==null){
             System.out.println("当前并没有此账号");
         }else{
