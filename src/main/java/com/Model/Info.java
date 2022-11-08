@@ -8,6 +8,9 @@ public class Info extends Father{
     private int fins;
     private Login uname; //Ò»¶Ô¶à
 
+    public Info() {
+    }
+
     public int getId() {
         return id;
     }
@@ -58,7 +61,7 @@ public class Info extends Father{
 
 
 
-    public Info(int id, String phone, String email, String headimg, int fins, Login uname) {
+    public Info( int id ,String phone, String email, String headimg, int fins, Login uname) {
         this.id = id;
         this.phone = phone;
         this.email = email;
