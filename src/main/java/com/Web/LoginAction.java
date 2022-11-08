@@ -1,6 +1,6 @@
 package com.Web;
 
-import com.Iservice.IDao;
+import com.Iservice.IServiceDao;
 import com.Model.Father;
 import com.Model.Pzwj;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class LoginAction extends Action{
 
     @Autowired
-    IDao dao;
+    IServiceDao dao;
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

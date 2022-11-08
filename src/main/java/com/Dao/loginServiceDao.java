@@ -1,8 +1,7 @@
 package com.Dao;
 
-import com.Iservice.IDao;
+import com.Iservice.IServiceDao;
 import com.Model.Info;
-import com.Model.Login;
 import com.Model.Login;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component("loginDao")
-public class loginDao implements IDao {
+public class loginServiceDao implements IServiceDao {
     @Autowired
     JdbcTemplate jdbc_link; //注入
 
