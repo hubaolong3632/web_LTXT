@@ -10,8 +10,13 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         StudentDao st = (StudentDao) context.getBean("studentdao");
-        st.password(new PasWord());
 
+        PasWord from = st.From(new PasWord("张三", "111e1"));
+        if(from==null){
+            System.out.println("当前并没有此账号");
+        }else{
+            System.out.println(from.getName()+"  ---- "+from.getPasword());
+        }
 
     }
 

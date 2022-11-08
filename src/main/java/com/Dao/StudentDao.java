@@ -2,6 +2,7 @@ package com.Dao;
 
 import com.Iservice.IStudentDao;
 import com.Model.PasWord;
+import com.Model.Student;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,6 +21,25 @@ public class StudentDao   implements IStudentDao {
     public void addStudent(String name,String borrowBooks) {//添加
         String sql=" insert into t_user_basic(loginid,nickName,pwd,heagime) VALUES (1,1,1,1);";
         jdbc_link.update(sql);
+
+    }
+
+
+
+
+    public PasWord From(PasWord pas){
+
+        try{
+            String sql2="SELECT * FROM `cheshibiao` where name =? and pasword=?;";
+            RowMapper<PasWord> pasword=new BeanPropertyRowMapper(PasWord.class); //获取Pasowrd类
+            PasWord query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPasword());
+
+            return query2;
+        }catch (Exception e){
+            return null;
+        }
+//
+
 
     }
 
@@ -43,6 +63,7 @@ public class StudentDao   implements IStudentDao {
 
 
        //查找一个数据
+
         String sql2="SELECT * FROM `cheshibiao` where name =?;";
         PasWord query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
         System.out.println(query2.getName()+"--*--"+query2.getPasword());
