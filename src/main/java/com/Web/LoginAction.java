@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/***
+ *实现了登入界面的显示
+ */
+
 @Component("LoginAction")
 public class LoginAction extends Action{
 
