@@ -1,14 +1,14 @@
 package com.Model;
 
-public class PasWord extends Father{
+public class Login extends Father{
     private int id;
     private String name;
     private String pasword;
 
-    public PasWord() {
+    public Login() {
     }
 
-    public PasWord(String name, String pasword) {
+    public Login(String name, String pasword) {
         this.name = name;
         this.pasword = pasword;
     }
