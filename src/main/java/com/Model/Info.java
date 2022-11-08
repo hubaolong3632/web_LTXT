@@ -1,6 +1,6 @@
 package com.Model;
 
-public class Info {
+public class Info extends Father{
     private int id;
     private String phone;
     private String email;

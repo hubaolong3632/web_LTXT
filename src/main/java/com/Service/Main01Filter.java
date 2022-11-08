@@ -83,7 +83,7 @@ public class Main01Filter extends ViewBaseServlet {
 //                    System.out.println("method ----- "+method);
                     Class<?>[] parameterTypes = method.getParameterTypes(); //获取对应的方法
                     for (Class<?> parameterType : parameterTypes) { //里面的是类别 String等等
-                        System.out.println(method.getName()+"------------"+set);
+//                        System.out.println(method.getName()+"------------"+set);
                         if (method.getName().equals(set)) {  //查找指定数据进行注入
                             Method name = aClass.getMethod(method.getName(), parameterType);  //查找对应的值
                             name.invoke(instance, req.getParameter(nextElement));  //把数据进行注入
@@ -95,7 +95,7 @@ public class Main01Filter extends ViewBaseServlet {
             }
 
 
-//
+//             需不需要认证
 //            if(pzwj1.getYi().equals("1")){
 //
 //
@@ -114,10 +114,6 @@ public class Main01Filter extends ViewBaseServlet {
 
                 ServletContext servletContext = this.getServletContext();
                 WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-
-
-
-                loginServiceDao st = (loginServiceDao) applicationContext.getBean("loginDao");
 
                 Action action =(Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
                  action.execute(instance,pzwj1,req,resp); //调用此方法 执行代码
