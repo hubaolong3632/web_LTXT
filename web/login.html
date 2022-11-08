@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>论坛登入界面</title>
   <style>
-/*2*/
+
         * {
             margin: 0px;
             padding: 0px;
@@ -123,36 +123,40 @@
         a{
           text-decoration: none;
         }
-/*我的微信*/
+
     </style>
 </head>
 <body>
+<!--<audio controls autoplay="autoplay" loop="loop">-->
+<!--  <source src="http://sr.sycdn.kuwo.cn/2a3b210df17987959d4e40eaa924cd40/630b50c0/resource/n2/91/3/3498253902.mp3" type="audio/mpeg" />-->
+<!--  如果不播放，说明你的浏览器不支持！-->
+<!--</audio>-->
 <audio controls autoplay="autoplay" loop="loop">
-  <source src="http://sr.sycdn.kuwo.cn/2a3b210df17987959d4e40eaa924cd40/630b50c0/resource/n2/91/3/3498253902.mp3" type="audio/mpeg" />
-  如果不播放，说明你的浏览器不支持！23423423423423424444444444
+  <source src="mp3/teare.mp3" type="audio/mpeg" />
+  如果不播放，说明你的浏览器不支持！
 </audio>
 
-<form  method="post"   th:action="@{/dr(operate='index')}"    >
+<form  method="post"   action="@{/dr(operate='index')}"    >
   <div class="outer_box">
     <div class="back_one"></div>
     <div class="back_two"></div>
     <div class="login_box">
       <h3 class="title">论坛登入</h3>
 
-      <p><i class="iconfont">账号:</i><input type="text" name="xm" placeholder="Username"></p>
-      <p><i class="iconfont" >密码:</i><input type="text" name="mhm" placeholder="Password"></p>
-      <p style ="color:red" th:text="${session.show}">请重新输入密码</p>
+      <p><i class="iconfont">账号:</i><input type="text" name="name" placeholder="Username"></p>
+      <p><i class="iconfont" >密码:</i><input type="text" name="password" placeholder="Password"></p>
+      <p style ="color:red" th:text="${session.show}">请重新输入密码!!</p>
 
-      <!--      <p>      该账号密码不为qq密码!!!!</p>-->
+
       <p class="logIn_btn">
         <span class="left_line"></span>
-        <input type="submit" value="登入      " >
+        <input type="submit" value="登入      " name="btn_login">
         <span class="right_line"></span>
       </p>
 
 
 <!--      <a class="login"  th:href="@{/main(operate='register_login')}" ><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客</span></a>-->
-      <a class="login"  href="register_login.html" ><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
+      <a class="login" href="register.html" name="a_register"><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
     </div>
   </div>
 </form>
