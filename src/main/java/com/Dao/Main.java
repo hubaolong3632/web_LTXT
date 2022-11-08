@@ -1,11 +1,12 @@
 package com.Dao;
 
+import com.Model.Info;
 import com.Model.Login;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("com.Dao")
+@ComponentScan("com")
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
@@ -18,6 +19,15 @@ public class Main {
             System.out.println(from.getName()+"  ---- "+from.getPassword());
         }
 
+         int num = login.addInfo(new Info(1,"18762893132", "3142436228@qq.com",
+                "\"C:\\Users\\lxy\\Desktop\\网页\\作业\\素材\\农业网站版本四\\0首页.jpg\"", 10, from
+                ));
+
+        if(num > 0 ){
+            System.out.println("success");
+        } else{
+            System.out.println("errer");
+        }
     }
 
 

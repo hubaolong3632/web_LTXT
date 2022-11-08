@@ -39,16 +39,23 @@ public class loginServiceDao implements IServiceDao {
             e.printStackTrace();
             return null;
         }
-//
-
-
     }
 
     @Override
-    public Info addInfo(Info info) {
-//        String
-        return null;
+    public int addInfo(Info info) {
+        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?);";
+        Object[] objects = new Object[]{
+
+                info.getPhone(),
+                info.getEmail(),
+                info.getHeadimg(),
+                info.getFins(),
+                info.getUname()
+        };
+         int num = jdbc_link.update(sql, objects);
+        return num;
     }
+
 
     public boolean password(Login login){  //查询站好密码
 
