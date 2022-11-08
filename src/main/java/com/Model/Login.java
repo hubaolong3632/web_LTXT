@@ -1,15 +1,12 @@
 package com.Model;
 
 
+import com.Service.ForumSystemService;
 import com.alibaba.druid.wall.WallDenyStat;
 
 public class Login {
     /*µ±Ç°Îªid*/
 
-    qwdqwdqwdqwdqwd
-
-    qdwqd
-            WallDenyStatd
     public int id;
 
     public String name;
