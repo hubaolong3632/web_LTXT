@@ -1,6 +1,7 @@
 package com.Dao;
 
-import com.Model.PasWord;
+import com.Model.Login;
+import com.Model.Login;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,9 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        StudentDao st = (StudentDao) context.getBean("studentdao");
+        loginDao login = (loginDao) context.getBean("studentdao");
 
-        PasWord from = st.From(new PasWord("张三", "111e1"));
+        Login from = login.From(new Login("张三", "111e1"));
         if(from==null){
             System.out.println("当前并没有此账号");
         }else{

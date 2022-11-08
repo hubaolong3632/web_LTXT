@@ -1,6 +1,6 @@
 package com.Service;
 
-import com.Dao.StudentDao;
+import com.Dao.loginDao;
 import com.Model.Father;
 import com.Model.Pzwj;
 import com.Utio.ViewBaseServlet;
@@ -125,7 +125,7 @@ public class Main01Filter extends ViewBaseServlet {
 
 
 
-                StudentDao st = (StudentDao) applicationContext.getBean("studentdao");
+                loginDao st = (loginDao) applicationContext.getBean("studentdao");
                 st.addStudent("1","1"); //插入数据库
 
 

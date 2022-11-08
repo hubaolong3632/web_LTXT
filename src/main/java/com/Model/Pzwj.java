@@ -7,8 +7,9 @@ public class Pzwj {
     private String er;/// 1
     private String san;///login.jsp
     private String si;// 1
-    private String wu;///StudentAction
+    private String wu;///LoginAction
     private String liu;// /WEB-INF/main.jsp
+
 
 
     public Pzwj() {
