@@ -16,7 +16,7 @@ import java.io.IOException;
  *登入界面
  */
 
-@Component("LoginAction")
+@Component("IndexAction")
 public class IndexAction extends Action{
 
     @Resource
