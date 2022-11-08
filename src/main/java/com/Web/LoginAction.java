@@ -1,7 +1,9 @@
 package com.Web;
 
+import com.Iservice.IDao;
 import com.Model.Father;
 import com.Model.Pzwj;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -11,8 +13,13 @@ import java.io.IOException;
 
 @Component("LoginAction")
 public class LoginAction extends Action{
+
+    @Autowired
+    IDao dao;
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         System.out.println("有木有成功");
         req.getRequestDispatcher(pzwj.getLiu()).forward(req,resp);//跳转
     }
