@@ -1,4 +1,6 @@
+import com.Model.Login;
 import com.mysql.cj.protocol.x.OkBuilder;
+import com.sun.tools.javac.Main;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,7 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //测试12342344442343222222qwqqweqwe2
 public class DaoConnect {
+    public static void main(String[] args) {
+        Login lg=new Login();
+        System.out.println(lg.id);
+    }
     public static Statement daoConnection() throws SQLException {
+
         Connection conn;
         Statement stmt;
         try
