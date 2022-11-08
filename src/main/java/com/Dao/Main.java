@@ -10,13 +10,13 @@ import org.springframework.context.annotation.ComponentScan;
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        loginDao login = (loginDao) context.getBean("studentdao");
+        loginDao login = (loginDao) context.getBean("loginDao");
 
-        Login from = login.From(new Login("张三", "111e1"));
+        Login from = login.user_pwd(new Login("张三", "111"));
         if(from==null){
             System.out.println("当前并没有此账号");
         }else{
-            System.out.println(from.getName()+"  ---- "+from.getPasword());
+            System.out.println(from.getName()+"  ---- "+from.getPassword());
         }
 
     }

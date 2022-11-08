@@ -27,19 +27,21 @@ public class loginDao implements IDao {
 
 
     @Override
-    public Login user_pwd(Login pas){
+    public Login user_pwd(Login pas){ //账号的登入
 
-        Login query2 = null;
         try{
-            String sql2="SELECT * FROM `t_login` where name =? and pasword=?;";
+            String sql2="SELECT * FROM `t_login` where name =? and password=?;";
+            System.out.println(sql2);
             RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
-             query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPasword()); //查询返回对象
+            Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
+            return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
+            e.printStackTrace();
             return null;
         }
 //
-        return query2;
+
 
     }
 
@@ -60,7 +62,7 @@ public class loginDao implements IDao {
 
         List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
         for (Login p1 : query) {
-            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPasword());
+            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
         ///////////////////
@@ -72,7 +74,7 @@ public class loginDao implements IDao {
 
         String sql2="SELECT * FROM `t_login` where name =?;";
         Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
-        System.out.println(query2.getName()+"--*--"+query2.getPasword());
+        System.out.println(query2.getName()+"--*--"+query2.getPassword());
 
 //        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
 //            return true;
