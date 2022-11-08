@@ -6,7 +6,7 @@ public class Info extends Father{
     private String email;
     private String headimg;
     private int fins;
-    private Login uname; //一对多
+    private int uname; //一对多
 
     public Info() {
     }
@@ -51,17 +51,17 @@ public class Info extends Father{
         this.fins = fins;
     }
 
-    public Login getUname() {
+    public int getUname() {
         return uname;
     }
 
-    public void setUname(Login uname) {
+    public void setUname(int uname) {
         this.uname = uname;
     }
 
 
 
-    public Info( int id ,String phone, String email, String headimg, int fins, Login uname) {
+    public Info( int id ,String phone, String email, String headimg, int fins, int uname) {
         this.id = id;
         this.phone = phone;
         this.email = email;

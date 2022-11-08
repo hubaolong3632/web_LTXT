@@ -46,9 +46,8 @@ public class loginServiceDao implements IServiceDao {
 
     @Override
     public int addInfo(Info info) {
-        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?);";
+        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
         Object[] objects = new Object[]{
-
                 info.getPhone(),
                 info.getEmail(),
                 info.getHeadimg(),
