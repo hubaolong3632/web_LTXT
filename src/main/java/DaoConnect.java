@@ -1,5 +1,3 @@
-package qqzone.Dao;
-
 import com.mysql.cj.protocol.x.OkBuilder;
 
 import java.sql.*;
@@ -7,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+//rwerwerwerwerwe
 public class DaoConnect {
     public static Statement daoConnection() throws SQLException {
         Connection conn;
