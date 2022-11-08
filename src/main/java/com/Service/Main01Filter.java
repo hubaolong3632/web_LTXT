@@ -42,13 +42,13 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
         System.out.println("当前放入的:"+target);
@@ -58,9 +58,7 @@ public class Main01Filter extends ViewBaseServlet {
 
             if(pzwj1==null){    //如果为空执行的地方
                 System.out.println("空------------->");
-
                 return;
-
             }
 
 
