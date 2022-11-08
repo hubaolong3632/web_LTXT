@@ -1,4 +1,3 @@
-<!--//大撒大撒啊啊啊啊啊啊啊啊啊啊-->
 
 <!DOCTYPE html>
 <html lang="zh"  xmlns:th="http://www.thymeleaf.org">
@@ -6,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>编程博客登入界面</title>
+  <title>论坛登入界面</title>
   <style>
 
         * {
@@ -121,6 +120,10 @@
             line-height: 40px;
         }
 
+        a{
+          text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
@@ -134,11 +137,11 @@
     <div class="back_one"></div>
     <div class="back_two"></div>
     <div class="login_box">
-      <h3 class="title">博客登入</h3>
+      <h3 class="title">论坛登入</h3>
 
-      <p><i class="iconfont">Uid:</i><input type="text" name="xm"></p>
-      <p><i class="iconfont" >Pwd::</i><input type="text" name="mhm"></p>
-      <p style ="color:red" th:text="${session.show}">登入失败请注意查看账号密码!!</p>
+      <p><i class="iconfont">账号:</i><input type="text" name="xm" placeholder="Username"></p>
+      <p><i class="iconfont" >密码:</i><input type="text" name="mhm" placeholder="Password"></p>
+      <p style ="color:red" th:text="${session.show}">请重新输入密码</p>
 
       <!--      <p>      该账号密码不为qq密码!!!!</p>-->
       <p class="logIn_btn">
@@ -148,8 +151,8 @@
       </p>
 
 
-      <a class="login"  th:href="@{/main(operate='register_login')}" ><span>注册博客</span></a>
-
+<!--      <a class="login"  th:href="@{/main(operate='register_login')}" ><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客</span></a>-->
+      <a class="login"  href="register_login.html" ><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
     </div>
   </div>
 </form>

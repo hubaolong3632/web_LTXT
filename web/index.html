@@ -28,12 +28,11 @@
                 <li class="have_second">
                     <a href="list.html">查看好友</a>
                     <ul class="nav_second">
-                        <li ><a th:each="userBAsic:${session.userBAsic.friendList}"  th:text="${userBAsic.nickName}"  th:href="@{/main(operate='list')}">李1</a></li>
-<!--                        <li><a href="list.html">李442</a></li>-->
-<!--                        <li><a href="list.html">李3</a></li>-->
+                        <li><a href="list.html">李442</a></li>
+                        <li><a href="list.html">李3</a></li>
                     </ul>
                 </li>
-<!--                <li><a href="list.html">我的博文</a></li>-->
+                <li><a th:href="@{/main(operate='people')}">我的博文</a></li>
                 <li><a th:href="@{/main(operate='about_me')}">个人设置</a></li>
                 <li><a th:href="@{/dr(dr='quit')}">退出登入</a></li>
             </ul>
@@ -44,13 +43,10 @@
                 <i></i>
             </a>
         </div>
-
         <div class="header_nav_small_btn">
             <span class="small_btn"></span>
         </div>
-
     </div>
-
 </div>
 
 <div class="nav_hidden_zhanwei"></div>
@@ -131,71 +127,66 @@
 <!--异步获取文章-->
 
 
-        <div class="right">
-        <!--个人介绍部分-->
-            <div class="self_info right_box">
-                <img src="img/self.jpg">
-                <div class="self_info_text">
-                    <h3 th:text="${session.userBAsic.nickName}">张4</h3>
-                    <div>
+<!--        <div class="right">-->
+<!--        &lt;!&ndash;个人介绍部分&ndash;&gt;-->
+<!--            <div class="self_info right_box">-->
+<!--                <img src="img/self.jpg">-->
+<!--                <div class="self_info_text">-->
+<!--                    <h3 th:text="${session.userBAsic.nickName}">张4</h3>-->
+<!--                    <div>-->
 
 
-                        <p>天将降大任于斯人也，必先苦其心志、磨其胫骨、饿其体肤</p>
-                    </div>
-                    <a href="#">关注(当前并没有做)</a>
-                </div>
-            </div>
-            <!--个人介绍隐藏部分，只在右侧被翻到最上面显示-->
-            <div class="self_info_scroll_bottom right_box">
-                <img src="img/self.jpg">
-                <div class="self_info_text">
-                    <h3>大青牛爱穿山甲</h3>
-                    <div>
-                        <p>以彼之长，增长自身</p>
+<!--                        <p>天将降大任于斯人也，必先苦其心志、磨其胫骨、饿其体肤</p>-->
+<!--                    </div>-->
+<!--                    <a href="#">关注(当前并没有做)</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;个人介绍隐藏部分，只在右侧被翻到最上面显示&ndash;&gt;-->
+<!--            <div class="self_info_scroll_bottom right_box">-->
+<!--                <img src="img/self.jpg">-->
+<!--                <div class="self_info_text">-->
+<!--                    <h3>大青牛爱穿山甲</h3>-->
+<!--                    <div>-->
+<!--                        <p>以彼之长，增长自身</p>-->
 
-                    </div>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-<!--微信二维码部分-->
-            <div class="self_erweima right_box">
-                <h3>微信二维码</h3>
-                <div>
-                    <img src="img/self_weixin_erweima.png">
-                </div>
-            </div>
+<!--                    </div>-->
+<!--                    <a href="#">Read More</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;微信二维码部分&ndash;&gt;-->
+<!--            <div class="self_erweima right_box">-->
+<!--                <h3>微信二维码</h3>-->
+<!--                <div>-->
+<!--                    <img src="img/self_weixin_erweima.png">-->
+<!--                </div>-->
+<!--            </div>-->
 
-<!--qq二维码部分-->
-            <div class="self_erweima right_box">
-                <h3>QQ二维码</h3>
-                <div>
-                    <img src="img/self_qq_erweima.png">
-                </div>
-            </div>
+<!--&lt;!&ndash;qq二维码部分&ndash;&gt;-->
+<!--            <div class="self_erweima right_box">-->
+<!--                <h3>QQ二维码</h3>-->
+<!--                <div>-->
+<!--                    <img src="img/self_qq_erweima.png">-->
+<!--                </div>-->
+<!--            </div>-->
 
-<!--座右铭目的把div对齐最多只能2行字，多了就高了-->
-            <div class="self_zuoyoum right_box">
-                <h3>这里或许能做些什么东西</h3>
+<!--&lt;!&ndash;座右铭目的把div对齐最多只能2行字，多了就高了&ndash;&gt;-->
+<!--            <div class="self_zuoyoum right_box">-->
+<!--                <h3>这里或许能做些什么东西</h3>-->
 
-            </div>
+<!--            </div>-->
 
-<!--模板推荐-->
-            <div class="right_box tuijian_moban">
-                <h3>最近的说说</h3>
-                <div>
-                    <ul>
-                        <li><a href="#">这个是标题</a></li>
-                        <li><a href="#">这个是标题1</a></li>
-                        <li><a href="#">这个是标题2</a></li>
-
-                    </ul>
-                </div>
-            </div>
-
-
-
-        </div>
-
+<!--&lt;!&ndash;模板推荐&ndash;&gt;-->
+<!--            <div class="right_box tuijian_moban">-->
+<!--                <h3>最近的说说</h3>-->
+<!--                <div>-->
+<!--                    <ul>-->
+<!--                        <li><a href="#">这个是标题</a></li>-->
+<!--                        <li><a href="#">这个是标题1</a></li>-->
+<!--                        <li><a href="#">这个是标题2</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 </div>
 
 
@@ -220,9 +211,6 @@
             <p>2.不要搞各种html注入</p>
         </div>
     </div>
-
 </div>
-
 </body>
-
 </html>
