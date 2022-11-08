@@ -3,8 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Main.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Sdao_jdbc_link.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/loginDao.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Iservice/IDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/loginServiceDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Iservice/IServiceDao.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Model/Father.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Model/Login.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Model/Pzwj.java" charset="UTF-8" />
@@ -15,6 +15,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/Web/LoginAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/jdbc.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/pzwj.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

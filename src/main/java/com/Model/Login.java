@@ -3,14 +3,14 @@ package com.Model;
 public class Login extends Father{
     private int id;
     private String name;
-    private String pasword;
+    private String password;
 
     public Login() {
     }
 
-    public Login(String name, String pasword) {
+    public Login(String name, String password) {
         this.name = name;
-        this.pasword = pasword;
+        this.password = password;
     }
 
     public int getId() {
@@ -29,11 +29,11 @@ public class Login extends Father{
         this.name = name;
     }
 
-    public String getPasword() {
-        return pasword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasword(String pasword) {
-        this.pasword = pasword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

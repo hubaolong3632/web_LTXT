@@ -1,12 +1,15 @@
 package com.Model;
 
-public class Info {
+public class Info extends Father{
     private int id;
     private String phone;
     private String email;
     private String headimg;
     private int fins;
     private Login uname; //Ò»¶Ô¶à
+
+    public Info() {
+    }
 
     public int getId() {
         return id;
@@ -58,7 +61,7 @@ public class Info {
 
 
 
-    public Info(int id, String phone, String email, String headimg, int fins, Login uname) {
+    public Info( int id ,String phone, String email, String headimg, int fins, Login uname) {
         this.id = id;
         this.phone = phone;
         this.email = email;

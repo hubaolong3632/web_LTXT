@@ -1,8 +1,7 @@
 package com.Dao;
 
-import com.Iservice.IDao;
+import com.Iservice.IServiceDao;
 import com.Model.Info;
-import com.Model.Login;
 import com.Model.Login;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component("loginDao")
-public class loginDao implements IDao {
+public class loginServiceDao implements IServiceDao {
     @Autowired
     JdbcTemplate jdbc_link; //注入
 
@@ -27,27 +26,39 @@ public class loginDao implements IDao {
 
 
     @Override
-    public Login user_pwd(Login pas){
+    public Login user_pwd(Login pas){ //账号的登入
 
-        Login query2 = null;
         try{
-            String sql2="SELECT * FROM `t_login` where name =? and pasword=?;";
+            String sql2="SELECT * FROM `t_login` where name =? and password=?;";
+            System.out.println(sql2);
             RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
-             query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPasword()); //查询返回对象
+            System.out.println("1111");
+            Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
+            System.out.println("222");
 
+            return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
+            System.out.println("33333");
+            e.printStackTrace();
             return null;
         }
-//
-        return query2;
-
     }
 
     @Override
-    public Info addInfo(Info info) {
-//        String
-        return null;
+    public int addInfo(Info info) {
+        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?);";
+        Object[] objects = new Object[]{
+
+                info.getPhone(),
+                info.getEmail(),
+                info.getHeadimg(),
+                info.getFins(),
+                info.getUname()
+        };
+         int num = jdbc_link.update(sql, objects);
+        return num;
     }
+
 
     public boolean password(Login login){  //查询站好密码
 
@@ -60,7 +71,7 @@ public class loginDao implements IDao {
 
         List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
         for (Login p1 : query) {
-            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPasword());
+            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
         ///////////////////
@@ -72,7 +83,7 @@ public class loginDao implements IDao {
 
         String sql2="SELECT * FROM `t_login` where name =?;";
         Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
-        System.out.println(query2.getName()+"--*--"+query2.getPasword());
+        System.out.println(query2.getName()+"--*--"+query2.getPassword());
 
 //        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
 //            return true;
