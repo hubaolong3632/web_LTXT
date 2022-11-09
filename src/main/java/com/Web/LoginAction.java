@@ -37,8 +37,9 @@ public class LoginAction extends Action{
             System.out.println(from.getName()+"  ---- "+from.getPassword()); //测试当前账号密码是
             req.getSession().setAttribute("login",from); //保存账号密码
             System.out.println("1:"+pzwj.getLiu());
-//            req.removeAttribute("index");
-             req.getRequestDispatcher(pzwj.getLiu()).forward(req,resp);//跳转
+            resp.sendRedirect("index.do");
+
+//             req.getRequestDispatcher(pzwj.getLiu()).forward(req,resp);//跳转
 
         }
 

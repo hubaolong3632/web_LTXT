@@ -12,6 +12,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     public void init() throws ServletException {
+        System.out.println("-------文件读取-------");
         //文件的读取
         ResourceBundle pzwj = ResourceBundle.getBundle("pzwj"); //获取保存的文件
         Enumeration<String> keys = pzwj.getKeys();
@@ -44,24 +46,34 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        doPost(req, resp);
-    }
+        System.out.println("-------c5");
+        super.processTemplate("index",req,resp);
 
+
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("2222222");
+        System.out.println("---2 post-----");
+//        req.getSession().setAttribute("dr","deng lu cheng gon");
+        resp.sendRedirect("index.do");
 
 
-        req.getSession().setAttribute("dr","deng lu cheng gon");
-
-        super.processTemplate("/index.html",req,resp); //跳转当前网站
-
-
+        if(req!=null){
+            return;
+        }
 
         req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
         System.out.println("----doPost----<----"+target+"---->-------------");
+
+    if(target.equals("index.do")){
+        System.out.println("执行跳转1");
+        super.processTemplate("index.html",req,resp);
+        System.out.println("执行跳转2");
+        return;
+    }
         try{
 
             Pzwj pzwj1 =map.get(target); //查找map对应里面的数据
