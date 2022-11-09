@@ -25,6 +25,12 @@ public class IndexAction extends Action{
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("当前是登入首页界面");
-        req.removeAttribute("index"); //首页
+
+        req.getSession().setAttribute("dr","deng lu cheng gon");
+
+
+
+        req.getRequestDispatcher("index.html").forward(req,resp);//跳转
+
     }
 }
