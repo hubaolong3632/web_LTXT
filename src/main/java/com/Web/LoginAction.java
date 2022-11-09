@@ -32,13 +32,17 @@ public class LoginAction extends Action{
         if(from==null){
             System.out.println("当前并没有此账号");
             req.getSession().setAttribute("no","登入失败当前账号或者密码错误！！！"); //保存账号密码
-            req.getRequestDispatcher("/login.html").forward(req,resp);//跳转
+             main.processTemplate("login",req,resp); //跳转指定网站
+//            req.getRequestDispatcher("/login.html").forward(req,resp);//跳转
         }else{
             System.out.println(from.getName()+"  ---- "+from.getPassword()); //测试当前账号密码是
             req.getSession().setAttribute("login",from); //保存账号密码
             System.out.println("1:"+pzwj.getLiu());
-//            req.removeAttribute("index");
-             req.getRequestDispatcher(pzwj.getLiu()).forward(req,resp);//跳转
+
+
+            resp.sendRedirect(pzwj.getLiu()); //登入成功跳转到指定网页
+
+
 
         }
 

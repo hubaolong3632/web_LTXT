@@ -64,6 +64,7 @@ public class ViewBaseServlet extends HttpServlet {
         // 2.创建WebContext对象
         WebContext webContext = new WebContext(req, resp, getServletContext());
 
+//        System.out.println(templateName+"    "+webContext+"   "+resp.getWriter());
         // 3.处理模板数据
         templateEngine.process(templateName, webContext, resp.getWriter());
 
