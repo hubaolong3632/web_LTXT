@@ -44,31 +44,31 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
-        System.out.println("当前放入的:"+target);
+        System.out.println("----doPost----<----"+target+"---->-------------");
         try{
 
             Pzwj pzwj1 =map.get(target); //查找map对应里面的数据
 
             if(pzwj1==null){    //如果为空执行的地方
                 System.out.println("空------------->");
-
                 return;
-
             }
+            Father instance=null;
 
+            if(pzwj1.getYi().equals("null")==false){  //如果当前进入的为空那么就跳转直接执行
 
 
             Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
-            Father instance = (Father)aClass.newInstance();  //创建实现的父类
+             instance = (Father)aClass.newInstance();  //创建实现的父类
 
             Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
             while (parameterNames.hasMoreElements()) {
@@ -93,6 +93,7 @@ public class Main01Filter extends ViewBaseServlet {
                     }
                 }
             }
+          }
 
 
 //             需不需要认证

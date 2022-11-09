@@ -13,14 +13,23 @@
     <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="js/base.js" type="text/javascript"></script>
     <script src="js/jquery.slides.min.js" type="text/javascript"></script>
-</head>
 
+
+</head>
+<script>
+    function  abc(ac1){
+        console.log("sdasdasedaweqweqwe")
+        // let v = ac1;
+        // console.log(v);
+    }
+    // ${session.dr}
+</script>
 <body>
 
 <div class="head_box">
     <div class="header">
         <div class="header_logo">
-            <a th:href="@{/main(operate='index')}"><h2 th:text="${session.userBAsic.nickName}">张政</h2><h4>の博客|天行健,君子自强不息</h4></a>
+            <a th:href="index"><h2 th:text="aa">张政</h2><h4>の博客|天行健,君子自强不息</h4></a>
         </div>
         <div class="header_nav">
             <ul class="clearfix">
@@ -29,12 +38,13 @@
                     <a href="list.html">查看好友</a>
                     <ul class="nav_second">
                         <li><a href="list.html">李442</a></li>
+                      <button onclick="abc(1111)">点击事情请求</button>
                         <li><a href="list.html">李3</a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/main(operate='people')}">我的博文</a></li>
-                <li><a th:href="@{/main(operate='about_me')}">个人设置</a></li>
-                <li><a th:href="@{/dr(dr='quit')}">退出登入</a></li>
+                <li><a th:href="">我的博文</a></li>
+                <li><a th:href="">个人设置</a></li>
+                <li><a th:href="">退出登入</a></li>
             </ul>
         </div>
         <div class="header_search">
@@ -80,27 +90,27 @@
                 <h3>最新模板</h3>
                 <p href="list.html" >更多></p>
             </div>
-            <ul class="index_article" th:each="text:${session.userBAsic.topicList}">
+            <ul class="index_article" th:each="">
 
                 <li class="clearfix article_list">
 
-                    <a th:href="@{/main(operate='article')}" class="article_list_img">
+                    <a th:href="" class="article_list_img">
                         <img src="img/bg_5.png">
                     </a>
 
-                    <h3  th:href="@{/main(operate='article',id=${text.id})}" th:text="${text.title}">文字标题</h3>
-                    <p th:text="${text.content}">文字介绍</p>
+                    <h3  th:href="">文字标题</h3>
+                    <p th:text="">文字介绍</p>
 
                     <div class="article_list_link">
                         <span class="article_list_count">
                             <i class="see_count"></i>
-                            <p>时间:</p><p th:text="${text.topicDate}"></p>
+                            <p>时间:</p><p th:text=""></p>
                         </span>
                         <span class="article_list_like">
                             <i class="like_count"></i>
-                           <p> 发布人:</p><p th:text="${text.author.nickName}"></p>
+                           <p> 发布人:</p><p th:text=""></p>
                         </span>
-                        <a th:href="@{/main(operate='article')}">查看详细+</a>
+                        <a th:href="">查看详细+</a>
                     </div>
                 </li>
             </ul>
