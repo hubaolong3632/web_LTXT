@@ -18,11 +18,11 @@
 </head>
 <script>
     function  abc(ac1){
-        console.log("sdasdasedaweqweqwe")
+        console.log(ac1)
         // let v = ac1;
         // console.log(v);
     }
-    // ${session.dr}
+    //
 </script>
 <body>
 
@@ -38,7 +38,8 @@
                     <a href="list.html">查看好友</a>
                     <ul class="nav_second">
                         <li><a href="list.html">李442</a></li>
-                      <button onclick="abc(1111)">点击事情请求</button>
+                      <button onclick="abc(${session.dr})">点击事情请求</button>
+                        <p th:text="${session.dr}">w</p>
                         <li><a href="list.html">李3</a></li>
                     </ul>
                 </li>

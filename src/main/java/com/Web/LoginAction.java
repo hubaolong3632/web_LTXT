@@ -4,6 +4,7 @@ import com.Iservice.IServiceDao;
 import com.Model.Father;
 import com.Model.Login;
 import com.Model.Pzwj;
+import com.Service.Main01Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +24,7 @@ public class LoginAction extends Action{
     @Resource
     IServiceDao dao; //数据库层
     @Override
-    public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         Login login= (Login) father; //转换为账号密码类
         Login from = dao.user_pwd(login); //放入账号密码进行判断
 

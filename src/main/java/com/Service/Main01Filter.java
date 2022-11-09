@@ -117,7 +117,7 @@ public class Main01Filter extends ViewBaseServlet {
                 WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 
                 Action action =(Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
-                 action.execute(instance,pzwj1,req,resp); //调用此方法 执行代码
+                 action.execute(instance,pzwj1,req,resp,this); //调用此方法 执行代码
                 //   父类名称    走下去的线    req 和resp请求
             }
 
