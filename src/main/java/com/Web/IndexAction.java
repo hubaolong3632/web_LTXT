@@ -27,11 +27,14 @@ public class IndexAction extends Action{
 
         System.out.println("当前是登入首页界面");
 
+
+        System.out.println("2.跳转网站"+pzwj.getLiu());
+        main.processTemplate(pzwj.getLiu(),req,resp); //首页显示
+
+
+
+
 //        req.getSession().setAttribute("dr","deng lu cheng gon");
-
-        main.processTemplate("index.html",req,resp); //首页显示
-
-
 //        req.getRequestDispatcher("index.html").forward(req,resp);//跳转
 //      resp.sendRedirect("index");
 

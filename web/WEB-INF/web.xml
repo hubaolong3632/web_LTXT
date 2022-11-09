@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>main01Filter</servlet-name>
-        <servlet-class>com.Service.IndexFiter</servlet-class>
+        <servlet-class>com.Service.Main01Filter</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>main01Filter</servlet-name>
