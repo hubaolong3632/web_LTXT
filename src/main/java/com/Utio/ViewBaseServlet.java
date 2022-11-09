@@ -56,7 +56,7 @@ public class ViewBaseServlet extends HttpServlet {
 
     }
 
-    protected void processTemplate(String templateName, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void processTemplate(String templateName, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 1.设置响应体内容类型和字符集
 
         resp.setContentType("text/html;charset=UTF-8");

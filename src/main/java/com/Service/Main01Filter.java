@@ -53,7 +53,7 @@ public class Main01Filter extends ViewBaseServlet {
         req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
-        System.out.println("当前放入的:"+target);
+        System.out.println("----doPost----<----"+target+"---->-------------");
         try{
 
             Pzwj pzwj1 =map.get(target); //查找map对应里面的数据
@@ -62,11 +62,13 @@ public class Main01Filter extends ViewBaseServlet {
                 System.out.println("空------------->");
                 return;
             }
+            Father instance=null;
 
+            if(pzwj1.getYi().equals("null")==false){  //如果当前进入的为空那么就跳转直接执行
 
 
             Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
-            Father instance = (Father)aClass.newInstance();  //创建实现的父类
+             instance = (Father)aClass.newInstance();  //创建实现的父类
 
             Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
             while (parameterNames.hasMoreElements()) {
@@ -91,6 +93,7 @@ public class Main01Filter extends ViewBaseServlet {
                     }
                 }
             }
+          }
 
 
 //             需不需要认证
@@ -114,7 +117,7 @@ public class Main01Filter extends ViewBaseServlet {
                 WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 
                 Action action =(Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
-                 action.execute(instance,pzwj1,req,resp); //调用此方法 执行代码
+                 action.execute(instance,pzwj1,req,resp,this); //调用此方法 执行代码
                 //   父类名称    走下去的线    req 和resp请求
             }
 

@@ -10,11 +10,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
-    @Autowired
+    @Resource
     JdbcTemplate jdbc_link; //注入
 
 
