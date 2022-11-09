@@ -30,7 +30,7 @@ public class IndexAction extends Action{
         req.getSession().setAttribute("dr","deng lu cheng gon");
 
 //        req.getRequestDispatcher("index.html").forward(req,resp);//跳转
-        main.processTemplate("/index.html",req,resp); //跳转当前网站
+        main.processTemplate("/index",req,resp); //跳转当前网站
 
 
 //      resp.sendRedirect("index");

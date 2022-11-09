@@ -50,6 +50,14 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        req.getSession().setAttribute("dr","deng lu cheng gon");
+
+        super.processTemplate("/index.html",req,resp); //跳转当前网站
+
+
+
         req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
