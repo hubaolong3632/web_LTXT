@@ -19,7 +19,7 @@ public class loginServiceDao implements IServiceDao {
 
 
     public void addStudent(String name,String borrowBooks) {//添加
-        String sql=" insert into t_user_basic(loginid,nickName,pwd,heagime) VALUES (1,1,1,1);";
+        String sql=" insert into t_info (id,phone,email,headimg,fins,uname) VALUES (?,?,?,?,?,?);";
         jdbc_link.update(sql);
     }
 
@@ -70,7 +70,6 @@ public class loginServiceDao implements IServiceDao {
             System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
-        ///////////////////
 
 
 
