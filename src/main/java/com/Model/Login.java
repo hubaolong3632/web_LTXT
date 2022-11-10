@@ -1,5 +1,4 @@
 package com.Model;
-
 public class Login extends Father{
     private int id;
     private String name;
