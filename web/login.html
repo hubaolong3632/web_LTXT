@@ -138,28 +138,30 @@
   <source src="mp3/teare.mp3" type="audio/mpeg" />
   如果不播放，说明你的浏览器不支持！
 </audio>
+<div class="outer_box">
+  <div class="back_one"></div>
+  <div class="back_two"></div>
+  <div class="login_box">
+    <h3 class="title">论坛登入</h3>
+<form  method="post"  action="login.do">
 
-<form  method="post"   action="login.do">
-  <div class="outer_box">
-    <div class="back_one"></div>
-    <div class="back_two"></div>
-    <div class="login_box">
-      <h3 class="title">论坛登入</h3>
 
       <p><i class="iconfont">账号:</i><input type="text" name="name" placeholder="Username"></p>
       <p><i class="iconfont" >密码:</i><input type="text" name="password" placeholder="Password"></p>
-      <p style ="color:red" th:text="${session.no}">xxxx</p>
+      <p style ="color:red" th:text="${session.no}"></p>
 
 
       <p class="logIn_btn">
         <span class="left_line" id="left_line"></span>
-        <input type="submit" value="登入      " name="btn_login" id="btn_login">
+        <input type="submit" value="登入">
         <span class="right_line"></span>
       </p>
 
       <a class="login" href="register.html" name="a_register" id="a_register"><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
-    </div>
-  </div>
 </form>
+
+  </div>
+  </div>
+
 </body>
 </html>

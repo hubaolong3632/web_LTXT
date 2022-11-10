@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>论坛首页</title>
+    <style>
+        /* 背景颜色 */
+        .back_one {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 0px;
+            background-color: #7BB6B6;
+        }
+        .back_two {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 0px;
+            background-color: #E3D0AD;
+        }
+        /* 接下来开始美化，我们一步步来，不要急
+用 CSS 美化网页的时候一定要遵循 从上到下、从外到内 的原则
+从上到下：先出现的标签，先设置样式
+从内到外：出现标签嵌套的时候，先设置外部标签的样式，再设置内部标签的样式。这是因为外部标签可能会影响内部标签 */
+
+        /* 全局样式设置，内边距和外边距都为 0，因为很多标签自带边距，这是我们不希望的 */
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        /* 去掉所有列表前面的黑色圆点 */
+        li {
+            list-style: none;
+        }
+
+        /* 去掉链接的下划线 */
+        a {
+            text-decoration: none;
+        }
+
+        /* 接下来开始设置局部样式，看着代码有点多，其实只要明白逻辑，书写并不是很困难。
+        有心的读者可以发现，博主一直在强调逻辑，因为代码是多变的，而逻辑是固定的，我们以后在书写网页代码的时候，一定是有目的的书写，而不是用 Google 开发者工具一个个试  */
+
+        /* 设置 header（导航栏）的宽高以及背景色，一般我们会指定一个高度，方便内部元素继承这个属性 */
+        #header {
+            background-color: #008080;
+            width: 100%;
+            height: 50px;
+        }
+
+        /* 设置列表样式，注意这里的 menu 并不是指代 ul 标签，而是 ul 下面的 div 块标签 */
+        #header .menu {
+            display: flex;				/* display: flex：弹性盒子，很适合多个元素按一行或者一列排开 */
+            height: 100%;				/* 设置和导航栏 header 相同的高度 */
+            line-height: 50px;			/* 设置行高，注意不要使用 inherit（继承），因为 menu 的父标签不是 header，而是 ul，我们并没有设置 ul 的行高，无法继承 */
+            max-width: 600px;			/* 最大宽度 */
+            padding: 0 20px;			/* 左右内边距均为 20 像素 */
+        }
+
+        /* 设置 ul 中每一个 li 的样式*/
+        #header .menu li{
+            height: 100%;				/* 设置高度，让每一个标签的高度也等于 header 高度 */
+        }
+
+        /* 设置 li 的鼠标移过动画 */
+        #header li:hover {
+            background: #7BB6B6;
+            transition: 0.5s;			/* 持续 0.5 秒 */
+        }
+
+        /* 设置 li 中 a 标签样式，可以发现我们严格按照从外到内的原则编写样式 */
+        #header .menu li a {
+            font: bolder normal 16px Source Sans Pro;
+            color: #fff; /* 不解释，看不懂的补 CSS 知识去 */
+            padding: 14px 15px;
+        }
+
+        /* 接下来我们先找找上述列表的需要改进的地方：
+1、“博客” 间距有点大
+2、让下方三个子选项消失
+    ↓ 见代码 ↓ */
+
+        /* 设置“博客”子列表，注意还是按照从外到内的原则，这里设置的是 ul */
+        #header .menu .blog-subfunction{
+            display: none;				/* 重点※，取消可见，让整个子列表处于不可见状态，也可以使用 visibility: hidden */
+            position: absolute;			/* 又一个重点※，首先我们分析一下为什么 “博客” 宽度要明显大于其他选项，这是因为它和下方的 “写博客”、“删博客” 同归在一个块内，那块的宽度当然取决于字最多的，也就是 3 个字宽度，所以我们希望 “博客” 和下方的分开，这时候就需用将下方的块进行绝对定位处理! */
+            background: #008080;
+            border-radius: 5px;			/* 圆角处理 */
+        }
+
+        /* 设置 ul 中的 li 标签 */
+        #header .menu .blog-subfunction li{
+            padding: 0 0.5em;
+            text-align: center;
+        }
+
+        /* 本场第二个 hover，功能为：鼠标移过 “博客” 的时候，下方的 子列表 处于可见状态
+        解释一下选择器：这相当于是一个后代选择器，解释为当鼠标移动到 header 的 menu 上面的 bolg 时，下方的列表该咋办（仔细品） */
+        #header .menu .blog:hover .blog-subfunction{
+            display: block;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+<!-- 养成习惯，导航栏用 div 块包起来，名称为 header  -->
+<div id="header">
+    <!-- 这里每一个功能都设置了 class 名称 -->
+    <ul>
+        <div class="menu">
+
+            <li class="front-page"><a href="#">首页</a></li>
+            <li class="course"><a href="#">个人文章</a></li>
+            <li class="developer-mall"><a href="#">文章编写</a></li>
+            <li class="blog"><a href="#">好友列表</a>
+                <!-- 这是一个子列表 -->
+                <ul class="blog-subfunction">
+                    <li><a href="#">好友一</a></li>
+                    <li><a href="#">好友二</a></li>
+                    <li><a href="#">好友三</a></li>
+                </ul>
+            </li>
+            <li class="answer-request"><a href="#">个人资料设置</a></li>
+            <li class="community"><a href="#">退出登陆</a></li>
+        </div>
+    </ul>
+    <div class="back_one"></div>
+    <div class="back_two"></div>
+</div>
+</body>
+</html>
+
+
