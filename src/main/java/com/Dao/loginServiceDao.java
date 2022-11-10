@@ -18,20 +18,12 @@ public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
 
-
-    public void addStudent(String name,String borrowBooks) {//添加
-        String sql=" insert into t_info (id,phone,email,headimg,fins,uname) VALUES (?,?,?,?,?,?);";
-        jdbc_link.update(sql);
-    }
-
-
-
+    //判断账号密码的登录
     @Override
-    public Login user_pwd(Login pas){ //账号的登入
+    public Login user_pwd(Login pas){
         System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
-            System.out.println(sql2);
             RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
             Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
@@ -42,9 +34,11 @@ public class loginServiceDao implements IServiceDao {
         }
     }
 
+    //添加用户信息
     @Override
     public int addInfo(Info info) {
-        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
+        String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
+        System.out.println(sqlInfo);
         Object[] objects = new Object[]{
                 info.getPhone(),
                 info.getEmail(),
@@ -52,15 +46,26 @@ public class loginServiceDao implements IServiceDao {
                 info.getFins(),
                 info.getUname()
         };
-         int num = jdbc_link.update(sql, objects);
+         int num = jdbc_link.update(sqlInfo, objects);
+        System.out.println(num);
+        return num;
+    }
+
+    //添加用户登录
+    @Override
+    public int addLogin(Login login) {
+        String sqlLogin = "insert into `t_login`(`name`,`password`) VALUES(?,?); ";
+        System.out.println(sqlLogin);
+        Object[] objLogin = new Object[]{
+                login.getName(),
+                login.getPassword()
+        };
+        int num = jdbc_link.update(sqlLogin,objLogin);
         return num;
     }
 
 
     public boolean password(Login login){  //查询站好密码
-
-
-
         //用来遍历数据库所有的   where 指定的
         String sql="SELECT * FROM `cheshibiao`";
         System.out.println(sql);

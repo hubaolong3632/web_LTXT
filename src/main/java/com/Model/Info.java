@@ -2,11 +2,12 @@ package com.Model;
 
 public class Info extends Father{
     private int id;
-    private String phone;
-    private String email;
-    private String headimg;
-    private int fins;
-    private int uname; //一对多
+    private String phone; //手机号
+    private String email; //邮件
+    private String headimg; //头像
+    private int fins; //点赞数
+    private String uname; //一对多
+
 
     public Info() {
     }
@@ -51,18 +52,18 @@ public class Info extends Father{
         this.fins = fins;
     }
 
-    public int getUname() {
+    public String getUname() {
         return uname;
     }
 
-    public void setUname(int uname) {
+    public void setUname(String uname) {
         this.uname = uname;
     }
 
 
 
-    public Info( int id ,String phone, String email, String headimg, int fins, int uname) {
-        this.id = id;
+    public Info( String phone, String email, String headimg, int fins, String uname) {
+
         this.phone = phone;
         this.email = email;
         this.headimg = headimg;

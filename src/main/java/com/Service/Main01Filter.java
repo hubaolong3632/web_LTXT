@@ -1,15 +1,10 @@
 package com.Service;
-
-
-import com.Dao.loginServiceDao;
 import com.Model.Father;
 import com.Model.Pzwj;
 import com.Utio.ViewBaseServlet;
 import com.Web.Action;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -120,25 +115,8 @@ public class Main01Filter extends ViewBaseServlet {
                  action.execute(instance,pzwj1,req,resp,this); //调用此方法 执行代码
                 //   父类名称    走下去的线    req 和resp请求
             }
-
-
-
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
-
-
-
-
     }
-
-
-
-
-
 }

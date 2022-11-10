@@ -2,8 +2,8 @@ package com.Model;
 
 public class Login extends Father{
     private int id;
-    private String name;
-    private String password;
+    private String name; //账号
+    private String password; //密码
 
     public Login() {
     }
