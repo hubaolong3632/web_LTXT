@@ -4,7 +4,6 @@ import com.Iservice.IServiceDao;
 import com.Model.Info;
 import com.Model.Login;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,11 +11,13 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
+
 
     //判断账号密码的登录
     @Override
@@ -26,10 +27,9 @@ public class loginServiceDao implements IServiceDao {
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
             RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
             Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
-
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
-//            e.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -37,14 +37,13 @@ public class loginServiceDao implements IServiceDao {
     //添加用户信息
     @Override
     public int addInfo(Info info) {
+        //因为没有默认值所以要初始化信息
         String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
         System.out.println(sqlInfo);
         Object[] objects = new Object[]{
                 info.getPhone(),
                 info.getEmail(),
                 info.getHeadimg(),
-                info.getFins(),
-                info.getUname()
         };
          int num = jdbc_link.update(sqlInfo, objects);
         System.out.println(num);
@@ -64,6 +63,17 @@ public class loginServiceDao implements IServiceDao {
         return num;
     }
 
+    
+    @Override
+    public List<Map<String, Object>> goodfriend(String name) {
+        String sqlname = "select  id,fname from t_goodfriend where uname='?'";
+        System.out.println(sqlname);
+        //查询一批数据,默认将每行数据转化为map
+        List<Map<String, Object>> maps = jdbc_link.queryForList(sqlname, new BeanPropertyRowMapper<String>(), name);
+//        String s = jdbc_link.queryForObject(sqlname, new BeanPropertyRowMapper<>(String.class), name);
+        return maps;
+    }
+
 
     public boolean password(Login login){  //查询站好密码
         //用来遍历数据库所有的   where 指定的
@@ -76,14 +86,9 @@ public class loginServiceDao implements IServiceDao {
             System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
-
-
-
-
        //查找一个数据
-
         String sql2="SELECT * FROM `t_login` where name =?;";
-        Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
+        Login query2 = jdbc_link.queryForObject(sql2, pasword,login.getName());
         System.out.println(query2.getName()+"--*--"+query2.getPassword());
 
 //        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
