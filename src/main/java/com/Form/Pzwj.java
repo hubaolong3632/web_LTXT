@@ -1,6 +1,6 @@
-package com.Model;
+package com.Form;
 
-public class Pzwj  extends  Father{
+public class Pzwj  extends Father {
 
     private String value;//值
     private String yi;//com.Model.PasWord

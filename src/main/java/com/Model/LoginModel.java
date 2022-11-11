@@ -1,29 +1,38 @@
 package com.Model;
 
-import java.util.List;
 
-public class Login extends Father{
+public class LoginModel {
     private int id;
     private String name; //账号
     private String password; //密码
-    private Info info; //信息 (一对一的关系)
+    private InfoModel info; //个人信息
 
-    public Info getInfo() {
-        return info;
+    public LoginModel() {
     }
 
-    public void setInfo(Info info) {
+    public LoginModel(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public LoginModel(int id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
+    public LoginModel(String name, String password, InfoModel info) {
+        this.name = name;
+        this.password = password;
         this.info = info;
     }
 
-
-
-    public Login() {
+    public InfoModel getInfo() {
+        return info;
     }
 
-    public Login(String name, String password) {
-        this.name = name;
-        this.password = password;
+    public void setInfo(InfoModel info) {
+        this.info = info;
     }
 
     public int getId() {
