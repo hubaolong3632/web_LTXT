@@ -16,10 +16,10 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         IServiceDao login = (IServiceDao) context.getBean("loginDao");
 
-        LoginModel model = new LoginModel();
-        model.setName("张三");
-        List<LoginModel> goodfriend = login.goodfriend(model);
-        System.out.println("好友列表:"+goodfriend);
+//        LoginModel model = new LoginModel();
+//        model.setName("张三");
+//        List<Login> goodfriend = login.goodfriend(model);
+//        System.out.println("好友列表:"+goodfriend);
 
 //        Login from = login.user_pwd(new Login("张三", "111"));
 //        if(from==null){
