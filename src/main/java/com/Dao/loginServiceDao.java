@@ -1,8 +1,9 @@
 package com.Dao;
 
+import com.Form.Info;
+import com.Form.Login;
 import com.Iservice.IServiceDao;
-import com.Model.Info;
-import com.Model.Login;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -37,6 +38,7 @@ public class loginServiceDao implements IServiceDao {
     //添加用户信息
     @Override
     public int addInfo(Info info) {
+         //传入 手机号 邮箱
         String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
         System.out.println(sqlInfo);
         Object[] objects = new Object[]{

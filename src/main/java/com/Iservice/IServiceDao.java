@@ -1,7 +1,8 @@
 package com.Iservice;
 
-import com.Model.Info;
-import com.Model.Login;
+
+import com.Form.Info;
+import com.Form.Login;
 
 public interface IServiceDao {
         Login user_pwd (Login login); //判断账号用户名的登录

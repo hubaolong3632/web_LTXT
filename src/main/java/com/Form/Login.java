@@ -1,13 +1,15 @@
-package com.Model;
+package com.Form;
 
-
-public class Login {
+public class Login extends Father {
     private int id;
     private String name; //账号
     private String password; //密码
+    private Info info;  //保存个人信息
 
-    public Login(int id, String name, String password) {
-        this.id = id;
+    public Login() {
+    }
+
+    public Login(String name, String password) {
         this.name = name;
         this.password = password;
     }

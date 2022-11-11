@@ -1,8 +1,9 @@
 package com.Dao;
 
+import com.Form.Info;
+import com.Form.Login;
 import com.Iservice.IServiceDao;
-import com.Model.Info;
-import com.Model.Login;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
