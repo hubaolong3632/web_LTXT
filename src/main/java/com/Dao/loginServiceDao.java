@@ -26,12 +26,12 @@ public class loginServiceDao implements IServiceDao {
         System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
-            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
             LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
-//            e.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
