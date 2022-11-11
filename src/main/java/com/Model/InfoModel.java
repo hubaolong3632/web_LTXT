@@ -1,5 +1,7 @@
 package com.Model;
 
+import java.util.List;
+
 public class InfoModel {   //×¢²áÀà
     private int id;
     private String phone; //ÊÖ»úºÅ

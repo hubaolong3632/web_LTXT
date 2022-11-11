@@ -1,13 +1,12 @@
 package com.Dao;
 
-import com.Form.Info;
 import com.Form.Login;
 import com.Iservice.IServiceDao;
 
+import com.Model.GoodFriendModel;
 import com.Model.InfoModel;
 import com.Model.LoginModel;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
@@ -86,10 +84,20 @@ public class loginServiceDao implements IServiceDao {
     }
 
     @Override
-    public List<Map<String, Object>> goodfriend(String name) {
-        String sql = "select  fname from t_goodfriend where uname=?";
-        List<Map<String, Object>> maps = jdbc_link.queryForList(sql, new BeanPropertyRowMapper(Login.class), name);
-        return maps;
+    public List<GoodFriendModel> goodfriend(LoginModel login) {
+        String sql = "select * from t_goodfriend where uname=?";
+        List<LoginModel> logins =null;
+
+
+        List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class),login.getName());
+//        for (GoodFriendModel model : query) {
+//            System.out.println(model.getFname());
+//            System.out.println(model.getUname());
+//            System.out.println(model.getId());
+//        }
+//        System.out.println(query.get());
+
+        return query;
     }
 
 
