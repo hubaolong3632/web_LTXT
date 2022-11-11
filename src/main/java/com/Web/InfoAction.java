@@ -7,13 +7,14 @@ import com.Iservice.IServiceDao;
 import com.Model.InfoModel;
 import com.Model.LoginModel;
 import com.Service.Main01Filter;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@Component("InfoAction")
 public class InfoAction extends Action{
     @Resource
     IServiceDao dao; //数据库
@@ -32,8 +33,8 @@ public class InfoAction extends Action{
             resp.sendRedirect(pzwj.getLiu()); //登入成功跳转到指定网页
 
         }else{
-            main.processTemplate("register",req,resp); //跳转指定网站 (返回当前账号)
             req.getSession().setAttribute("no","注册失败当前已存在此账号!"); //保存账号密码
+            main.processTemplate("register",req,resp); //跳转指定网站 (返回当前账号)
 
         }
 

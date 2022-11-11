@@ -41,25 +41,31 @@ public class loginServiceDao implements IServiceDao {
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
+        System.out.println("-----查询手机------");
          //传入 手机号 邮箱
         try{
 
             LoginModel loginModel = user_pwd(login);
+
             if(loginModel==null){ //如果不存在当前账号
                 String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
-//                System.out.println(sqlInfo);
                 InfoModel info = login.getInfo(); // 获取个人信息
+                System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
 
                 int num = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName(),login.getPassword());
                 System.out.println(num);
-                if(num!=0){ //如果注册失败
+                if(num!=0){ //如果注册成功
+                    System.out.println("注册成功");
                     return true;
                 }
 
 
             }
+            System.out.println("注册失败1");
             return false;
         }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("注册失败2");
             return false;
         }
 
