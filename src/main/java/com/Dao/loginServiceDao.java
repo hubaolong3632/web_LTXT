@@ -4,6 +4,8 @@ import com.Form.Info;
 import com.Form.Login;
 import com.Iservice.IServiceDao;
 
+import com.Model.InfoModel;
+import com.Model.LoginModel;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
@@ -21,12 +24,12 @@ public class loginServiceDao implements IServiceDao {
 
     //判断账号密码的登录
     @Override
-    public Login user_pwd(Login pas){
+    public LoginModel user_pwd(LoginModel pas){
         System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
-            RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
-            Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
+            LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
@@ -37,25 +40,35 @@ public class loginServiceDao implements IServiceDao {
 
     //添加用户信息
     @Override
-    public int addInfo(Info info) {
+    public boolean addInfo(LoginModel login) {
          //传入 手机号 邮箱
-        String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
-        System.out.println(sqlInfo);
-        Object[] objects = new Object[]{
-                info.getPhone(),
-                info.getEmail(),
-                info.getHeadimg(),
-                info.getFins(),
-                info.getUname()
-        };
-         int num = jdbc_link.update(sqlInfo, objects);
-        System.out.println(num);
-        return num;
+        try{
+
+            LoginModel loginModel = user_pwd(login);
+            if(loginModel==null){ //如果不存在当前账号
+                String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
+//                System.out.println(sqlInfo);
+                InfoModel info = login.getInfo(); // 获取个人信息
+
+                int num = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName(),login.getPassword());
+                System.out.println(num);
+                if(num!=0){ //如果注册失败
+                    return true;
+                }
+
+
+            }
+            return false;
+        }catch (Exception e){
+            return false;
+        }
+
+
     }
 
     //添加用户登录
     @Override
-    public int addLogin(Login login) {
+    public int addLogin(LoginModel login) {
         String sqlLogin = "insert into `t_login`(`name`,`password`) VALUES(?,?); ";
         System.out.println(sqlLogin);
         Object[] objLogin = new Object[]{
@@ -64,6 +77,11 @@ public class loginServiceDao implements IServiceDao {
         };
         int num = jdbc_link.update(sqlLogin,objLogin);
         return num;
+    }
+
+    @Override
+    public List<Map<String, Object>> goodfriend(String name) {
+        return null;
     }
 
 

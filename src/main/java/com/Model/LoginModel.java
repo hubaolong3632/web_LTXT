@@ -1,15 +1,38 @@
 package com.Model;
 
 
-public class Login {
+public class LoginModel {
     private int id;
     private String name; //账号
     private String password; //密码
+    private InfoModel info; //个人信息
 
-    public Login(int id, String name, String password) {
+    public LoginModel() {
+    }
+
+    public LoginModel(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public LoginModel(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
+    }
+
+    public LoginModel(String name, String password, InfoModel info) {
+        this.name = name;
+        this.password = password;
+        this.info = info;
+    }
+
+    public InfoModel getInfo() {
+        return info;
+    }
+
+    public void setInfo(InfoModel info) {
+        this.info = info;
     }
 
     public int getId() {

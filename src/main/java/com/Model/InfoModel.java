@@ -1,6 +1,6 @@
 package com.Model;
 
-public class Info {   //注册类
+public class InfoModel {   //注册类
     private int id;
     private String phone; //手机号
     private String email; //邮件
@@ -9,7 +9,9 @@ public class Info {   //注册类
     private String uname; //一对多
 
 
-    public Info() {
+
+
+    public InfoModel() {
     }
 
     public int getId() {
@@ -60,7 +62,7 @@ public class Info {   //注册类
         this.uname = uname;
     }
 
-    public Info( String phone, String email, String headimg) {
+    public InfoModel(String phone, String email, String headimg) {
 
         this.phone = phone;
         this.email = email;
@@ -68,7 +70,7 @@ public class Info {   //注册类
 
     }
 
-    public Info( String phone, String email, String headimg, int fins, String uname) {
+    public InfoModel(String phone, String email, String headimg, int fins, String uname) {
 
         this.phone = phone;
         this.email = email;
