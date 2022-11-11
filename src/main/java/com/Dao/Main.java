@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 import java.util.Map;
-
+//
 @ComponentScan("com")
 public class Main {
     public static void main(String[] args) {
