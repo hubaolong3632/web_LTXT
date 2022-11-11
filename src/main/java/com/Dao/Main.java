@@ -1,10 +1,6 @@
 package com.Dao;
 
-import com.Form.Info;
-import com.Form.Login;
 import com.Iservice.IServiceDao;
-
-import com.Model.InfoModel;
 import com.Model.LoginModel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 import java.util.Map;
-
+//
 @ComponentScan("com")
 public class Main {
     public static void main(String[] args) {
