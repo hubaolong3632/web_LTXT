@@ -60,7 +60,13 @@ public class Info {   //×¢²áÀà
         this.uname = uname;
     }
 
+    public Info( String phone, String email, String headimg) {
 
+        this.phone = phone;
+        this.email = email;
+        this.headimg = headimg;
+
+    }
 
     public Info( String phone, String email, String headimg, int fins, String uname) {
 
