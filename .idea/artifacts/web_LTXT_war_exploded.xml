@@ -38,7 +38,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.22" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.15.RELEASE" />
           <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.6.RELEASE" />
-          <element id="library" level="application" name="RXTXcomm" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="web_LTXT/web/Web" />
