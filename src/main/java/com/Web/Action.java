@@ -1,7 +1,7 @@
 package com.Web;
 
-import com.Model.Father;
-import com.Model.Pzwj;
+import com.Form.Father;
+import com.Form.Pzwj;
 import com.Service.Main01Filter;
 
 import javax.servlet.ServletException;

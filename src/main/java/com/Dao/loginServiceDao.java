@@ -1,10 +1,12 @@
 package com.Dao;
 
+import com.Form.Login;
 import com.Iservice.IServiceDao;
-import com.Model.Info;
-import com.Model.Login;
+
+import com.Model.GoodFriendModel;
+import com.Model.InfoModel;
+import com.Model.LoginModel;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,22 +20,14 @@ public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
 
-
-    public void addStudent(String name,String borrowBooks) {//添加
-        String sql=" insert into t_info (id,phone,email,headimg,fins,uname) VALUES (?,?,?,?,?,?);";
-        jdbc_link.update(sql);
-    }
-
-
-
+    //判断账号密码的登录
     @Override
-    public Login user_pwd(Login pas){ //账号的登入
+    public LoginModel user_pwd(LoginModel pas){
         System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
-            System.out.println(sql2);
-            RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
-            Login  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
+            LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
@@ -42,25 +36,76 @@ public class loginServiceDao implements IServiceDao {
         }
     }
 
+    //添加用户信息
     @Override
-    public int addInfo(Info info) {
-        String sql=" insert into t_info (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
-        Object[] objects = new Object[]{
-                info.getPhone(),
-                info.getEmail(),
-                info.getHeadimg(),
-                info.getFins(),
-                info.getUname()
+    public boolean addInfo(LoginModel login) {
+        System.out.println("-----查询手机------");
+         //传入 手机号 邮箱
+        try{
+
+            LoginModel loginModel = user_pwd(login);
+
+            if(loginModel==null){ //如果不存在当前账号
+
+
+                String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
+                String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
+                InfoModel info = login.getInfo(); // 获取个人信息
+                System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
+
+                int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
+                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName()); //添加个人信息
+                System.out.println(num1);
+                if(num1!=0){ //如果注册成功
+                    System.out.println("注册成功");
+                    return true;
+                }
+
+
+            }
+            System.out.println("注册失败1");
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("注册失败2");
+            return false;
+        }
+
+
+    }
+
+    //添加用户登录
+    @Override
+    public int addLogin(LoginModel login) {
+        String sqlLogin = "insert into `t_login`(`name`,`password`) VALUES(?,?); ";
+        System.out.println(sqlLogin);
+        Object[] objLogin = new Object[]{
+                login.getName(),
+                login.getPassword()
         };
-         int num = jdbc_link.update(sql, objects);
+        int num = jdbc_link.update(sqlLogin,objLogin);
         return num;
+    }
+
+    @Override
+    public List<GoodFriendModel> goodfriend(LoginModel login) {
+        String sql = "select * from t_goodfriend where uname=?";
+        List<LoginModel> logins =null;
+
+
+        List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class),login.getName());
+//        for (GoodFriendModel model : query) {
+//            System.out.println(model.getFname());
+//            System.out.println(model.getUname());
+//            System.out.println(model.getId());
+//        }
+//        System.out.println(query.get());
+
+        return query;
     }
 
 
     public boolean password(Login login){  //查询站好密码
-
-
-
         //用来遍历数据库所有的   where 指定的
         String sql="SELECT * FROM `cheshibiao`";
         System.out.println(sql);
