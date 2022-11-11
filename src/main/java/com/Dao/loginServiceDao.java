@@ -81,7 +81,9 @@ public class loginServiceDao implements IServiceDao {
 
     @Override
     public List<Map<String, Object>> goodfriend(String name) {
-        return null;
+        String sql = "select  fname from t_goodfriend where uname=?";
+        List<Map<String, Object>> maps = jdbc_link.queryForList(sql, new BeanPropertyRowMapper(Login.class), name);
+        return maps;
     }
 
 
