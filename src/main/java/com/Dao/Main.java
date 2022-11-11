@@ -24,9 +24,9 @@ public class Main {
             System.out.println(from.getName()+"  ---- "+from.getPassword());
         }
 //
-         int num = login.addInfo(new Info("18762893132", "3142436228@qq.com",
-                "\"C:\\Users\\lxy\\Desktop\\网页\\作业\\素材\\农业网站版本四\\0首页.jpg\""
-                ));
+//         int num = login.addInfo(new Info("18762893132", "3142436228@qq.com",
+//                "\"C:\\Users\\lxy\\Desktop\\网页\\作业\\素材\\农业网站版本四\\0首页.jpg\""
+//                ));
         if(num>0){
             System.out.println("添加信息成功");
         }else{
