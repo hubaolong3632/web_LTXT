@@ -46,13 +46,17 @@ public class loginServiceDao implements IServiceDao {
             LoginModel loginModel = user_pwd(login);
 
             if(loginModel==null){ //如果不存在当前账号
-                String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
+
+
+                String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
+                String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
                 InfoModel info = login.getInfo(); // 获取个人信息
                 System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
 
-                int num = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName(),login.getPassword());
-                System.out.println(num);
-                if(num!=0){ //如果注册成功
+                int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
+                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName()); //添加个人信息
+                System.out.println(num1);
+                if(num1!=0){ //如果注册成功
                     System.out.println("注册成功");
                     return true;
                 }
