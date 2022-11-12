@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
 
+//多个层都使用一个dao实现
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
     @Resource
@@ -90,16 +91,12 @@ public class loginServiceDao implements IServiceDao {
 
 
         List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class),login.getName());
-//        for (GoodFriendModel model : query) {
-//            System.out.println(model.getFname());
-//            System.out.println(model.getUname());
-//            System.out.println(model.getId());
-//        }
-//        System.out.println(query.get());
+        for (GoodFriendModel model : query) {
+            System.out.println("姓名： "+model.getFname()+" 好友id：   "+model.getId());
+        }
 
         return query;
     }
-
 
     public boolean password(Login login){  //查询站好密码
         //用来遍历数据库所有的   where 指定的
@@ -112,12 +109,7 @@ public class loginServiceDao implements IServiceDao {
             System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
-
-
-
-
        //查找一个数据
-
         String sql2="SELECT * FROM `t_login` where name =?;";
         Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
         System.out.println(query2.getName()+"--*--"+query2.getPassword());
