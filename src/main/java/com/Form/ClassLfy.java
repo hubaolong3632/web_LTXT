@@ -1,19 +1,11 @@
 package com.Form;
-// 用于表单
+// 用于表单 统计当前用户的数量和 当前文章的数量
 public class ClassLfy {
     public String id;
-    public String name;
+    public String name; //查询当前用户发送文章数量
+    public String classify; // 当前分期的文章数量
 
     public ClassLfy() {
-    }
-
-    public ClassLfy(String name) {
-        this.name = name;
-    }
-
-    public ClassLfy(String id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public String getId() {
@@ -30,5 +22,13 @@ public class ClassLfy {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
     }
 }
