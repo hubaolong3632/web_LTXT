@@ -127,11 +127,13 @@ public class loginServiceDao implements IServiceDao {
     //区分文章方法
     @Override
     public List<MyarticleModel> diArticles(MyarticleModel model) {
-        String sql = "select * FROM `t_myarticle` where classify = ? ; ";
+        String sql = "select * FROM t_myarticle where classify = ? ; ";
+        System.out.println(sql);
+        System.out.println(model.getClassify().getName());
         BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
-        model= jdbc_link.queryForObject(sql, myarticlemodel, model.getClassify());
-        System.out.println(model);
-        return Collections.singletonList(model);
+        List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getClassify().getName());
+
+        return list;
     }
 
     public boolean password(Login login){  //查询站好密码

@@ -4,6 +4,7 @@ import com.Form.Father;
 import com.Form.Pzwj;
 import com.Iservice.IServiceDao;
 import com.Service.Main01Filter;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component("ClassLfyAction")
 public class ClassLfyAction extends Action{
 
     @Resource

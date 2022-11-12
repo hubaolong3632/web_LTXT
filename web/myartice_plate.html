@@ -97,7 +97,8 @@
 <div class="head_box">
     <div class="header">
         <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>の论坛|天行健,君子自强不息</h4></a>
+            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2></a>
+<!--            <h4>天行健,君子自强不息</h4>-->
         </div>
         <div class="header_nav">
             <ul class="clearfix">
@@ -235,7 +236,7 @@
                             <button type="button" class="btn btn-primary" id="publishBtn">发布文章</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-light">返回</button>
+                            <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
                         </div>
                     </div>
                 </div>
