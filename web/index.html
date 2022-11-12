@@ -92,6 +92,9 @@
     .footer-text p i{font-weight: bold;color: #3a76bf;font-style:normal}
     .footer-text p{margin-bottom: 5px;}
 
+    .p_plate{
+        color: #9c9c9c;
+    }
 
 </style>
 <script>
@@ -107,7 +110,7 @@
 <div class="head_box">
     <div class="header">
         <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>の论坛|天行健,君子自强不息</h4></a>
+            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
         </div>
         <div class="header_nav">
             <ul class="clearfix">
@@ -159,28 +162,28 @@
         <a href="myartice_plate.do?name=java"><img src="img/java.png"></a>
         <br>
         <a href="myartice_plate.do?name=java">java论坛</a>
-        <p>文章数量：</p>
+        <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate2">
         <a href="myartice_plate.do?name=mysql"><img src="img/mysql.png" height="100" width="100"></a>
         <br>
         <a href="myartice_plate.do?name=mysql">mysql论坛</a>
-        <p>文章数量：</p>
+        <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate3">
         <a href="myartice_plate.do?name=c++"><img src="img/c++.png" height="100" width="100"></a>
         <br>
         <a href="myartice_plate.do?name=c++">c++论坛</a>
-        <p>文章数量：</p>
+        <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate4">
         <a href="myartice_plate.do?name=html"><img src="img/html.jpg" height="100" width="100"></a>
         <br>
         <a href="myartice_plate.do?name=html">html论坛</a>
-        <p>文章数量：</p>
+        <p class="p_plate">文章数量：</p>
     </div>
 </div>
 
