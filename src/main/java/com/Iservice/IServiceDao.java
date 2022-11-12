@@ -10,5 +10,5 @@ public interface IServiceDao {
         boolean addInfo(LoginModel info);//添加用户信息
         int addLogin(LoginModel login);//添加用户
         List<GoodFriendModel> goodfriend(LoginModel name);//查询好友列表
-        int count()//根据主题名称分类
+//        int count()//根据主题名称分类
 }
