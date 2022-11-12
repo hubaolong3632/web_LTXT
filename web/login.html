@@ -82,33 +82,33 @@
             font-size: 20px;
         }
 
-        /* 登录按钮的样式 */
-        .login_box .logIn_btn {
-            width: 100px;
-            height: 40px;
-            line-height: 40px;
-            margin-left: 100px;
-            background-color: #EBF7F3;
-            color: #7BB6B6;
-            border-radius: 5px;
-            box-shadow: 0px 0px 3px #e6e5e5;
-            font-weight: bold;
-            display: flex;
-        }
-        .login_box .logIn_btn span {
-            display: block;
-            width: 33%;
-            /* height: 100%; */
-        }
-        .login_box .logIn_btn .left_line {
-            height: 20px;
-            margin-top: 20px;
-            border-left: 2px solid #7BB6B6;
-        }
-        .login_box .logIn_btn .right_line {
-            height: 20px;
-            border-right: 2px solid #7BB6B6;
-        }
+        /*!* 登录按钮的样式 *!*/
+        /*.login_box .logIn_btn {*/
+        /*    width: 100px;*/
+        /*    height: 40px;*/
+        /*    line-height: 40px;*/
+        /*    margin-left: 100px;*/
+        /*    background-color: #EBF7F3;*/
+        /*    color: #7BB6B6;*/
+        /*    border-radius: 5px;*/
+        /*    box-shadow: 0px 0px 3px #e6e5e5;*/
+        /*    font-weight: bold;*/
+        /*    display: flex;*/
+        /*}*/
+        /*.login_box .logIn_btn span {*/
+        /*    display: block;*/
+        /*    width: 33%;*/
+        /*    !* height: 100%; *!*/
+        /*}*/
+        /*.login_box .logIn_btn .left_line {*/
+        /*    height: 20px;*/
+        /*    margin-top: 20px;*/
+        /*    border-left: 2px solid #7BB6B6;*/
+        /*}*/
+        /*.login_box .logIn_btn .right_line {*/
+        /*    height: 20px;*/
+        /*    border-right: 2px solid #7BB6B6;*/
+        /*}*/
 
         /* 注册按钮 */
         .login_box .login {
@@ -123,11 +123,31 @@
         a{
           text-decoration: none;
         }
-        #btn_login:hover{
-          color: #7BB6B6;
-        }
+        /*#btn_login:hover{*/
+        /*  color: #7BB6B6;*/
+        /*}*/
         #a_register:hover{
           color: #7BB6B6;
+        }
+
+        /*登陆样式*/
+        button{
+            width: 70px;
+            height: 40px;
+            background-color: #EBF7F3;
+            color: #7BB6B6;
+            border-radius: 5px;
+            /*box-shadow: 0px 0px 3px yellow;!*阴影*!*/
+            font-weight: bold;
+            border-left: 2px solid #7BB6B6;
+            border-right: 4px solid #7BB6B6;
+            border-top: 2px solid #E3D0AD;
+            border-bottom:4px solid #E3D0AD;
+            margin-left:115px;
+        }
+
+        .btn:hover{
+            background: #E3D0AD;
         }
 
 
@@ -148,16 +168,16 @@
 
       <p><i class="iconfont">账号:</i><input type="text" name="name" placeholder="Username"></p>
       <p><i class="iconfont" >密码:</i><input type="text" name="password" placeholder="Password"></p>
-      <p style ="color:red" th:text="${session.no}"></p>
-
-
-      <p class="logIn_btn">
-        <span class="left_line" id="left_line"></span>
-        <input type="submit" value="登入">
-        <span class="right_line"></span>
-      </p>
-
+    <br>
+<!--      <p class="logIn_btn">-->
+<!--        <span class="left_line" id="left_line"></span>-->
+<!--        <input type="submit" value="登入">-->
+<!--        <span class="right_line"></span>-->
+<!--      </p>-->
+    <button class="btn" type="submit">登陆</button>
+    <br>
       <a class="login" href="register.html" name="a_register" id="a_register"><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
+    <p style ="color:red" th:text="${session.no}"></p>
 </form>
 
   </div>

@@ -2,7 +2,6 @@ package com.Dao;
 
 import com.Form.Login;
 import com.Iservice.IServiceDao;
-import com.Model.GoodFriendModel;
 import com.Model.LoginModel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,10 +16,35 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         IServiceDao login = (IServiceDao) context.getBean("loginDao");
 
-        LoginModel model = new LoginModel();
-        model.setName("张三");
-        List<GoodFriendModel> goodfriend = login.goodfriend(model);
-        System.out.println("好友列表:"+goodfriend);
+//        LoginModel model = new LoginModel();
+//        model.setName("张三");
+//        List<Login> goodfriend = login.goodfriend(model);
+//        System.out.println("好友列表:"+goodfriend);
+
+//        Login from = login.user_pwd(new Login("张三", "111"));
+//        if(from==null){
+//            System.out.println("当前并没有此账号");
+//        }else{
+//            System.out.println(from.getName()+"  ---- "+from.getPassword());
+//        }
+////String name, String password, String phone, String email, String headimg
+//         int num = login.addInfo(new InfoModel("张三1","111","15300000","911142","c:/22222"
+//                ));
+//        if(num>0){
+//            System.out.println("添加信息成功");
+//        }else{
+//            System.out.println("添加信息失败");
+//        }
+
+//        int num1 = login.addLogin(new LoginModel("123","456"));
+//        if(num1 > 0 ){
+//            System.out.println("success");
+//        } else{
+//            System.out.println("errer");
+//        }
+
+
+        //map是list里面的一个值
 
     }
 }

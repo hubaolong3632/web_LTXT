@@ -4,7 +4,6 @@ public class Login extends Father {
     private int id;
     private String name; //账号
     private String password; //密码
-    private Info info;  //保存个人信息
 
     public Login() {
     }

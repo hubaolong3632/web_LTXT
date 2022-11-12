@@ -27,12 +27,12 @@ public class loginServiceDao implements IServiceDao {
         System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
-            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(Login.class); //获取Pasowrd类
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
             LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
-//            e.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -47,13 +47,17 @@ public class loginServiceDao implements IServiceDao {
             LoginModel loginModel = user_pwd(login);
 
             if(loginModel==null){ //如果不存在当前账号
-                String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
                 InfoModel info = login.getInfo(); // 获取个人信息
+
+
+                String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
+                String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
                 System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
 
-                int num = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName(),login.getPassword());
-                System.out.println(num);
-                if(num!=0){ //如果注册成功
+                int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
+                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName()); //添加个人信息
+                System.out.println(num1);
+                if(num1!=0){ //如果注册成功
                     System.out.println("注册成功");
                     return true;
                 }
