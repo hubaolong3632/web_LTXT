@@ -2,9 +2,247 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>发布文章</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="wangEditor.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"  />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit" />
+    <title>blog_index</title>
+    <meta name="keywords" content="张三的博客">
+    <meta name="description" content="张三的博客">
+    <link href="css/base.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="js/base.js" type="text/javascript"></script>
+    <script src="js/jquery.slides.min.js" type="text/javascript"></script>
+    <style>
+        .mainHeader{
+
+            padding-top: 1px;
+            padding-bottom: 1px;
+            background-color: white !important;
+            border-bottom: 5px solid #0b6cb8;
+        }
+
+        .logo_icon{
+
+            height: 38px;
+        }
+
+        .liColor{
+            color: #4f4f4f
+
+        }
+
+        .toolbar {
+            border: 1px solid #ccc;
+        }
+        .text {
+            border: 1px solid #ccc;
+            height: 500px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //富文本编辑器初始化代码
+            var E = window.wangEditor;
+            var editor = new E('#div1', '#div2');
+
+            editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+            editor.create();
+
+            //创建replaceAll()函数,用于替换字符串中出现的所有某个字符
+            String.prototype.replaceAll = function (FindText, RepText) {
+                return this.replace(new RegExp(FindText, "g"), RepText);
+            };
+
+            //发布文章按钮的点击事件，即封装数据，向后台传递
+            $("#publishBtn").click(function () {
+                console.info("click");
+                var postData={};
+                postData.title=$("#titleInput").val();
+                postData.category=$("#categoryInput").val();
+
+                //替换双引号为两个单引号，方便编写SQL语句插入数据库中
+                var content=editor.txt.html().replaceAll("\"","\'\'");
+                postData.content=content;
+
+                console.info(content);
+                postData.author_acc="123";
+                postData.author_name="admin";
+                postData.create_time=new Date().toLocaleDateString();
+                postData.last_edit_time=new Date().toLocaleDateString();
+                console.info(postData);
+
+                //向后台传递数据，需要根据具体后台来改
+                $.post("http://localhost:8099/publishArticle",postData,function (data) {
+
+                    alert(data);
+                })
+
+            })
+
+        })
+
+    </script>
+
 </head>
-<body>
-  对应的文章获取
+<body style="background-color: whitesmoke">
+<div class="head_box">
+    <div class="header">
+        <div class="header_logo">
+            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>の论坛|天行健,君子自强不息</h4></a>
+        </div>
+        <div class="header_nav">
+            <ul class="clearfix">
+                <li><a href="">个人文章</a></li>
+                <li><a href="">文章编写</a></li>
+                <li class="have_second">
+                    <a href="list.html">好友列表</a>
+                    <ul class="nav_second">
+                        <li><a href="list.html">小红</a></li>
+                        <li><a href="list.html">小黄</a></li>
+                        <li><a href="list.html">小蓝</a></li>
+                    </ul>
+                </li>
+                <li><a href="">个人资料设置</a></li>
+                <li><a href="login.html">退出登入</a></li>
+            </ul>
+        </div>
+        <div class="header_search">
+            <a href="javascript:void(0);" class="header_search_btn">
+                <!--<img src="img/search.png">-->
+                <i></i>
+            </a>
+        </div>
+        <div class="header_nav_small_btn">
+            <span class="small_btn"></span>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-md-1">
+
+
+        </div>
+
+        <div class="col-md-2" style="padding-right: 0px">
+
+            <div class="row">
+
+                <div class="col-md-3"></div>
+
+<!--                <div class="col-md-9">-->
+<!--                    <div class="card">-->
+
+<!--                        <ul class="nav nav-pills nav-fill flex-column">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link active list-group-item" href="#">发布文章</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link liColor list-group-item" href="#">文章管理</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link liColor list-group-item" href="#">分类管理</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link liColor list-group-item" href="#">退出</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+
+<!--                </div>-->
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6" style="padding-left: 0px">
+            <div class="card">
+                <div class="card-header" style="background-color: white">
+                    <div class="row">
+                        <div class="col-md-3" style="font-size: 18px">发布文章</div>
+                        <!--                        <div class="col-md-9" style="margin-top: 8px;font-size: 12px;text-align: right">当前位置>专委会介绍>文件资料</div>-->
+                    </div>
+                </div>
+
+                <div class="card-body" style="min-height: 1000px">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-1 mt-2 ml-0 mr-1" >
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"  >文章标题</span>
+                                </div>
+                                <input id="titleInput" type="text" class="form-control" placeholder="不多于100字" style="margin-right: 5px">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+<!--                    <div style="padding: 8px 0; color: #ccc"></div>-->
+<!--                    <div id="div1" class="toolbar">-->
+<!--                    </div>-->
+
+<!--                    <div id="div2" class="text"> &lt;!&ndash;可使用 min-height 实现编辑区域自动增加高度&ndash;&gt;-->
+<!--                        <form id="example" name="example">-->
+<!--                            <textarea id="t1" name="t1" style="width:580px;height:300px;"></textarea>-->
+<!--                            <input type="hidden" id="t2" name="t2" />-->
+<!--&lt;!&ndash;                            <input type="submit" value="提交" id="submit" name="submit" onclick="return preSave();" />&ndash;&gt;-->
+<!--                        </form>-->
+<!--                    </div>-->
+                    <div id="sample">
+                        <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+                        <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>
+                        Third Textarea
+                        <textarea name="area3" style="width: 500px; height: 500px; color: black "></textarea>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <div class="input-group mb-3 mt-3 ml-0" >
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">文章分类</span>
+                                    <select name="你喜欢的水果：">
+                                        <option value="apple">java论坛</option>
+                                        <option value="watermelon">mysql论坛</option>
+                                        <option value="banana">c++论坛</option>
+                                        <option value="banana">HTML论坛</option>
+                                    </select>
+                                </div>
+<!--                                <input id="categoryInput" type="text" class="form-control" >-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 15px">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2 ml-0">
+                            <button type="button" class="btn btn-primary" id="publishBtn">发布文章</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-light">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
 </body>
 </html>
