@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-/***
+/*
  *登入界面
  */
 
@@ -32,11 +32,6 @@ public class IndexAction extends Action{
         main.processTemplate(pzwj.getLiu(),req,resp); //首页显示
 
 
-
-
-//        req.getSession().setAttribute("dr","deng lu cheng gon");
-//        req.getRequestDispatcher("index.html").forward(req,resp);//跳转
-//      resp.sendRedirect("index");
-
     }
+
 }
