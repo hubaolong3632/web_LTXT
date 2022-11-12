@@ -106,7 +106,6 @@ public class loginServiceDao implements IServiceDao {
     @Override
     public List<GoodFriendModel> goodfriend(LoginModel login) {
         String sql = "select * from t_goodfriend where uname=?";
-        List<LoginModel> logins =null;
 
 
         List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class),login.getName());
