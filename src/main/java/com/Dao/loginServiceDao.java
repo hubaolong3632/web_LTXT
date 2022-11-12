@@ -3,6 +3,7 @@ package com.Dao;
 import com.Form.Login;
 import com.Iservice.IServiceDao;
 
+import com.Model.ClassLfyModel;
 import com.Model.GoodFriendModel;
 import com.Model.InfoModel;
 import com.Model.LoginModel;
@@ -100,6 +101,19 @@ public class loginServiceDao implements IServiceDao {
         }
 
         return query;
+    }
+
+    @Override
+    public ClassLfyModel getCount(ClassLfyModel classlfy) {
+
+
+
+//        System.out.println(classlfy.getName());
+        String sql = "select count(classify) as 'classify'  from t_myarticle where classify=?;";
+        BeanPropertyRowMapper<ClassLfyModel> classflyBean = new BeanPropertyRowMapper<>(ClassLfyModel.class);
+        classlfy = jdbc_link.queryForObject(sql, classflyBean,classlfy.getName());
+//        System.out.println(classlfy.getClassify());
+        return classlfy;
     }
 
     public boolean password(Login login){  //查询站好密码
