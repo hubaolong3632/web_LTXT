@@ -13,7 +13,7 @@ public class MyarticleModel {
     private String content; //文章内容
     private Integer likenum; //点赞数
     private Integer collection; //收藏数
-    private ClassLfyModel  classify; //分类
+    private ClassLfyModel  classify; //分区
     private Date postdate; //时间
 
     public int getId() {
@@ -91,6 +91,11 @@ public class MyarticleModel {
         this.collection = collection;
         this.classify = classify;
         this.postdate = postdate;
+    }
+
+    public MyarticleModel(  ClassLfyModel classify) {
+
+        this.classify = classify;
     }
 
 }
