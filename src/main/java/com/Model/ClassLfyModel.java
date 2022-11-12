@@ -2,13 +2,13 @@ package com.Model;
 // 用于统计数量
 public class ClassLfyModel {
     public String id;
-    public String name; //查询当前用户发送文章数量
-    public String classify; // 当前分期的文章数量
+    public String name; //查询当前查询分区
+    public int classify; // 当前分期的文章数量
 
     public ClassLfyModel() {
     }
 
-    public ClassLfyModel(String name, String classify) {
+    public ClassLfyModel(String name, int classify) {
         this.name = name;
         this.classify = classify;
     }
@@ -29,11 +29,11 @@ public class ClassLfyModel {
         this.name = name;
     }
 
-    public String getClassify() {
+    public int getClassify() {
         return classify;
     }
 
-    public void setClassify(String classify) {
+    public void setClassify(int classify) {
         this.classify = classify;
     }
 }
