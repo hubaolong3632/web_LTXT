@@ -1,7 +1,7 @@
 package com.Form;
 
 public class Login extends Father {
-    private int id;
+    private String id;
     private String name; //账号
     private String password; //密码
 
@@ -13,11 +13,11 @@ public class Login extends Father {
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
