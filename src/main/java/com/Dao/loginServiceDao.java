@@ -3,10 +3,7 @@ package com.Dao;
 import com.Form.Login;
 import com.Iservice.IServiceDao;
 
-import com.Model.ClassLfyModel;
-import com.Model.GoodFriendModel;
-import com.Model.InfoModel;
-import com.Model.LoginModel;
+import com.Model.*;
 import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 //多个层都使用一个dao实现
@@ -125,6 +123,16 @@ public class loginServiceDao implements IServiceDao {
         classlfy = jdbc_link.queryForObject(sql, classflyBean,classlfy.getName());
 //        System.out.println(classlfy.getClassify());
         return classlfy;
+    }
+
+    //区分文章方法
+    @Override
+    public List<MyarticleModel> diArticles(MyarticleModel model) {
+        String sql = "select * FROM `t_myarticle` where classify = ? ; ";
+        BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
+        model= jdbc_link.queryForObject(sql, myarticlemodel, model.getClassify());
+        System.out.println(model);
+        return Collections.singletonList(model);
     }
 
     public boolean password(Login login){  //查询站好密码
