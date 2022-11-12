@@ -31,7 +31,6 @@ public class IndexAction extends Action{
         System.out.println("2.跳转网站"+pzwj.getLiu());
         main.processTemplate(pzwj.getLiu(),req,resp); //首页显示
 
-
     }
 
 }

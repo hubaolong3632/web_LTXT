@@ -9,6 +9,7 @@ public class InfoModel {   //注册类
     private String headimg; //头像
     private int fins; //点赞数
     private String uname; //一对多
+//    private List<Myantecle> myantecles;
 
 
 

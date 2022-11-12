@@ -8,6 +8,9 @@ import com.Model.LoginModel;
 import java.util.List;
 public interface IServiceDao {
         LoginModel user_pwd (LoginModel login); //判断账号用户名的登录
+
+        LoginModel user_zc(LoginModel pas); //注册
+
         boolean addInfo(LoginModel info);//添加用户信息
         int addLogin(LoginModel login);//添加用户
         List<GoodFriendModel> goodfriend(LoginModel name);//查询好友列表

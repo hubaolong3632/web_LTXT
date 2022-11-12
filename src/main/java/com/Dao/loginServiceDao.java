@@ -38,6 +38,21 @@ public class loginServiceDao implements IServiceDao {
         }
     }
 
+    @Override
+    public LoginModel user_zc(LoginModel pas){
+        System.out.println(pas.getName());
+        try{
+            String sql2="SELECT * FROM `t_login` where name =? ;";
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
+            LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName()); //查询返回对象
+
+            return query2;
+        }catch (Exception e){ //否则返回的是spring数据库连接错误
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
@@ -45,11 +60,10 @@ public class loginServiceDao implements IServiceDao {
          //传入 手机号 邮箱
         try{
 
-            LoginModel loginModel = user_pwd(login);
+            LoginModel loginModel = user_pwd(login); //查询账号密码是否存在
 
             if(loginModel==null){ //如果不存在当前账号
                 InfoModel info = login.getInfo(); // 获取个人信息
-
 
                 String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
                 String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
@@ -68,7 +82,7 @@ public class loginServiceDao implements IServiceDao {
             System.out.println("注册失败1");
             return false;
         }catch (Exception e){
-            e.printStackTrace();
+            e.printStackTrace(); //500错误好看一点
             System.out.println("注册失败2");
             return false;
         }
@@ -105,9 +119,6 @@ public class loginServiceDao implements IServiceDao {
 
     @Override
     public ClassLfyModel getCount(ClassLfyModel classlfy) {
-
-
-
 //        System.out.println(classlfy.getName());
         String sql = "select count(classify) as 'classify'  from t_myarticle where classify=?;";
         BeanPropertyRowMapper<ClassLfyModel> classflyBean = new BeanPropertyRowMapper<>(ClassLfyModel.class);

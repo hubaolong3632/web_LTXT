@@ -1,12 +1,14 @@
 package com.Model;
 
 
+import java.util.List;
+
 public class LoginModel {
     private int id;
     private String name; //账号
     private String password; //密码
     private InfoModel info; //个人信息
-
+//  private List<>
     public LoginModel() {
     }
 
