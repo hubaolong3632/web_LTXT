@@ -1,7 +1,7 @@
 package com.Form;
 
 public class Info extends Father {
-    private int id;
+    private String id;
     private String name; //ÕËºÅ
     private String password; //ÃÜÂë
     private String phone; //ÊÖ»úºÅ
@@ -21,11 +21,11 @@ public class Info extends Father {
         this.headimg = headimg;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

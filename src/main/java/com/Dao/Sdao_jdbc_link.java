@@ -29,7 +29,6 @@ public class Sdao_jdbc_link {
     public DataSource DaoLink(){
 //        System.out.println(jdbcurl+"  ----  "+driver);
 
-        System.out.println("1");
         DruidDataSource dataSource=new DruidDataSource();
 //        dataSource.setDriverClassName(driver); //配置类地址
         dataSource.setDriverClassName(driver); //配置类地址
@@ -43,7 +42,7 @@ public class Sdao_jdbc_link {
 
     @Bean(name="jdbcTemplate")
     public JdbcTemplate createLink(DataSource dataSource){ //导出去
-        System.out.println("2");
+        System.out.println("-----mysql------");
         return new JdbcTemplate(dataSource);
     }
 

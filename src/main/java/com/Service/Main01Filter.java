@@ -107,19 +107,6 @@ public class Main01Filter extends ViewBaseServlet {
                     }
 
 
-//             需不需要认证
-//            if(pzwj1.getYi().equals("1")){
-//
-//
-//                //xxxxxxxx
-//
-//                req.getRequestDispatcher(pzwj1.getEr()).forward(req,resp); //指定跳转
-//
-//            }
-//
-//
-
-
             //支持spring依赖
             if(pzwj1.getSi().equals("1")){
                 System.out.println("调用的方法:"+pzwj1.getSi()  +"    跳转的子类"+pzwj1.getWu());
@@ -131,8 +118,6 @@ public class Main01Filter extends ViewBaseServlet {
                  action.execute(instance,pzwj1,req,resp,this); //调用此方法 执行代码
                 //   父类名称    走下去的线    req 和resp请求
             }
-
-
 
         }catch (Exception e){
             e.printStackTrace();

@@ -3,9 +3,7 @@ package com.Dao;
 import com.Form.Login;
 import com.Iservice.IServiceDao;
 
-import com.Model.GoodFriendModel;
-import com.Model.InfoModel;
-import com.Model.LoginModel;
+import com.Model.*;
 import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,8 +11,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
+//多个层都使用一个dao实现
 @Component("loginDao")
 public class loginServiceDao implements IServiceDao {
     @Resource
@@ -36,6 +36,21 @@ public class loginServiceDao implements IServiceDao {
         }
     }
 
+    @Override
+    public LoginModel user_zc(LoginModel pas){
+        System.out.println(pas.getName());
+        try{
+            String sql2="SELECT * FROM `t_login` where name =? ;";
+            RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
+            LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName()); //查询返回对象
+
+            return query2;
+        }catch (Exception e){ //否则返回的是spring数据库连接错误
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
@@ -43,11 +58,10 @@ public class loginServiceDao implements IServiceDao {
          //传入 手机号 邮箱
         try{
 
-            LoginModel loginModel = user_pwd(login);
+            LoginModel loginModel = user_pwd(login); //查询账号密码是否存在
 
             if(loginModel==null){ //如果不存在当前账号
                 InfoModel info = login.getInfo(); // 获取个人信息
-
 
                 String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
                 String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
@@ -66,7 +80,7 @@ public class loginServiceDao implements IServiceDao {
             System.out.println("注册失败1");
             return false;
         }catch (Exception e){
-            e.printStackTrace();
+            e.printStackTrace(); //500错误好看一点
             System.out.println("注册失败2");
             return false;
         }
@@ -90,20 +104,35 @@ public class loginServiceDao implements IServiceDao {
     @Override
     public List<GoodFriendModel> goodfriend(LoginModel login) {
         String sql = "select * from t_goodfriend where uname=?";
-        List<LoginModel> logins =null;
 
 
         List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class),login.getName());
-//        for (GoodFriendModel model : query) {
-//            System.out.println(model.getFname());
-//            System.out.println(model.getUname());
-//            System.out.println(model.getId());
-//        }
-//        System.out.println(query.get());
+        for (GoodFriendModel model : query) {
+            System.out.println("姓名： "+model.getFname()+" 好友id：   "+model.getId());
+        }
 
         return query;
     }
 
+    @Override
+    public ClassLfyModel getCount(ClassLfyModel classlfy) {
+//        System.out.println(classlfy.getName());
+        String sql = "select count(classify) as 'classify'  from t_myarticle where classify=?;";
+        BeanPropertyRowMapper<ClassLfyModel> classflyBean = new BeanPropertyRowMapper<>(ClassLfyModel.class);
+        classlfy = jdbc_link.queryForObject(sql, classflyBean,classlfy.getName());
+//        System.out.println(classlfy.getClassify());
+        return classlfy;
+    }
+
+    //区分文章方法
+    @Override
+    public List<MyarticleModel> diArticles(MyarticleModel model) {
+        String sql = "select * FROM `t_myarticle` where classify = ? ; ";
+        BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
+        model= jdbc_link.queryForObject(sql, myarticlemodel, model.getClassify());
+        System.out.println(model);
+        return Collections.singletonList(model);
+    }
 
     public boolean password(Login login){  //查询站好密码
         //用来遍历数据库所有的   where 指定的
@@ -116,12 +145,7 @@ public class loginServiceDao implements IServiceDao {
             System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
         }
 
-
-
-
-
        //查找一个数据
-
         String sql2="SELECT * FROM `t_login` where name =?;";
         Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
         System.out.println(query2.getName()+"--*--"+query2.getPassword());
