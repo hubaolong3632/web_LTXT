@@ -27,13 +27,16 @@ public class Submit_articleAction extends Action{
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         System.out.println("-------Submit_articleAction-----");
 
+        //获取内容
         Myarticle father1 = (Myarticle) father; // 传输文章
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//获取时间
-        Date date = new Date(System.currentTimeMillis());
         LoginModel login=  (LoginModel)req.getSession().getAttribute("login");
 
+        //获取时间
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//获取时间
+        Date date = new Date(System.currentTimeMillis());
 
+
+        //保存参数
         MyarticleModel myart=new MyarticleModel();
         myart.setUname(login.getName()); //姓名
         myart.setTheme(father1.getHeadline());  //主题
