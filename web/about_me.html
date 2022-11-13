@@ -22,23 +22,34 @@
 <div class="head_box">
     <div class="header">
         <div class="header_logo">
-            <a th:href="@{/main(operate='index')}"><h2 th:text="${session.userBAsic.nickName}"></h2><h4>の博客|天行健,君子自强不息</h4></a>
-
+            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
         </div>
         <div class="header_nav">
             <ul class="clearfix">
-                </li>
+                <li><a href="">个人文章</a></li>
+                <li><a href="myartice_plate.do">文章编写</a></li>
                 <li class="have_second">
+                    <a href="">好友列表</a>
                     <ul class="nav_second">
-
+                        <li><a href="list.html">小红</a></li>
+                        <li><a href="list.html">小黄</a></li>
+                        <li><a href="list.html">小蓝</a></li>
                     </ul>
                 </li>
-
-
+                <li><a href="index_homepape.do">个人资料设置</a></li>
+                <li><a href="login.html">退出登入</a></li>
             </ul>
         </div>
-
-
+        <div class="header_search">
+            <a href="javascript:void(0);" class="header_search_btn">
+                <!--<img src="img/search.png">-->
+                <i></i>
+            </a>
+        </div>
+        <div class="header_nav_small_btn">
+            <span class="small_btn"></span>
+        </div>
+    </div>
 </div>
 
 <div class="nav_hidden_zhanwei"></div>

@@ -126,25 +126,19 @@
                             </div>
 
                         </div>
-<!--                            <div id="sample">-->
-<!--                                <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>-->
-<!--                                <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>-->
-<!--                                Third Textarea-->
-<!--                                <textarea id="text_text" name="area3" style="width: 500px; height: 500px; color: black"></textarea>-->
-<!--                            </div>-->
                         <div id="editor—wrapper">
                             <div id="toolbar-container"><!-- 工具栏 --></div>
                             <div id="editor-container"><!-- 编辑器 --></div>
                         </div>
 
-                        <button onclick="scwj()"> 上传文件</button>
 
                         <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
                         <script>
 <!---->
                             function scwj() {
-                                // console.log(editor.getText());
+                            //发送文章
                                 console.log(editor.getHtml());
+                                alert(editor.getHtml());
                             }
                             const { createEditor, createToolbar } = window.wangEditor
 
@@ -198,7 +192,9 @@
 <!--                            <button type="submit" class="btn btn-primary" id="publishBtn">发布文章</button>-->
 <!--                        </div>-->
                         <div class="col-md-4">
+                            <button type="button" class="btn btn-light" onclick="scwj()"> 发表文章</button>
                             <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
+
                         </div>
                     </div>
                 </div>
