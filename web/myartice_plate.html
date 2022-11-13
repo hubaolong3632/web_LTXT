@@ -48,49 +48,6 @@
         }
     </style>
 
-    <script>
-        $(function () {
-            //富文本编辑器初始化代码
-            var E = window.wangEditor;
-            var editor = new E('#div1', '#div2');
-
-            editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
-            editor.create();
-
-            //创建replaceAll()函数,用于替换字符串中出现的所有某个字符
-            String.prototype.replaceAll = function (FindText, RepText) {
-                return this.replace(new RegExp(FindText, "g"), RepText);
-            };
-
-            //发布文章按钮的点击事件，即封装数据，向后台传递
-            $("#publishBtn").click(function () {
-                console.info("click");
-                var postData={};
-                postData.title=$("#titleInput").val();
-                postData.category=$("#categoryInput").val();
-
-                //替换双引号为两个单引号，方便编写SQL语句插入数据库中
-                var content=editor.txt.html().replaceAll("\"","\'\'");
-                postData.content=content;
-
-                console.info(content);
-                postData.author_acc="123";
-                postData.author_name="admin";
-                postData.create_time=new Date().toLocaleDateString();
-                postData.last_edit_time=new Date().toLocaleDateString();
-                console.info(postData);
-
-                //向后台传递数据，需要根据具体后台来改
-                $.post("http://localhost:8099/publishArticle",postData,function (data) {
-
-                    alert(data);
-                })
-
-            })
-
-        })
-
-    </script>
 
 </head>
 <body style="background-color: whitesmoke">
@@ -144,27 +101,7 @@
 
                 <div class="col-md-3"></div>
 
-<!--                <div class="col-md-9">-->
-<!--                    <div class="card">-->
 
-<!--                        <ul class="nav nav-pills nav-fill flex-column">-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link active list-group-item" href="#">发布文章</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link liColor list-group-item" href="#">文章管理</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link liColor list-group-item" href="#">分类管理</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link liColor list-group-item" href="#">退出</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-
-
-<!--                </div>-->
             </div>
 
 
@@ -195,18 +132,8 @@
                     </div>
 
 
-<!--                    <div style="padding: 8px 0; color: #ccc"></div>-->
-<!--                    <div id="div1" class="toolbar">-->
-<!--                    </div>-->
-
-<!--                    <div id="div2" class="text"> &lt;!&ndash;可使用 min-height 实现编辑区域自动增加高度&ndash;&gt;-->
-<!--                        <form id="example" name="example">-->
-<!--                            <textarea id="t1" name="t1" style="width:580px;height:300px;"></textarea>-->
-<!--                            <input type="hidden" id="t2" name="t2" />-->
-<!--&lt;!&ndash;                            <input type="submit" value="提交" id="submit" name="submit" onclick="return preSave();" />&ndash;&gt;-->
-<!--                        </form>-->
-<!--                    </div>-->
                     <div id="sample">
+<!--                        导入文本编译器-->
                         <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
                         <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>
                         Third Textarea
@@ -233,7 +160,7 @@
                     <div class="row" style="padding: 15px">
                         <div class="col-md-1"></div>
                         <div class="col-md-2 ml-0">
-                            <button type="button" class="btn btn-primary" id="publishBtn">发布文章</button>
+                            <button type="button" class="btn btn-primary" id="publishBtn" onclick="djsj()">发布文章</button>
                         </div>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
@@ -248,4 +175,85 @@
 
 </div>
 </body>
+
+<script>
+
+    // var E = window.wangEditor;
+    // var editor = new E('#div1', '#div2');
+    //
+    // $(function () {
+    //     //富文本编辑器初始化代码
+    //
+    //
+    //     editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+    //     editor.create();
+    //
+    //     //创建replaceAll()函数,用于替换字符串中出现的所有某个字符
+    //     String.prototype.replaceAll = function (FindText, RepText) {
+    //         return this.replace(new RegExp(FindText, "g"), RepText);
+    //     };
+    //
+    //     // //发布文章按钮的点击事件，即封装数据，向后台传递
+    //     // $("#publishBtn").click(function () {
+    //     //     console.info("click");
+    //     //     var postData={};
+    //     //     postData.title=$("#titleInput").val();
+    //     //     postData.category=$("#categoryInput").val();
+    //     //
+    //     //
+    //     //     //替换双引号为两个单引号，方便编写SQL语句插入数据库中
+    //     //     var content=editor.txt.html().replaceAll("\"","\'\'");
+    //     //     postData.content=content;
+    //     //
+    //     //     console.info(content);
+    //     //     postData.author_acc="123";
+    //     //     postData.author_name="admin";
+    //     //     postData.create_time=new Date().toLocaleDateString();
+    //     //     postData.last_edit_time=new Date().toLocaleDateString();
+    //     //     console.info(postData);
+    //     //
+    //     //     //向后台传递数据，需要根据具体后台来改
+    //     //     $.post("http://localhost:8099/publishArticle",postData,function (data) {
+    //     //
+    //     //         alert(data);
+    //     //     })
+    //     //
+    //     // })
+    //
+    // })
+
+    function  djsj(){
+        console.info("click111");
+        var postData={};
+        postData.title=$("#titleInput").val();
+        // postData.category=$("#categoryInput").val();
+
+        console.info("click2");
+
+
+        console.info(editor.text);
+
+        //替换双引号为两个单引号，方便编写SQL语句插入数据库中
+        var content=editor.text.html().replaceAll("\"","\'\'");
+        postData.content=content;
+
+        console.info("click3");
+
+        console.info(content);
+        postData.author_acc="123";
+        postData.author_name="admin";
+        postData.create_time=new Date().toLocaleDateString();
+        postData.last_edit_time=new Date().toLocaleDateString();
+        console.info(postData);
+        console.info("click4");
+        //向后台传递数据，需要根据具体后台来改
+        $.post("http://localhost:8099/publishArticle",postData,function (data) {
+
+            alert(data);
+        })
+
+    }
+
+</script>
+
 </html>
