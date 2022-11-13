@@ -141,8 +141,9 @@ public class loginServiceDao implements IServiceDao {
     public boolean addMyarticle(MyarticleModel model){
         String sql = "insert into t_myarticle(uname,theme,content,likenum,collection,classify,postdate) values (?,?,?,?,?,?,?);";
 
+//        System.out.println("insert into t_myarticle(uname,theme,content,likenum,collection,classify,postdate) values (\""+model.getUname()+"\",\""+model.getTheme()+"\",\""+model.getContent()+"\",\""+model.getLikenum()+"\","+model.getCollection()+","+model.getClassify().getName()+",\""+model.getPostdate()+"\");");
         try{
-            int num =  jdbc_link.update(sql,model.getUname(),model.getTheme(),model.getContent(),model.getClassify(),model.getPostdate());
+            int num =  jdbc_link.update(sql,model.getUname(),model.getTheme(),model.getContent(),model.getLikenum(),model.getCollection(),model.getClassify().getName(),model.getPostdate());
             if(num != 0){
                 return true;
             }
