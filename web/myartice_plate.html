@@ -19,6 +19,7 @@
     <link href="css/base.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="js/base.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
 
     <script src="js/jquery.slides.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../nicEdit.js"></script>
@@ -48,57 +49,14 @@
             border: 1px solid #ccc;
             height: 500px;
         }
+
+         #editor—wrapper {
+             border: 1px solid #ccc;
+             z-index: 100; /* 按需定义 */
+         }
+        #toolbar-container { border-bottom: 1px solid #ccc; }
+        #editor-container { height: 500px; }
     </style>
-<!--<-->
-<!--    -->
-    <script>
-        $(function () {
-            //富文本编辑器初始化代码
-            var E = window.wangEditor;
-            var editor = new E('#div1', '#div2');
-
-            editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
-            editor.create();
-
-            //创建replaceAll()函数,用于替换字符串中出现的所有某个字符
-            String.prototype.replaceAll = function (FindText, RepText) {
-                return this.replace(new RegExp(FindText, "g"), RepText);
-            };
-
-            //发布文章按钮的点击事件，即封装数据，向后台传递
-            $("#publishBtn").click(function () {
-                console.info("click");
-                var postData={};
-                postData.title=$("#titleInput").val();
-                postData.category=$("#categoryInput").val();
-
-                //替换双引号为两个单引号，方便编写SQL语句插入数据库中
-                var content=editor.txt.html().replaceAll("\"","\'\'");
-                postData.content=content;
-
-                console.info(content);
-                postData.author_acc="123";
-                postData.author_name="admin";
-                postData.create_time=new Date().toLocaleDateString();
-                postData.last_edit_time=new Date().toLocaleDateString();
-                console.info(postData);
-
-                //向后台传递数据，需要根据具体后台来改
-                $.post("http://localhost:8099/publishArticle",postData,function (data) {
-
-                    alert(data);
-                })
-
-            })
-
-        })
-        // function submitBiobankOut(submit){
-        //     var number =nicEditors.findEditor('text_text').getContent();
-        // }
-        // var c = nicEditors.findEditor('prospectus').getContent()
-
-    </script>
-
 </head>
 <body style="background-color: whitesmoke">
 <div class="head_box">
@@ -137,24 +95,14 @@
 </div>
 
 <div class="container-fluid">
-
-
     <div class="row">
         <div class="col-md-1">
-
-
         </div>
-
         <div class="col-md-2" style="padding-right: 0px">
-
             <div class="row">
-
                 <div class="col-md-3"></div>
             </div>
-
-
         </div>
-
         <div class="col-md-6" style="padding-left: 0px">
             <div class="card">
                 <div class="card-header" style="background-color: white">
@@ -163,7 +111,6 @@
                         <!--                        <div class="col-md-9" style="margin-top: 8px;font-size: 12px;text-align: right">当前位置>专委会介绍>文件资料</div>-->
                     </div>
                 </div>
-
                 <form >
                     <div class="card-body" style="min-height: 1000px">
 
@@ -179,20 +126,63 @@
                             </div>
 
                         </div>
-                            <div id="sample">
-                                <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-                                <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>
-                                Third Textarea
-                                <textarea id="text_text" name="area3" style="width: 500px; height: 500px; color: black"></textarea>
-                            </div>
+<!--                            <div id="sample">-->
+<!--                                <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>-->
+<!--                                <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>-->
+<!--                                Third Textarea-->
+<!--                                <textarea id="text_text" name="area3" style="width: 500px; height: 500px; color: black"></textarea>-->
+<!--                            </div>-->
+                        <div id="editor—wrapper">
+                            <div id="toolbar-container"><!-- 工具栏 --></div>
+                            <div id="editor-container"><!-- 编辑器 --></div>
+                        </div>
 
-                            <div class="row">
+                        <button onclick="scwj()"> 上传文件</button>
+
+                        <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+                        <script>
+
+                            function scwj() {
+                                // console.log(editor.getText());
+                                console.log(editor.getHtml());
+                            }
+
+                            const { createEditor, createToolbar } = window.wangEditor
+
+                            const editorConfig = {
+                                placeholder: 'Type here...',
+                                onChange(editor) {
+                                    const html = editor.getHtml()
+                                    console.log('editor content', html)
+                                    // 也可以同步到 <textarea>
+                                }
+                            }
+
+                            const editor = createEditor({
+                                selector: '#editor-container',
+                                html: '<p><br></p>',
+                                config: editorConfig,
+                                mode: 'default', // or 'simple'
+                            })
+
+                            const toolbarConfig = {}
+
+                            const toolbar = createToolbar({
+                                editor,
+                                selector: '#toolbar-container',
+                                config: toolbarConfig,
+                                mode: 'default', // or 'simple'
+                            })
+                        </script>
+
+
+                        <div class="row">
 
                                 <div class="col-md-5">
                                     <div class="input-group mb-3 mt-3 ml-0" >
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">文章分类</span>
-                                            <select name="你喜欢的水果：">
+                                            <select name="论坛分类：">
                                                 <option value="apple">java论坛</option>
                                                 <option value="watermelon">mysql论坛</option>
                                                 <option value="banana">c++论坛</option>
@@ -205,10 +195,10 @@
                             </div>
 
                     <div class="row" style="padding: 15px">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-2 ml-0">
-                            <button type="submit" class="btn btn-primary" id="publishBtn">发布文章</button>
-                        </div>
+<!--                        <div class="col-md-1"></div>-->
+<!--                        <div class="col-md-2 ml-0">-->
+<!--                            <button type="submit" class="btn btn-primary" id="publishBtn">发布文章</button>-->
+<!--                        </div>-->
                         <div class="col-md-4">
                             <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
                         </div>
