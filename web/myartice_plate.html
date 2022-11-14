@@ -131,7 +131,6 @@
                                 <div id="editor-container"><!-- 编辑器 --></div>
                             </div>
 
-                            <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 
                             <!---->
                             <!---->
@@ -141,11 +140,11 @@
                                     <div class="input-group mb-3 mt-3 ml-0" >
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">文章分类</span>
-                                            <select name="论坛分类：">
-                                                <option value="apple">java论坛</option>
-                                                <option value="watermelon">mysql论坛</option>
-                                                <option value="banana">c++论坛</option>
-                                                <option value="banana">HTML论坛</option>
+                                            <select name="论坛分类：" id="classify">
+                                                <option value="java">java</option>
+                                                <option value="mysql">mysql</option>
+                                                <option value="c++">c++</option>
+                                                <option value="HTML">HTML</option>
                                             </select>
                                         </div>
                                     </div>
@@ -155,7 +154,7 @@
                             <div class="row" style="padding: 15px">
 
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-light" onclick="scwj()"> 上传文件</button>
+                                    <button type="button" class="btn btn-light" onclick="scwj()"> 发表文章</button>
                                     <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
 
                                 </div>
@@ -171,12 +170,9 @@
     </div>
 </div>
 </body>
+<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
-    <!---->
-    function scwj() {
-        // console.log(editor.getText());
-        console.log(editor.getHtml());
-    }
+   //文本编译器初始化操作!
     const { createEditor, createToolbar } = window.wangEditor
 
     const editorConfig = {
@@ -202,5 +198,38 @@
         config: toolbarConfig,
         mode: 'default', // or 'simple'
     })
+
+
+
+
+
+    //发送功能
+
+    function scwj() {
+       let headline= document.getElementById("titleInput").value;
+       let message=editor.getHtml();
+       let classify= document.getElementById("classify").value;
+       // alert(headline);
+       // alert(message);
+       alert(classify);
+        $.ajax({
+            type:"post",
+            url:"/submit_article.do",
+            data:{"headline":headline,"message":message,"classify":classify},
+            dataType:"json",        //指定响应的data数据类型为JSON对象。
+
+        });
+
+        // $.ajax({
+        //     type:"post",
+        //     url:"/submit_article.do",
+        //     data:{"headline":headline,"message":message,"classify":classify},
+        //     dataType:"json",        //指定响应的data数据类型为JSON对象。
+        //
+        // });
+
+      alert("发表文章成功!")
+    }
+
 </script>
 </html>
