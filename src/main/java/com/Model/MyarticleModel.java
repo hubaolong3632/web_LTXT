@@ -74,8 +74,11 @@ public class MyarticleModel {
     }
 
 
-    public MyarticleModel() { //spring¿ò¼Ü·´ÉäĞèÒª
+    public MyarticleModel() {
     }
+
+
+
 
     public String getPostdate() {
         return postdate;

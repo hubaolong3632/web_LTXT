@@ -47,7 +47,10 @@ public class Submit_articleAction extends Action{
         myart.setCollection(0); //收藏数量
 
 
-        dao.addMyarticle(myart); //添加文章
+        boolean bool=dao.addMyarticle(myart); //添加文章
+        if(bool==false){
+
+        }
 
 
         main.processTemplate(pzwj.getLiu(),req,resp); //跳转指定网站

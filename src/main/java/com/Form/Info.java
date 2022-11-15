@@ -7,6 +7,7 @@ public class Info extends Father {
     private String phone; //手机号
     private String email; //邮件
     private String headimg; //头像
+//    private String headimg; //头像
     private int fins; //点赞数
 
 

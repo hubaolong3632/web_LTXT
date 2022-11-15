@@ -84,7 +84,7 @@
 <div class="article_box clearfix">
     <div class="left">
         <!--首页最新模板部分-->
-        <div class="article_box_one">
+        <div class="article_box_one" th:each="models:${models}">
             <div class="index_article_title clearfix">
                 <h3>最新模板</h3>
                 <p href="list.html" >更多></p>
@@ -97,17 +97,17 @@
                         <img src="img/bg_5.png">
                     </a>
 
-                    <h3  href="">文字标题</h3>
-                    <p text="">文字介绍</p>
+                    <h3  href="" th:text="${models.theme}" >文字标题</h3>
+                    <p  th:text="${models.content}">文字介绍</p>
 
                     <div class="article_list_link">
                         <span class="article_list_count">
                             <i class="see_count"></i>
-                            <p>时间:</p><p text=""></p>
+                            <p>时间:</p><p th:text="${models.postdate}"></p>
                         </span>
                         <span class="article_list_like">
                             <i class="like_count"></i>
-                           <p> 发布人:</p><p text=""></p>
+                           <p> 发布人:</p><p th:text="${models.uname}"></p>
                         </span>
                         <a href="">查看详细+</a>
                     </div>

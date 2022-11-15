@@ -54,7 +54,7 @@ public class loginServiceDao implements IServiceDao {
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
-        System.out.println("-----查询手机------");
+        System.out.println("-----查询------");
          //传入 手机号 邮箱
         try{
 
