@@ -155,6 +155,19 @@ public class loginServiceDao implements IServiceDao {
         return false;
     }
 
+    //修改点赞数和收藏数
+    @Override
+    public Boolean updateNumColl(MyarticleModel model){
+        try {
+            String sql = "UPDATE `t_myarticle` SET likenum = ?, collection =? WHERE id = ?;";
+            BeanPropertyRowMapper<MyarticleModel> mapper = new BeanPropertyRowMapper<>(MyarticleModel.class);
+            jdbc_link.update(sql,mapper,model.getLikenum(),model.getCollection(),model.getId());
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 //    public boolean password(Login login){  //查询站好密码
 //        //用来遍历数据库所有的   where 指定的
 //        String sql="SELECT * FROM `cheshibiao`";
