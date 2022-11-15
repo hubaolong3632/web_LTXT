@@ -20,4 +20,12 @@ public interface IServiceDao {
 
         List<MyarticleModel> diArticles(MyarticleModel model);//根据主题名称分类(注释问题也会上传)
 
+        //添加文章方法
+        boolean addMyarticle(MyarticleModel model);
+
+        //修改点赞数和收藏数
+        Boolean updateNumColl();
+
+        //修改点赞数和收藏数
+        Boolean updateNumColl(MyarticleModel model);
 }

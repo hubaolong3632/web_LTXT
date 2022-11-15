@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>发布文章</title>
-<!---->
+    <!---->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
@@ -50,10 +50,10 @@
             height: 500px;
         }
 
-         #editor—wrapper {
-             border: 1px solid #ccc;
-             z-index: 100; /* 按需定义 */
-         }
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+        }
         #toolbar-container { border-bottom: 1px solid #ccc; }
         #editor-container { height: 500px; }
 
@@ -69,7 +69,7 @@
     <div class="header">
         <div class="header_logo">
             <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2></a>
-<!--            <h4>天行健,君子自强不息</h4>-->
+            <!--            <h4>天行健,君子自强不息</h4>-->
         </div>
         <div class="header_nav">
             <ul class="clearfix">
@@ -82,7 +82,7 @@
                         <li><a href="list.html">小黄</a></li>
                         <li><a href="list.html">小蓝</a></li>
                     </ul>
-<!--                    -->
+                    <!--                    -->
                 </li>
                 <li><a href="">个人资料设置</a></li>
                 <li><a href="login.html">退出登入</a></li>
@@ -100,122 +100,142 @@
     </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2" style="padding-right: 0px">
-            <div class="row">
-                <div class="col-md-3"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1">
             </div>
-        </div>
-        <div class="col-md-6" style="padding-left: 0px">
-            <div class="card">
-                <div class="card-header" style="background-color: white">
-                    <div class="row">
-                        <div class="col-md-3" style="font-size: 18px">发布文章</div>
-                        <!--                        <div class="col-md-9" style="margin-top: 8px;font-size: 12px;text-align: right">当前位置>专委会介绍>文件资料</div>-->
-                    </div>
+            <div class="col-md-2" style="padding-right: 0px">
+                <div class="row">
+                    <div class="col-md-3"></div>
                 </div>
-                <form >
-                    <div class="card-body" style="min-height: 1000px">
-
+            </div>
+            <div class="col-md-6" style="padding-left: 0px">
+                <div class="card">
+                    <div class="card-header" style="background-color: white">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="input-group mb-1 mt-2 ml-0 mr-1" >
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"  >文章标题</span>
+                            <div class="col-md-3" style="font-size: 18px">发布文章</div>
+                            <!--                        <div class="col-md-9" style="margin-top: 8px;font-size: 12px;text-align: right">当前位置>专委会介绍>文件资料</div>-->
+                        </div>
+                    </div>
+                    <form >
+                        <div class="card-body" style="min-height: 1000px">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-group mb-1 mt-2 ml-0 mr-1" >
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"  >文章标题</span>
+                                        </div>
+                                        <input id="titleInput" type="text" class="form-control" placeholder="不多于100字" style="margin-right: 5px">
                                     </div>
-                                    <input id="titleInput" type="text" class="form-control" placeholder="不多于100字" style="margin-right: 5px">
+
                                 </div>
 
                             </div>
+                            <div id="editor—wrapper">
+                                <div id="toolbar-container"><!-- 工具栏 --></div>
+                                <div id="editor-container"><!-- 编辑器 --></div>
+                            </div>
 
-                        </div>
-<!--                            <div id="sample">-->
-<!--                                <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>-->
-<!--                                <script type="text/javascript">bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });</script>-->
-<!--                                Third Textarea-->
-<!--                                <textarea id="text_text" name="area3" style="width: 500px; height: 500px; color: black"></textarea>-->
-<!--                            </div>-->
-                        <div id="editor—wrapper">
-                            <div id="toolbar-container"><!-- 工具栏 --></div>
-                            <div id="editor-container"><!-- 编辑器 --></div>
-                        </div>
 
-                        <button onclick="scwj()"> 上传文件</button>
-
-                        <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
-                        <script>
-<!---->
-                            function scwj() {
-                                // console.log(editor.getText());
-                                console.log(editor.getHtml());
-                            }
-                            const { createEditor, createToolbar } = window.wangEditor
-
-                            const editorConfig = {
-                                placeholder: 'Type here...',
-                                onChange(editor) {
-                                    const html = editor.getHtml()
-                                    console.log('editor content', html)
-                                    // 也可以同步到 <textarea>
-                                }
-                            }
-
-                            const editor = createEditor({
-                                selector: '#editor-container',
-                                html: '<p><br></p>',
-                                config: editorConfig,
-                                mode: 'default', // or 'simple'
-                            })
-                            const toolbarConfig = {}
-
-                            const toolbar = createToolbar({
-                                editor,
-                                selector: '#toolbar-container',
-                                config: toolbarConfig,
-                                mode: 'default', // or 'simple'
-                            })
-                        </script>
-<!---->
-<!---->
-                        <div class="row">
+                            <!---->
+                            <!---->
+                            <div class="row">
 
                                 <div class="col-md-5">
                                     <div class="input-group mb-3 mt-3 ml-0" >
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">文章分类</span>
-                                            <select name="论坛分类：">
-                                                <option value="apple">java论坛</option>
-                                                <option value="watermelon">mysql论坛</option>
-                                                <option value="banana">c++论坛</option>
-                                                <option value="banana">HTML论坛</option>
+                                            <select name="论坛分类：" id="classify">
+                                                <option value="java">java</option>
+                                                <option value="mysql">mysql</option>
+                                                <option value="c++">c++</option>
+                                                <option value="HTML">HTML</option>
                                             </select>
                                         </div>
-                                        <!--                                <input id="categoryInput" type="text" class="form-control" >-->
                                     </div>
                                 </div>
                             </div>
 
-                    <div class="row" style="padding: 15px">
-<!--                        <div class="col-md-1"></div>-->
-<!--                        <div class="col-md-2 ml-0">-->
-<!--                            <button type="submit" class="btn btn-primary" id="publishBtn">发布文章</button>-->
-<!--                        </div>-->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
+                            <div class="row" style="padding: 15px">
+
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-light" onclick="scwj()"> 发表文章</button>
+                                    <button type="button" class="btn btn-light" onclick="location.href='index.do'">返回</button>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                </form>
+            </div>
+            <div class="col-md-2">
             </div>
         </div>
-        <div class="col-md-2">
-        </div>
-    </div>
 
-</div>
+    </div>
 </div>
 </body>
+<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+<script>
+   //文本编译器初始化操作!
+    const { createEditor, createToolbar } = window.wangEditor
+
+    const editorConfig = {
+        placeholder: 'Type here...',
+        onChange(editor) {
+            const html = editor.getHtml()
+            console.log('editor content', html)
+            // 也可以同步到 <textarea>
+        }
+    }
+
+    const editor = createEditor({
+        selector: '#editor-container',
+        html: '<p><br></p>',
+        config: editorConfig,
+        mode: 'default', // or 'simple'
+    })
+    const toolbarConfig = {}
+
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'default', // or 'simple'
+    })
+
+
+
+
+
+    //发送功能
+
+    function scwj() {
+       let headline= document.getElementById("titleInput").value;
+       let message=editor.getHtml();
+       let classify= document.getElementById("classify").value;
+       // alert(headline);
+       // alert(message);
+       alert(classify);
+        $.ajax({
+            type:"post",
+            url:"/submit_article.do",
+            data:{"headline":headline,"message":message,"classify":classify},
+            dataType:"json",        //指定响应的data数据类型为JSON对象。
+
+        });
+
+        // $.ajax({
+        //     type:"post",
+        //     url:"/submit_article.do",
+        //     data:{"headline":headline,"message":message,"classify":classify},
+        //     dataType:"json",        //指定响应的data数据类型为JSON对象。
+        //
+        // });
+
+      alert("发表文章成功!")
+    }
+
+</script>
 </html>

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="en">
+<head>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+
+
+
+<table id="table1"  class="table table-hover">
+  <tbody  id="tbody1">
+
+
+
+
+  </tbody>
+</table>
+
+
+<div id="div" >
+  <!-- <button onclick=""></button> -->
+
+  <div></div>
+
+</div>
+
+
+</body>
+
+
+
+<script>
+
+
+
+
+
+  let table2=[
+    {"name":"张一","age":"11","job":"111"},
+    {"name":"张一","age":"11","job":"111"},
+    {"name":"张一","age":"11","job":"111"},
+  ];
+
+
+
+  let table1=document.getElementById("tbody1");
+  for(let i=0;i<table2.length;i++){
+    let dd=document.createElement("tr");
+
+    for(let key in table2[i]){
+
+      let cc=document.createElement("td");
+
+      //   cc.setAttribute("id","2");
+
+      cc.innerText=table2[i][key];//找东西
+      dd.appendChild(cc);
+
+
+    }
+
+    let cc1=document.createElement("td");
+    //添加一个按钮
+    let cc=document.createElement("button");
+    cc.innerText="删除";
+    cc.setAttribute("onclick","aa(this)");
+    cc1.appendChild(cc);
+    dd.appendChild(cc1);
+
+    table1.appendChild(dd);
+
+
+  }
+
+  function aa(b){
+    console.log(b.parentNode);
+    console.log(b.parentNode.parentNode);
+    console.log(b.parentNode.parentNode.parentNode);
+
+
+    b.parentNode.parentNode.parentNode.removeChild(b.parentNode.parentNode); //删除提供过来的数据
+
+
+  }
+
+
+
+</script>
+
+</html>

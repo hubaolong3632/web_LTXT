@@ -1,5 +1,6 @@
 package com.Model;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 
 /*
@@ -13,8 +14,8 @@ public class MyarticleModel {
     private String content; //文章内容
     private Integer likenum; //点赞数
     private Integer collection; //收藏数
-    private ClassLfyModel  classify; //分区
-    private Date postdate; //时间
+    private ClassLfyModel  classify ; //分区
+    private String postdate; //时间
 
     public int getId() {
         return id;
@@ -72,28 +73,22 @@ public class MyarticleModel {
         this.classify = classify;
     }
 
-    public Date getPostdate() {
+
+    public MyarticleModel() {
+    }
+
+
+
+
+    public String getPostdate() {
         return postdate;
     }
 
-    public void setPostdate(Date postdate) {
+    public void setPostdate(String postdate) {
         this.postdate = postdate;
     }
 
-    public MyarticleModel() { //spring框架反射需要
-    }
-    public MyarticleModel(int id, String uname, String theme, String content, Integer likenum, Integer collection, ClassLfyModel classify, Date postdate) {
-        this.id = id;
-        this.uname = uname;
-        this.theme = theme;
-        this.content = content;
-        this.likenum = likenum;
-        this.collection = collection;
-        this.classify = classify;
-        this.postdate = postdate;
-    }
-
-    public MyarticleModel(  ClassLfyModel classify) {
+    public MyarticleModel(ClassLfyModel classify) {
 
         this.classify = classify;
     }

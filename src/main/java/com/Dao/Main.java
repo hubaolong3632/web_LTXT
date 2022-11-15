@@ -15,8 +15,10 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         IServiceDao login = (IServiceDao) context.getBean("loginDao");
-
         ClassLfyModel java = login.getCount(new ClassLfyModel("java"));
         List<MyarticleModel> mysql = login.diArticles(new MyarticleModel(new ClassLfyModel("mysql")));
     }
 }
+
+
+

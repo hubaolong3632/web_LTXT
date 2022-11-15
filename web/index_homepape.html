@@ -19,8 +19,7 @@
 <script>
     function  abc(ac1){
         console.log(ac1)
-        // let v = ac1;
-        // console.log(v);
+
     }
     //
 </script>
@@ -29,21 +28,22 @@
 <div class="head_box">
     <div class="header">
         <div class="header_logo">
-            <a th:href="index"><h2 th:text="${session.login.name}">张政</h2><h4>の博客|天行健,君子自强不息</h4></a>
+            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
         </div>
         <div class="header_nav">
             <ul class="clearfix">
-                </li>
+                <li><a href="">个人文章</a></li>
+                <li><a href="myartice_plate.do">文章编写</a></li>
                 <li class="have_second">
-                    <a href="list.html">查看好友</a>
+                    <a href="">好友列表</a>
                     <ul class="nav_second">
-                        <li><a href="list.html">李442</a></li>
-                        <li><a href="list.html">李3</a></li>
+                        <li><a href="list.html">小红</a></li>
+                        <li><a href="list.html">小黄</a></li>
+                        <li><a href="list.html">小蓝</a></li>
                     </ul>
                 </li>
-                <li><a th:href="">我的博文</a></li>
-                <li><a th:href="">个人设置</a></li>
-                <li><a th:href="">退出登入</a></li>
+                <li><a href="index_homepape.do">个人资料设置</a></li>
+                <li><a href="login.html">退出登入</a></li>
             </ul>
         </div>
         <div class="header_search">
@@ -84,32 +84,32 @@
 <div class="article_box clearfix">
     <div class="left">
         <!--首页最新模板部分-->
-        <div class="article_box_one">
+        <div class="article_box_one" th:each="models:${models}">
             <div class="index_article_title clearfix">
                 <h3>最新模板</h3>
                 <p href="list.html" >更多></p>
             </div>
-            <ul class="index_article" th:each="">
+            <ul class="index_article" each="">
 
                 <li class="clearfix article_list">
 
-                    <a th:href="" class="article_list_img">
+                    <a href="" class="article_list_img">
                         <img src="img/bg_5.png">
                     </a>
 
-                    <h3  th:href="">文字标题</h3>
-                    <p th:text="">文字介绍</p>
+                    <h3  href="" th:text="${models.theme}" >文字标题</h3>
+                    <p  th:text="${models.content}">文字介绍</p>
 
                     <div class="article_list_link">
                         <span class="article_list_count">
                             <i class="see_count"></i>
-                            <p>时间:</p><p th:text=""></p>
+                            <p>时间:</p><p th:text="${models.postdate}"></p>
                         </span>
                         <span class="article_list_like">
                             <i class="like_count"></i>
-                           <p> 发布人:</p><p th:text=""></p>
+                           <p> 发布人:</p><p th:text="${models.uname}"></p>
                         </span>
-                        <a th:href="">查看详细+</a>
+                        <a href="">查看详细+</a>
                     </div>
                 </li>
             </ul>
@@ -141,7 +141,7 @@
     <!--            <div class="self_info right_box">-->
     <!--                <img src="img/self.jpg">-->
     <!--                <div class="self_info_text">-->
-    <!--                    <h3 th:text="${session.userBAsic.nickName}">张4</h3>-->
+    <!--                    <h3 text="${session.userBAsic.nickName}">张4</h3>-->
     <!--                    <div>-->
 
 

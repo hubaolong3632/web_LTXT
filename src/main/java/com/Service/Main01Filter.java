@@ -13,9 +13,12 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import javax.servlet.ServletContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
@@ -23,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+@MultipartConfig(location="D:\\",fileSizeThreshold=1024)   //到时上传到服务器要改路径
 public class Main01Filter extends ViewBaseServlet {
    private Map<String, Pzwj> map=new HashMap<>(); //保存数据的集合
 
@@ -78,13 +82,86 @@ public class Main01Filter extends ViewBaseServlet {
                  Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
                  instance = (Father)aClass.newInstance();  //创建实现的父类
 
+//                //文件查找
+//                for (Part part : req.getParts()) {
+//                    if (part.getSize() > 1024 * 10240) { //大型文件判断
+//                        part.delete();//文件大小超过设置的值
+//                    }
+//
+//                    //只处理上传文件区段
+//                    if (part.getName().startsWith("file")) {
+//                        String header = part.getHeader("Content-Disposition");
+//                        String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\""));
+//                        header.lastIndexOf("\"");
+//
+//                        //文件保存
+//                        File f = new File(path);
+//                        if (!f.exists()) {
+//                            f.mkdirs();
+//                        }
+//
+//                        System.out.println(path + fileName);
+//                        part.write(path + fileName); //保存文件
+//
+//
+//                    }
+//                }
+
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
                     while (parameterNames.hasMoreElements()) {
+
+
+
+
 
                                 String nextElement =parameterNames.nextElement(); //获取名称
                         //      System.out.println(nextElement+"  -----  "+req.getParameter(nextElement)); //获取标签 和标签对应的数据
                                 String set = "set" + nextElement.substring(0, 1).toUpperCase() + nextElement.substring(1);  //需要保存的set方法并且转换成setName的模式
                                 //文件的查找
+
+                        //使用list存储多文件
+                            if(nextElement.equals("headimg")){  //如果为图片
+
+//// 设置单个文件大小
+//                                spring.servlet.multipart.max-file-size= 50MB
+//// 设置单次请求文件的总大小
+//                                spring.servlet.multipart.max-request-size= 50MB
+                                String path1 = this.getServletContext().getRealPath("/");//获得根目录
+                                path1 = path1 + "image\\" +"wj";
+                                System.out.println(path1);
+
+                                System.out.println("查找到文件");
+                                //文件查找
+                                for (Part part : req.getParts()) {
+                                    if (part.getSize() > 1024 * 10240) { //大型文件判断
+                                        part.delete();//文件大小超过设置的值
+                                    }
+
+                                    //只处理上传文件区段
+                                    if (part.getName().startsWith("file")) {
+                                        String header = part.getHeader("Content-Disposition");
+                                        String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
+                                        header.lastIndexOf("\""); //设置路径
+                                        System.out.println("文件名称:"+fileName);
+
+                                        //文件保存
+                                        File f = new File(path1);
+                                        if (!f.exists()) {
+                                            f.mkdirs();
+                                        }
+
+                                        System.out.println(path + fileName);
+                                        part.write(path + fileName); //保存文件
+
+
+                                    }
+                                }
+
+                                continue; //跳过本次循环
+
+                            }
+
+
 
                                 Method[] methods = aClass.getMethods();
                                 for (Method method : methods) {

@@ -54,7 +54,7 @@ public class loginServiceDao implements IServiceDao {
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
-        System.out.println("-----查询手机------");
+        System.out.println("-----查询------");
          //传入 手机号 邮箱
         try{
 
@@ -136,27 +136,59 @@ public class loginServiceDao implements IServiceDao {
         return list;
     }
 
-    public boolean password(Login login){  //查询站好密码
-        //用来遍历数据库所有的   where 指定的
-        String sql="SELECT * FROM `cheshibiao`";
-        System.out.println(sql);
-        RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Login类
+    @Override
+    //添加文章方法
+    public boolean addMyarticle(MyarticleModel model){
+        String sql = "insert into t_myarticle(uname,theme,content,likenum,collection,classify,postdate) values (?,?,?,?,?,?,?);";
 
-        List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
-        for (Login p1 : query) {
-            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
+//        System.out.println("insert into t_myarticle(uname,theme,content,likenum,collection,classify,postdate) values (\""+model.getUname()+"\",\""+model.getTheme()+"\",\""+model.getContent()+"\",\""+model.getLikenum()+"\","+model.getCollection()+","+model.getClassify().getName()+",\""+model.getPostdate()+"\");");
+        try{
+            int num =  jdbc_link.update(sql,model.getUname(),model.getTheme(),model.getContent(),model.getLikenum(),model.getCollection(),model.getClassify().getName(),model.getPostdate());
+            if(num != 0){
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
-       //查找一个数据
-        String sql2="SELECT * FROM `t_login` where name =?;";
-        Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
-        System.out.println(query2.getName()+"--*--"+query2.getPassword());
 
-//        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
-//            return true;
-//        }
         return false;
     }
+
+    //修改点赞数和收藏数
+    @Override
+    public Boolean updateNumColl(MyarticleModel model){
+        try {
+            String sql = "UPDATE `t_myarticle` SET likenum = ?, collection =? WHERE id = ?;";
+            BeanPropertyRowMapper<MyarticleModel> mapper = new BeanPropertyRowMapper<>(MyarticleModel.class);
+            jdbc_link.update(sql,mapper,model.getLikenum(),model.getCollection(),model.getId());
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+//    public boolean password(Login login){  //查询站好密码
+//        //用来遍历数据库所有的   where 指定的
+//        String sql="SELECT * FROM `cheshibiao`";
+//        System.out.println(sql);
+//        RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Login类
+//
+//        List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
+//        for (Login p1 : query) {
+//            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
+//        }
+//
+//       //查找一个数据
+//        String sql2="SELECT * FROM `t_login` where name =?;";
+//        Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
+//        System.out.println(query2.getName()+"--*--"+query2.getPassword());
+//
+////        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
+////            return true;
+////        }
+//        return false;
+//    }
 
 @Test
 public void abc(){
