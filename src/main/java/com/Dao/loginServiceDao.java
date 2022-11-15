@@ -167,6 +167,7 @@ public class loginServiceDao implements IServiceDao {
             return false;
         }
         return true;
+        //////
     }
 //    public boolean password(Login login){  //查询站好密码
 //        //用来遍历数据库所有的   where 指定的
