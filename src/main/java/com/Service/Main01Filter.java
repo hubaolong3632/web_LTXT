@@ -28,7 +28,11 @@ import java.util.ResourceBundle;
 
 @MultipartConfig(location="D:\\",fileSizeThreshold=1024)   //到时上传到服务器要改路径
 public class Main01Filter extends ViewBaseServlet {
-   private Map<String, Pzwj> map=new HashMap<>(); //保存数据的集合
+
+    private static final long serialVersionUID = 1L;
+    private static final Object[] OK = null;
+
+    private Map<String, Pzwj> map=new HashMap<>(); //保存数据的集合
 
     @Override
     public void init() throws ServletException {
@@ -60,12 +64,12 @@ public class Main01Filter extends ViewBaseServlet {
 
 
         String path1 = this.getServletContext().getRealPath("/");//获得根目录
-        path1 = path1 + "image\\" +"wj";
-        System.out.println(path1);
+        path1 = path1 + "image\\" +"2020_11_17";
+//        System.out.println("当前路径："+path1);
 
         //文件查找
         for (Part part : req.getParts()) {
-            System.out.println("查找到文件2");
+
             if (part.getSize() > 1024 * 10240) { //大型文件判断
                 part.delete();//文件大小超过设置的值
             }
@@ -73,6 +77,7 @@ public class Main01Filter extends ViewBaseServlet {
             //只处理上传文件区段
             if (part.getName().startsWith("file")) {
                 String header = part.getHeader("Content-Disposition");
+
                 String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
                 header.lastIndexOf("\""); //设置路径
                 System.out.println("文件名称:"+fileName);
@@ -83,7 +88,7 @@ public class Main01Filter extends ViewBaseServlet {
                     f.mkdirs();
                 }
 
-                System.out.println(path1 + fileName);
+                System.out.println("保存路径:"+(path1 + fileName));
                 part.write(path1 + fileName); //保存文件
 
 

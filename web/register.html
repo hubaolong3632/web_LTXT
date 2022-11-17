@@ -195,7 +195,7 @@
 <!--<body background="img/banner1.png" onload="fun()">-->
 <div id="lunkuo">
 
-    <form action="register.do"  method="post" >
+    <form action="register.do"  enctype="multipart/form-data"  method="post">
         <div class="outer_box">
             <div class="back_one"></div>
             <div class="back_two"></div>
@@ -212,19 +212,19 @@
             <svg t="1586147067477" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5047" width="23" height="23"><path d="M690.08 128l-356.448 0.128a23.168 23.168 0 0 0-22.72 23.392l0.256 721.056c0 12.864 10.24 23.36 22.752 23.392l356.48-0.16a23.104 23.104 0 0 0 22.72-23.392l-0.256-721.024A23.104 23.104 0 0 0 690.08 128z m-141.792 711.648c0 20.576-16.224 37.312-36.256 37.312-20 0-36.288-16.672-36.256-37.28-0.032-20.576 16.192-37.312 36.224-37.312 20.032-0.032 36.288 16.736 36.288 37.28zM695.36 229.504l0.192 530.528c0 12.864-10.24 23.392-22.72 23.392l-321.632 0.064a23.2 23.2 0 0 1-22.784-23.36l-0.16-530.528c0-12.832 10.24-23.36 22.752-23.36l321.632-0.096c12.48-0.032 22.72 10.464 22.72 23.36z" fill="" p-id="5048"></path></svg>
             <input type="tel" name="phone" id="zcphone" placeholder="请输入手机号" /><br /><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<!--                <label for="img">-->
-<!--                    <input type="button" id="btn" value="点击上传头像"><span id="text"></span>-->
+                <label for="img">
+                    <input type="button" id="btn" value="点击上传头像"><span id="text"></span>
 <!--                    <input type="file" name="headimg" id="img" ><br />-->
-<!--                </label>-->
-                <input type="file" name="headimg" size="30" value="123" enctype = "multipart/form-data"><br>
+                    <input type="file" name="filename" size="30" value="123" id="img" >
 
-                <!--            <input type="submit" onclick="onclickfun()" value="提交">-->
-<!--            <input type="button"  value="返回" onclick="location.href=('dr')">-->
-                <br/>
-                <button class="btn1" type="submit" onclick="onclickfun()" value="提交" name="btn_submit">提交</button>
+                </label>
+
+                <br>
+                <input   type="submit" value="注册" id="c4but">
                 <button class="btn2" type="button"  value="返回" name="btn_return"><a href="login.html" >返回</a></button>
         </div>
         </div>
+
     </form>
 </div>
 </body>
