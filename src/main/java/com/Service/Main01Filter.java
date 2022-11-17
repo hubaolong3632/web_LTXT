@@ -58,12 +58,49 @@ public class Main01Filter extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        String path1 = this.getServletContext().getRealPath("/");//获得根目录
+        path1 = path1 + "image\\" +"wj";
+        System.out.println(path1);
+
+        //文件查找
+        for (Part part : req.getParts()) {
+            System.out.println("查找到文件2");
+            if (part.getSize() > 1024 * 10240) { //大型文件判断
+                part.delete();//文件大小超过设置的值
+            }
+
+            //只处理上传文件区段
+            if (part.getName().startsWith("file")) {
+                String header = part.getHeader("Content-Disposition");
+                String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
+                header.lastIndexOf("\""); //设置路径
+                System.out.println("文件名称:"+fileName);
+
+                //文件保存
+                File f = new File(path1);
+                if (!f.exists()) {
+                    f.mkdirs();
+                }
+
+                System.out.println(path1 + fileName);
+                part.write(path1 + fileName); //保存文件
+
+
+            }
+        }
+
+
+
         req.setCharacterEncoding("UTF-8");
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
         System.out.println("----doPost----<----"+target+"---->-------------");
 
 
+
+
+        //登入用户的ip地址
         String ip = IP.userIP(req);
         System.out.println("获取的id:"+ip);
 
@@ -78,9 +115,9 @@ public class Main01Filter extends ViewBaseServlet {
 
 
             Father instance=null;
-            if(!pzwj1.getYi().equals("null")){  //如果当前进入的为空那么就跳转直接执行
-                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
-                 instance = (Father)aClass.newInstance();  //创建实现的父类
+            if(!pzwj1.getYi().equals("null")) {  //如果当前进入的为空那么就跳转直接执行
+                Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
+                instance = (Father) aClass.newInstance();  //创建实现的父类
 
 //                //文件查找
 //                for (Part part : req.getParts()) {
@@ -108,93 +145,55 @@ public class Main01Filter extends ViewBaseServlet {
 //                }
 
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
-                    while (parameterNames.hasMoreElements()) {
+                while (parameterNames.hasMoreElements()) {
+
+                    String nextElement = parameterNames.nextElement(); //获取名称
+                    //      System.out.println(nextElement+"  -----  "+req.getParameter(nextElement)); //获取标签 和标签对应的数据
+                    String set = "set" + nextElement.substring(0, 1).toUpperCase() + nextElement.substring(1);  //需要保存的set方法并且转换成setName的模式
+                    //文件的查找
+
+//                    //使用list存储多文件
+//                    if (nextElement.equals("headimg")) {  //如果为图片
+//
+//                          System.out.println("跳过当前循环--->");
+//
+//                        continue; //跳过本次循环
+//                }
 
 
+                        Method[] methods = aClass.getMethods();
+                        for (Method method : methods) {
 
+                            //System.out.println("method ----- "+method);
+                            Class<?>[] parameterTypes = method.getParameterTypes(); //获取对应的方法
+                            for (Class<?> parameterType : parameterTypes) { //里面的是类别 String等等
+                                // System.out.println(method.getName()+"------------"+set);
+                                if (method.getName().equals(set)) {  //查找指定数据进行注入
+                                    Method name = aClass.getMethod(method.getName(), parameterType);  //查找对应的值
+                                    name.invoke(instance, req.getParameter(nextElement));  //把数据进行注入
 
-
-                                String nextElement =parameterNames.nextElement(); //获取名称
-                        //      System.out.println(nextElement+"  -----  "+req.getParameter(nextElement)); //获取标签 和标签对应的数据
-                                String set = "set" + nextElement.substring(0, 1).toUpperCase() + nextElement.substring(1);  //需要保存的set方法并且转换成setName的模式
-                                //文件的查找
-
-                        //使用list存储多文件
-                            if(nextElement.equals("headimg")){  //如果为图片
-
-//// 设置单个文件大小
-//                                spring.servlet.multipart.max-file-size= 50MB
-//// 设置单次请求文件的总大小
-//                                spring.servlet.multipart.max-request-size= 50MB
-                                String path1 = this.getServletContext().getRealPath("/");//获得根目录
-                                path1 = path1 + "image\\" +"wj";
-                                System.out.println(path1);
-
-                                System.out.println("查找到文件");
-                                //文件查找
-                                for (Part part : req.getParts()) {
-                                    if (part.getSize() > 1024 * 10240) { //大型文件判断
-                                        part.delete();//文件大小超过设置的值
-                                    }
-
-                                    //只处理上传文件区段
-                                    if (part.getName().startsWith("file")) {
-                                        String header = part.getHeader("Content-Disposition");
-                                        String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
-                                        header.lastIndexOf("\""); //设置路径
-                                        System.out.println("文件名称:"+fileName);
-
-                                        //文件保存
-                                        File f = new File(path1);
-                                        if (!f.exists()) {
-                                            f.mkdirs();
-                                        }
-
-                                        System.out.println(path + fileName);
-                                        part.write(path + fileName); //保存文件
-
-
-                                    }
+                                    break;
                                 }
-
-                                continue; //跳过本次循环
-
                             }
 
-
-
-                                Method[] methods = aClass.getMethods();
-                                for (Method method : methods) {
-
-                                      //System.out.println("method ----- "+method);
-                                      Class<?>[] parameterTypes = method.getParameterTypes(); //获取对应的方法
-                                      for (Class<?> parameterType : parameterTypes) { //里面的是类别 String等等
-                                          // System.out.println(method.getName()+"------------"+set);
-                                          if (method.getName().equals(set)) {  //查找指定数据进行注入
-                                              Method name = aClass.getMethod(method.getName(), parameterType);  //查找对应的值
-                                              name.invoke(instance, req.getParameter(nextElement));  //把数据进行注入
-
-                                              break;
-                                          }
-                                      }
-
-                                }
                         }
-
                     }
 
+                }
 
-            //支持spring依赖
-            if(pzwj1.getSi().equals("1")){
-                System.out.println("调用的方法:"+pzwj1.getSi()  +"    跳转的子类"+pzwj1.getWu());
 
-                ServletContext servletContext = this.getServletContext();
-                WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-                System.out.println("pzwj1.getWu():"+pzwj1.getWu());
-                Action action =(Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
-                 action.execute(instance,pzwj1,req,resp,this); //调用此方法 执行代码
-                //   父类名称    走下去的线    req 和resp请求
-            }
+                //支持spring依赖
+                if (pzwj1.getSi().equals("1")) {
+                    System.out.println("调用的方法:" + pzwj1.getSi() + "    跳转的子类" + pzwj1.getWu());
+
+                    ServletContext servletContext = this.getServletContext();
+                    WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+                    System.out.println("pzwj1.getWu():" + pzwj1.getWu());
+                    Action action = (Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
+                    action.execute(instance, pzwj1, req, resp, this); //调用此方法 执行代码
+                    //   父类名称    走下去的线    req 和resp请求
+                }
+
 
         }catch (Exception e){
             e.printStackTrace();

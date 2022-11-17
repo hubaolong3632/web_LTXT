@@ -155,6 +155,9 @@ public class loginServiceDao implements IServiceDao {
         return false;
     }
 
+
+
+
     //修改点赞数和收藏数
     @Override
     public Boolean updateNumColl(MyarticleModel model){
