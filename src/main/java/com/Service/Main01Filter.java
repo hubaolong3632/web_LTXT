@@ -26,13 +26,14 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.util.*;
 
 @MultipartConfig(location="D:\\",fileSizeThreshold=1024)   //到时上传到服务器要改路径
 public class Main01Filter extends ViewBaseServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final Object[] OK = null;
 
     private Map<String, Pzwj> map=new HashMap<>(); //保存数据的集合
 
@@ -58,11 +59,11 @@ public class Main01Filter extends ViewBaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("-------c5");
         doPost(req,resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
         //初始化操作
         req.setCharacterEncoding("UTF-8"); //
@@ -72,6 +73,12 @@ public class Main01Filter extends ViewBaseServlet {
 
 
 
+        String path1 = this.getServletContext().getRealPath("/"); //获取路径
+
+        String filepath = "WEB-INF/web.xml";
+        String fullFilePath = getServletContext().getRealPath(filepath);
+        System.out.println("服务器的觉对路径"+fullFilePath);
+        System.out.println("输出注解路径:"+path1);
 
         //登入用户的ip地址
         String ip = IP.userIP(req);
@@ -91,6 +98,8 @@ public class Main01Filter extends ViewBaseServlet {
             if(!pzwj1.getYi().equals("null")) {  //如果当前进入的为空那么就跳转直接执行
                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
                 instance = (Father) aClass.newInstance();  //创建实现的父类
+
+
 
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
                 while (parameterNames.hasMoreElements()) {
@@ -114,33 +123,6 @@ public class Main01Filter extends ViewBaseServlet {
                     }
 
 
-//                //判断是否是文件操作
-//                if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
-//                {
-//                    for (Part part : req.getParts()) {
-//                        //用于用户文件的路径
-//                        String path1 = this.getServletContext().getRealPath("/")+ "image\\" +"2020_11_17"+"\\";//获得根目录
-//
-//                        //只处理上传文件区段
-//                        if (part.getName().startsWith("file")) {
-//                            String header = part.getHeader("Content-Disposition"); //文件格式
-//                            String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
-//                            System.out.println("文件名称:"+fileName);
-//
-//
-//                            File f = new File(path1);//文件保存
-//                            if (!f.exists()) {
-//                                System.out.println("创建文件路径");
-//                                f.mkdirs();
-//                            }
-//
-//                            System.out.println("保存路径:"+(path1 + fileName));
-//                            part.write(path1 + fileName); //保存文件
-//
-//
-//                        }
-//                    }
-//                }
 
                 }
 

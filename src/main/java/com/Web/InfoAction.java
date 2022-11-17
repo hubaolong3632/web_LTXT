@@ -17,13 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLDecoder;
+
 @Component("InfoAction")
 public class InfoAction extends Action{
     @Resource
     IServiceDao dao; //数据库
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8"); // 转换格式
+//        req.setCharacterEncoding("UTF-8"); // 转换格式
         Info info = (Info) father;
 
         InfoModel infoModel = new InfoModel(info.getPhone(),info.getEmail(),info.getHeadimg()); //个人信息
@@ -33,25 +36,30 @@ public class InfoAction extends Action{
         //判断是否是文件操作
         if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
         {
-            System.out.println("读取了文件上传功能");
+            System.out.println("The file upload function was read. Procedure....."); //上传文件中
             for (Part part : req.getParts()) {
                 //用于用户文件的路径
-                String path1 = main.getServletContext().getRealPath("/")+ "image\\" +"2020_11_999"+"\\";//获得根目录
+//                String path1 = main.getServletContext().getRealPath("/")+ "image\\" +"2020_11_999"+"\\";//获得根目录
+                String path1 = main.getServletContext().getRealPath("/")+ "image\\" +info.getName()+"\\headPortrait"+"\\";//获得路径保存
 
                 //只处理上传文件区段
                 if (part.getName().startsWith("file")) {
                     String header = part.getHeader("Content-Disposition"); //文件格式
                     String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
-                    System.out.println("文件名称:"+fileName);
+                    System.out.println("FileName:"+fileName); //文件路径
+
+
 
 
                     File f = new File(path1);//文件保存
                     if (!f.exists()) {
-                        System.out.println("创建文件路径");
+//                        System.out.println("Creating a File Path ....");
                         f.mkdirs();
                     }
 
-                    System.out.println("保存路径:"+(path1 + fileName));
+
+                    infoModel.setHeadimg(path1 + fileName); //保存数据库路径
+                    System.out.println("savePath:"+(path1 + fileName));
                     part.write(path1 + fileName); //保存文件
 
                 }
