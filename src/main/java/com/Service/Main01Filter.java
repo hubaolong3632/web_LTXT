@@ -7,6 +7,11 @@ import com.Form.Pzwj;
 import com.Utio.IP;
 import com.Utio.ViewBaseServlet;
 import com.Web.Action;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -21,10 +26,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @MultipartConfig(location="D:\\",fileSizeThreshold=1024)   //到时上传到服务器要改路径
 public class Main01Filter extends ViewBaseServlet {
@@ -62,42 +64,8 @@ public class Main01Filter extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-//        path1 = path1 ;
-//        System.out.println("当前路径："+path1);
-
-//        if (part.getSize() > 1024 * 10240) { //大型文件判断
-//            part.delete();//文件大小超过设置的值
-//        }
-
-        //文件查找
-        for (Part part : req.getParts()) {
-            String path1 = this.getServletContext().getRealPath("/")+ "image\\" +"2020_11_17";//获得根目录
-
-            //只处理上传文件区段
-            if (part.getName().startsWith("file")) {
-                String header = part.getHeader("Content-Disposition");
-                String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
-                header.lastIndexOf("\""); //设置路径
-                System.out.println("文件名称:"+fileName);
-
-                //文件保存
-                File f = new File(path1);
-                if (!f.exists()) {
-                    System.out.println("创建文件路径");
-                    f.mkdirs();
-                }
-
-                System.out.println("保存路径:"+(path1 + fileName));
-                part.write(path1 + fileName); //保存文件
-
-
-            }
-        }
-
-
-
-        req.setCharacterEncoding("UTF-8");
+        //初始化操作
+        req.setCharacterEncoding("UTF-8"); //
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
         System.out.println("----doPost----<----"+target+"---->-------------");
@@ -124,65 +92,55 @@ public class Main01Filter extends ViewBaseServlet {
                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
                 instance = (Father) aClass.newInstance();  //创建实现的父类
 
-//                //文件查找
-//                for (Part part : req.getParts()) {
-//                    if (part.getSize() > 1024 * 10240) { //大型文件判断
-//                        part.delete();//文件大小超过设置的值
-//                    }
-//
-//                    //只处理上传文件区段
-//                    if (part.getName().startsWith("file")) {
-//                        String header = part.getHeader("Content-Disposition");
-//                        String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\""));
-//                        header.lastIndexOf("\"");
-//
-//                        //文件保存
-//                        File f = new File(path);
-//                        if (!f.exists()) {
-//                            f.mkdirs();
-//                        }
-//
-//                        System.out.println(path + fileName);
-//                        part.write(path + fileName); //保存文件
-//
-//
-//                    }
-//                }
-
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
                 while (parameterNames.hasMoreElements()) {
 
                     String nextElement = parameterNames.nextElement(); //获取名称
-                    //      System.out.println(nextElement+"  -----  "+req.getParameter(nextElement)); //获取标签 和标签对应的数据
                     String set = "set" + nextElement.substring(0, 1).toUpperCase() + nextElement.substring(1);  //需要保存的set方法并且转换成setName的模式
-                    //文件的查找
-
-//                    //使用list存储多文件
-//                    if (nextElement.equals("headimg")) {  //如果为图片
-//
-//                          System.out.println("跳过当前循环--->");
-//
-//                        continue; //跳过本次循环
-//                }
 
 
+                //对于数据的祝福
                         Method[] methods = aClass.getMethods();
                         for (Method method : methods) {
-
-                            //System.out.println("method ----- "+method);
                             Class<?>[] parameterTypes = method.getParameterTypes(); //获取对应的方法
                             for (Class<?> parameterType : parameterTypes) { //里面的是类别 String等等
-                                // System.out.println(method.getName()+"------------"+set);
                                 if (method.getName().equals(set)) {  //查找指定数据进行注入
                                     Method name = aClass.getMethod(method.getName(), parameterType);  //查找对应的值
                                     name.invoke(instance, req.getParameter(nextElement));  //把数据进行注入
-
-                                    break;
+                                    break; //查找到之后就退出程序
                                 }
                             }
-
                         }
                     }
+
+
+//                //判断是否是文件操作
+//                if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
+//                {
+//                    for (Part part : req.getParts()) {
+//                        //用于用户文件的路径
+//                        String path1 = this.getServletContext().getRealPath("/")+ "image\\" +"2020_11_17"+"\\";//获得根目录
+//
+//                        //只处理上传文件区段
+//                        if (part.getName().startsWith("file")) {
+//                            String header = part.getHeader("Content-Disposition"); //文件格式
+//                            String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
+//                            System.out.println("文件名称:"+fileName);
+//
+//
+//                            File f = new File(path1);//文件保存
+//                            if (!f.exists()) {
+//                                System.out.println("创建文件路径");
+//                                f.mkdirs();
+//                            }
+//
+//                            System.out.println("保存路径:"+(path1 + fileName));
+//                            part.write(path1 + fileName); //保存文件
+//
+//
+//                        }
+//                    }
+//                }
 
                 }
 
@@ -201,6 +159,7 @@ public class Main01Filter extends ViewBaseServlet {
 
 
         }catch (Exception e){
+            super.processTemplate("cccc.html",req,resp); //出现异常跳转的界面
             e.printStackTrace();
         }
 
