@@ -63,21 +63,20 @@ public class Main01Filter extends ViewBaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        String path1 = this.getServletContext().getRealPath("/");//获得根目录
-        path1 = path1 + "image\\" +"2020_11_17";
+//        path1 = path1 ;
 //        System.out.println("当前路径："+path1);
+
+//        if (part.getSize() > 1024 * 10240) { //大型文件判断
+//            part.delete();//文件大小超过设置的值
+//        }
 
         //文件查找
         for (Part part : req.getParts()) {
-
-            if (part.getSize() > 1024 * 10240) { //大型文件判断
-                part.delete();//文件大小超过设置的值
-            }
+            String path1 = this.getServletContext().getRealPath("/")+ "image\\" +"2020_11_17";//获得根目录
 
             //只处理上传文件区段
             if (part.getName().startsWith("file")) {
                 String header = part.getHeader("Content-Disposition");
-
                 String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
                 header.lastIndexOf("\""); //设置路径
                 System.out.println("文件名称:"+fileName);
@@ -85,6 +84,7 @@ public class Main01Filter extends ViewBaseServlet {
                 //文件保存
                 File f = new File(path1);
                 if (!f.exists()) {
+                    System.out.println("创建文件路径");
                     f.mkdirs();
                 }
 
