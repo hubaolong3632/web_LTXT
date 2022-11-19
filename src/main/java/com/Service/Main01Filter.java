@@ -72,16 +72,6 @@ public class Main01Filter extends ViewBaseServlet {
         System.out.println("----doPost----<----"+target+"---->-------------");
 
 
-
-//        String path1 = this.getServletContext().getRealPath("/"); //获取路径
-//
-//        String filepath = "WEB-INF/web.xml";
-//        String fullFilePath = getServletContext().getRealPath(filepath);
-//        System.out.println("服务器的觉对路径"+fullFilePath);
-//        System.out.println("输出注解路径:"+path1);//
-
-
-
         //登入用户的ip地址
         String ip = IP.userIP(req);
         System.out.println("获取的ip:"+ip);

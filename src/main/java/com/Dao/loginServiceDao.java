@@ -32,7 +32,8 @@ public class loginServiceDao implements IServiceDao {
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
-            e.printStackTrace();
+            System.out.println("当前用户进行了登入但是 账号密码错误了！");
+//            e.printStackTrace();
             return null;
         }
     }
@@ -47,7 +48,8 @@ public class loginServiceDao implements IServiceDao {
 
             return query2;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("002 :  查询到当前数据库没有当前用户 进行用户的保存");
             return null;
         }
     }
@@ -66,11 +68,11 @@ public class loginServiceDao implements IServiceDao {
                 InfoModel info = login.getInfo(); // 获取个人信息
 
                 String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
-                String sqlInfo=" insert into `t_info` (phone,email,headimg,uname) VALUES (?,?,?,?);";
+                String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
                 System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
 
                 int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
-                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),login.getName()); //添加个人信息
+                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),0,login.getName()); //添加个人信息
                 System.out.println(num1);
                 if(num1!=0){ //如果注册成功
                     System.out.println("注册成功");

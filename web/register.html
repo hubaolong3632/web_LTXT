@@ -1,5 +1,6 @@
 <!--注册-->
 <!DOCTYPE >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <html lang="ch">
 <head>
@@ -222,7 +223,9 @@
                 <br>
                 <input   type="submit" value="注册" id="c4but">
                 <button class="btn2" type="button"  value="返回" name="btn_return"><a href="login.html" >返回</a></button>
+                <p th:text="${session.no}"></p>
         </div>
+
         </div>
 
     </form>

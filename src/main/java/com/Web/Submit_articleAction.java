@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//ндублМ╪с
 @Component("Submit_articleAction")
 public class Submit_articleAction extends Action{
     @Resource

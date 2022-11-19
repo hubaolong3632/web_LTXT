@@ -29,12 +29,12 @@ public class IP {
                 String str= String.valueOf(elements);
                 String replace = str.replace("<td class=\"z-tc\">", "");
                 String replace1 = replace.replace("</td>", "");
-                String replace2 = replace1.replace("<br> <a class=\"z-tc\" data-toggle=\"modal\" data-target=\".ip138\" style=\"text-decoration: none;cursor:pointer;color:#c0c1c4;\">ip138提供</a> ", "");
+                String replace2 = replace1.replace("<br> <a class=\"z-tc\" data-toggle=\"modal\" data-target=\".ip138\" style=\"text-decoration: none;cursor:pointer;color:#c0c1c4;\">ip138锟结供</a> ", "");
 
-                System.out.println("访问者地址/ip"+replace2);
+                System.out.println("褰撳墠ip"+replace2);
             }
         } catch (Exception e) {
-            System.out.println("错误");
+            System.out.println("鏌ユ壘澶辫触");
         }
 
         return "127.0.0.1";
@@ -47,7 +47,7 @@ public class IP {
             return false;
         }
         /**
-         * 判断IP格式和范围
+         * 锟叫讹拷IP锟斤拷式锟酵凤拷围
          */
         String rexp = "([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}";
 
