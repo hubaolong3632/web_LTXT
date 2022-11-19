@@ -5,6 +5,7 @@ import com.Iservice.IServiceDao;
 
 import com.Model.*;
 import org.junit.Test;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -37,8 +38,8 @@ public class loginServiceDao implements IServiceDao {
     }
 
     @Override
-    public LoginModel user_zc(LoginModel pas){
-        System.out.println(pas.getName());
+    public LoginModel user_zc(LoginModel pas){ //判断是否有当前姓名了
+        System.out.println("输出名称："+pas.getName());
         try{
             String sql2="SELECT * FROM `t_login` where name =? ;";
             RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
@@ -51,6 +52,8 @@ public class loginServiceDao implements IServiceDao {
         }
     }
 
+
+
     //添加用户信息
     @Override
     public boolean addInfo(LoginModel login) {
@@ -58,8 +61,7 @@ public class loginServiceDao implements IServiceDao {
          //传入 手机号 邮箱
         try{
 
-            LoginModel loginModel = user_pwd(login); //查询账号密码是否存在
-
+            LoginModel loginModel = user_zc(login); //查询账号密码是否存在  如果抛出了异常那么代表 1.没查询到  2.添加相同的主键了！
             if(loginModel==null){ //如果不存在当前账号
                 InfoModel info = login.getInfo(); // 获取个人信息
 
@@ -77,11 +79,11 @@ public class loginServiceDao implements IServiceDao {
 
 
             }
-            System.out.println("注册失败1");
+            System.out.println("注册失败:由于姓名已经存在");
             return false;
         }catch (Exception e){
             e.printStackTrace(); //500错误好看一点
-            System.out.println("注册失败2");
+            System.out.println("注册失败2：未知错误");
             return false;
         }
 

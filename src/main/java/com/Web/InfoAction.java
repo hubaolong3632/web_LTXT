@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.Collection;
 
 @Component("InfoAction")
 public class InfoAction extends Action{
@@ -26,20 +27,14 @@ public class InfoAction extends Action{
     IServiceDao dao; //数据库
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-//        req.setCharacterEncoding("UTF-8"); // 转换格式
         Info info = (Info) father;
 
         InfoModel infoModel = new InfoModel(info.getPhone(),info.getEmail(),info.getHeadimg()); //个人信息
         LoginModel loginModel=new LoginModel(info.getName(),info.getPassword(),infoModel); //放入账号密码 (登入表)
 
 
-        //判断是否是文件操作
-        if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
-        {
-            System.out.println("The file upload function was read. Procedure....."); //上传文件中
-            for (Part part : req.getParts()) {
+            for (Part part : father.getParts()) {
                 //用于用户文件的路径
-//                String path1 = main.getServletContext().getRealPath("/")+ "image\\" +"2020_11_999"+"\\";//获得根目录
                 String path1 = main.getServletContext().getRealPath("/")+ "image\\" +info.getName()+"\\headPortrait"+"\\";//获得路径保存
 
                 //只处理上传文件区段
@@ -48,27 +43,21 @@ public class InfoAction extends Action{
                     String fileName = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\"")); //获取最后的路径
                     System.out.println("FileName:"+fileName); //文件路径
 
-
-
-
                     File f = new File(path1);//文件保存
                     if (!f.exists()) {
-//                        System.out.println("Creating a File Path ....");
                         f.mkdirs();
                     }
-
-
-                    infoModel.setHeadimg(path1 + fileName); //保存数据库路径
-                    System.out.println("savePath:"+(path1 + fileName));
-                    part.write(path1 + fileName); //保存文件
+                    String pathName = path1 + fileName;  //获取绝对路径
+                    infoModel.setHeadimg(pathName); //保存到数据库的路径
+                    System.out.println("savePath:"+pathName);
+                    part.write(pathName); //保存文件
 
                 }
             }
-        }
 
 
 
-        if(dao.addInfo(loginModel)==true){  //登入成功判断
+        if(dao.addInfo(loginModel)==true){  //注册成功判断
             req.getSession().setAttribute("login",loginModel); //保存账号密码
             System.out.println("1:"+pzwj.getLiu());
             resp.sendRedirect(pzwj.getLiu()); //登入成功跳转到指定网页

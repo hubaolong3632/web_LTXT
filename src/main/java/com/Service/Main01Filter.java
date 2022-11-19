@@ -73,16 +73,18 @@ public class Main01Filter extends ViewBaseServlet {
 
 
 
-        String path1 = this.getServletContext().getRealPath("/"); //获取路径
+//        String path1 = this.getServletContext().getRealPath("/"); //获取路径
+//
+//        String filepath = "WEB-INF/web.xml";
+//        String fullFilePath = getServletContext().getRealPath(filepath);
+//        System.out.println("服务器的觉对路径"+fullFilePath);
+//        System.out.println("输出注解路径:"+path1);
 
-        String filepath = "WEB-INF/web.xml";
-        String fullFilePath = getServletContext().getRealPath(filepath);
-        System.out.println("服务器的觉对路径"+fullFilePath);
-        System.out.println("输出注解路径:"+path1);
+
 
         //登入用户的ip地址
         String ip = IP.userIP(req);
-        System.out.println("获取的id:"+ip);
+        System.out.println("获取的ip:"+ip);
 
         try{
 
@@ -99,7 +101,11 @@ public class Main01Filter extends ViewBaseServlet {
                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
                 instance = (Father) aClass.newInstance();  //创建实现的父类
 
-
+                if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
+                {
+                    System.out.println("001-执行了文件上传功能！");
+                    instance.setParts(req.getParts());  //获取到文件 --- 放入父类
+                }
 
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
                 while (parameterNames.hasMoreElements()) {
@@ -108,7 +114,7 @@ public class Main01Filter extends ViewBaseServlet {
                     String set = "set" + nextElement.substring(0, 1).toUpperCase() + nextElement.substring(1);  //需要保存的set方法并且转换成setName的模式
 
 
-                //对于数据的祝福
+                //对于数据的注入
                         Method[] methods = aClass.getMethods();
                         for (Method method : methods) {
                             Class<?>[] parameterTypes = method.getParameterTypes(); //获取对应的方法
@@ -123,17 +129,14 @@ public class Main01Filter extends ViewBaseServlet {
                     }
 
 
-
                 }
 
 
                 //支持spring依赖
                 if (pzwj1.getSi().equals("1")) {
-                    System.out.println("调用的方法:" + pzwj1.getSi() + "    跳转的子类" + pzwj1.getWu());
-
+                    System.out.println("调用的方向:" + pzwj1.getSi() + "    跳转的Action:" + pzwj1.getWu());
                     ServletContext servletContext = this.getServletContext();
                     WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-                    System.out.println("pzwj1.getWu():" + pzwj1.getWu());
                     Action action = (Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
                     action.execute(instance, pzwj1, req, resp, this); //调用此方法 执行代码
                     //   父类名称    走下去的线    req 和resp请求
