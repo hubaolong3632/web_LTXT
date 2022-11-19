@@ -91,7 +91,7 @@ public class Main01Filter extends ViewBaseServlet {
                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
                 instance = (Father) aClass.newInstance();  //创建实现的父类
 
-                if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传)
+                if (ServletFileUpload.isMultipartContent(req))//判断数据是否为多段数据(只有多段数据，才是文件上传) //
                 {
                     System.out.println("001-执行了文件上传功能！");
                     instance.setParts(req.getParts());  //获取到文件 --- 放入父类
