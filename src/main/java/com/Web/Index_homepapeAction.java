@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+//文章说说获取(通过分类获取)
 @Component("Index_homepapeAction")
 public class Index_homepapeAction extends Action{
     @Resource

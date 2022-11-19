@@ -42,7 +42,6 @@ public class LoginAction extends Action{
             req.getSession().setAttribute("login",from); //保存账号密码
             System.out.println("1:"+pzwj.getLiu());
 
-
             resp.sendRedirect(pzwj.getLiu()); //登入成功跳转到指定网页
 
 

@@ -22,35 +22,35 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.util.Collection;
-
+//æ³¨å†Œç•Œé¢
 @Component("InfoAction")
 public class InfoAction extends Action{
     @Resource
-    IServiceDao dao; //Êı¾İ¿â
+    IServiceDao dao; //æ•°æ®åº“
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         Info info = (Info) father;
 
-        InfoModel infoModel = new InfoModel(info.getPhone(),info.getEmail(),info.getHeadimg()); //¸öÈËĞÅÏ¢
-        LoginModel loginModel=new LoginModel(info.getName(),info.getPassword(),infoModel); //·ÅÈëÕËºÅÃÜÂë (µÇÈë±í)
+        InfoModel infoModel = new InfoModel(info.getPhone(),info.getEmail(),info.getHeadimg()); //ä¸ªäººä¿¡æ¯
+        LoginModel loginModel=new LoginModel(info.getName(),info.getPassword(),infoModel); //æ”¾å…¥è´¦å·å¯†ç  (ç™»å…¥è¡¨)
 
 
 
-        if(dao.addInfo(loginModel)==true){  //×¢²á³É¹¦ÅĞ¶Ï
+        if(dao.addInfo(loginModel)==true){  //æ³¨å†ŒæˆåŠŸåˆ¤æ–­
 
-            //ÎÄ¼şÉÏ´«¹¦ÄÜ
-            String filePath = "file\\image\\" + loginModel.getName() + "\\headPortrait" + "\\";  //±£´æÂ·¾¶
-            String srelativePath = FilesUtio.sc_Path(father, main, filePath);//ÉÏ´«ÎÄ¼ş¹¦ÄÜ
-            infoModel.setHeadimg(srelativePath); //±£´æµ½Êı¾İ¿âµÄÂ·¾¶
+            //æ–‡ä»¶ä¸Šä¼ åŠŸèƒ½
+            String filePath = "file\\image\\" + loginModel.getName() + "\\headPortrait" + "\\";  //ä¿å­˜è·¯å¾„
+            String srelativePath = FilesUtio.sc_Path(father, main, filePath);//ä¸Šä¼ æ–‡ä»¶åŠŸèƒ½
+            infoModel.setHeadimg(srelativePath); //ä¿å­˜åˆ°æ•°æ®åº“çš„è·¯å¾„
 
-            //±£´æÕËºÅÃÜÂë
+            //ä¿å­˜è´¦å·å¯†ç 
             req.getSession().setAttribute("login",loginModel);
-            System.out.println("Ìø×ªµÄÏÂÒ»¸ö½Úµã::"+pzwj.getLiu());
-            resp.sendRedirect(pzwj.getLiu()); //µÇÈë³É¹¦Ìø×ªµ½Ö¸¶¨ÍøÒ³
+            System.out.println("è·³è½¬çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹::"+pzwj.getLiu());
+            resp.sendRedirect(pzwj.getLiu()); //ç™»å…¥æˆåŠŸè·³è½¬åˆ°æŒ‡å®šç½‘é¡µ
 
         }else{
-            req.getSession().setAttribute("no","×¢²áÊ§°Üµ±Ç°ÒÑ´æÔÚ´ËÕËºÅ!"); //±£´æÕËºÅÃÜÂë
-            main.processTemplate("register",req,resp); //Ìø×ªÖ¸¶¨ÍøÕ¾ (·µ»Øµ±Ç°ÕËºÅ)
+            req.getSession().setAttribute("no","æ³¨å†Œå¤±è´¥å½“å‰å·²å­˜åœ¨æ­¤è´¦å·!"); //ä¿å­˜è´¦å·å¯†ç 
+            main.processTemplate("register",req,resp); //è·³è½¬æŒ‡å®šç½‘ç«™ (è¿”å›å½“å‰è´¦å·)
 
         }
 

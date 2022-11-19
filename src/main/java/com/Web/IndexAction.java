@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /*
- *登入界面
+ *注册完成之后跳转的登入界面
  */
 
 @Component("IndexAction")
