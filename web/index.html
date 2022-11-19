@@ -144,6 +144,7 @@
         <div class="header_logo">
             <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
         </div>
+
         <div class="header_nav">
             <ul class="clearfix">
                 <li><a href="">个人文章</a></li>
@@ -154,6 +155,8 @@
                         <li><a href="list.html">小红</a></li>
                         <li><a href="list.html">小黄</a></li>
                         <li><a href="list.html">小蓝</a></li>
+                        <li>   <img  th:src="${session.login.info.headimg}" width=300px height=200px/>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="about_me.html.do">个人资料</a></li>
