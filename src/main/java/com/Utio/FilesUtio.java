@@ -12,6 +12,8 @@ public class FilesUtio {
         String pathName=null;//获取绝对路径
         String srelativePath=null;//保存到数据库的路径
         try{
+            System.out.println("判断是否为空："+father);
+            System.out.println("当前是否存在："+father.getParts());
 
 
             for (Part part : father.getParts()) {
