@@ -43,7 +43,7 @@ public class InfoAction extends Action{
             infoModel.setHeadimg(srelativePath); //保存到数据库的路径
 
 
-            if(dao.addInfo(loginModel)==true) { //添加一个账号 存储所有信息
+            if(dao.addInfo(loginModel)==true) { //添加一个账号 存储所有信息.
                 //保存账号密码
                 req.getSession().setAttribute("login",loginModel);
                 System.out.println("跳转的下一个节点::"+pzwj.getLiu());
