@@ -1,6 +1,16 @@
 <!--文章的查看-->
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"  />
@@ -91,7 +101,7 @@
                             <b>标题&nbsp;&nbsp;</b>
                             <p th:text="${model.theme}"></p>
                         </div>
-                        <div class="article_content">
+                        <div class="article_content" id="comtent">
                             <p>大叫好我是张三,这里是我的内容222232322</p>
                             <br>
                             <br>
@@ -138,12 +148,44 @@
                         </div>
 
                         </div>
-                    </div>
+                    </ul>
+        </div>
             </ul>
         </div>
         <!--首页博文推荐部分-->
     </div>
-    <!--异步获取文章-->
+
+
+</div>
+
+</body>
+
+<script th:inline="javascript" type="text/javascript">
+
+
+     $(document).ready(function(){
+         // let html = new Array();
+         //
+         // html.push('<div class="schedule_box_item"><div class="date">1</div>');
+         // $('.article_content').append("张三");//无效果
+
+
+         let appendAdd=[[${model.content}]];
+         alert(appendAdd);
+         $('.article_content').append(appendAdd);//无效果
+
+
+     });
+
+     // <div className="article_content" id="comtent">
+
+
+</script>
+
+</html>
+
+
+<!--异步获取文章-->
 <!--    <div class="right">-->
 <!--        &lt;!&ndash;个人介绍部分&ndash;&gt;-->
 <!--        <div class="self_info right_box">-->
@@ -201,9 +243,3 @@
 <!--            <p>2.不要搞各种html注入</p>-->
 <!--        </div>-->
 <!--    </div>-->
-
-</div>
-
-</body>
-
-</html>
