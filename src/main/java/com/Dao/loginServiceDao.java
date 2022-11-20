@@ -232,10 +232,6 @@ public class loginServiceDao implements IServiceDao {
     }
     //
 
-    @Test
-public void abc(){
-    System.out.println("11");
-//
-}
+
 
 }
