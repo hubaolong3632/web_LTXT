@@ -80,14 +80,19 @@
 
                         <h3 class="article_content_title" th:text="${model.theme}">标题,要不要出去玩</h3>
                         <div class="article_author_count_box clearfix">
-                            <i class="article_author_img" th:title="${model.uname}"><img src="img/banner1.png"></i><a class="article_author" href="#">张政哇哇哇哇</a>
-                            <p>发表时间：2019-09-08</p><p>查看次数：500</p><p>点赞次数：500</p><p>评论次数：500</p>
+                            <i class="article_author_img" th:title="${model.uname}"><img src="img/banner1.png"></i><a class="article_author" href="#" th:text="${model.uname}">张政哇哇哇哇</a>
+                            <p>发表时间:</p><p th:text="${model.postdate}">9999-99-99</p>
+                            <p>点赞数:</p><p th:text="${model.likenum}">10</p>
+                            <p>收藏数:</p><p th:text="${model.likenum}">10</p>
+
+
                         </div>
                         <div class="article_info">
-                            <p><b>简介&nbsp;&nbsp;</b>我这里是文章的介绍</p>
+                            <b>标题&nbsp;&nbsp;</b>
+                            <p th:text="${model.theme}"></p>
                         </div>
                         <div class="article_content">
-                            <p>大叫好我是张三,这里是我的内容</p>
+                            <p>大叫好我是张三,这里是我的内容222232322</p>
                             <br>
                             <br>
                             <br>
@@ -95,7 +100,6 @@
                             <br>
                             <br>
                             <br>
-                            <p>再怎么底部的文章内容</p>
                             <br>
                         </div>
 
