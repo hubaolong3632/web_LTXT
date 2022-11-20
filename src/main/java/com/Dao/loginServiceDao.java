@@ -38,7 +38,7 @@ public class loginServiceDao implements IServiceDao {
             return pas;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
             System.out.println("当前用户进行了登入但是 账号密码错误了！");
-//            e.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -197,6 +197,8 @@ public class loginServiceDao implements IServiceDao {
     //根据登录表查找信息表
     @Override
     public InfoModel getInfoModel(LoginModel loginModel){
+        String name = loginModel.getName();
+        System.out.println("当前需要查询的信息人名："+name);
         String sql = "select id, phone ,email ,headimg, fins ,uname from `t_info` where `uname` = ?";
         //<泛型约束>，(告诉spring要把哪个类进行spring的注入)
         BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
@@ -207,7 +209,7 @@ public class loginServiceDao implements IServiceDao {
     @Override
     public List<InfoModel> name_headImg(LoginModel loginModel){
         String sql = "select headimg from `t_info` where `uname` = ?";
-        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(),loginModel.getName());
+        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(InfoModel.class),loginModel.getName());
     }
 
     //根据文章主题模糊查询内容,返回多篇文章
