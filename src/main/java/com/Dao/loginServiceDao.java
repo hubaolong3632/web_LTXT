@@ -20,8 +20,6 @@ public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
 
-
-
     //判断账号密码的登录
     @Override
     public LoginModel user_pwd(LoginModel pas){
@@ -79,8 +77,6 @@ public class loginServiceDao implements IServiceDao {
                     System.out.println("注册成功");
                     return true;
                 }
-
-
 //            }
             System.out.println("注册失败:由于姓名已经存在");
             return false;
@@ -190,27 +186,7 @@ public class loginServiceDao implements IServiceDao {
         return true;
         //////
     }
-//    public boolean password(Login login){  //查询站好密码
-//        //用来遍历数据库所有的   where 指定的
-//        String sql="SELECT * FROM `cheshibiao`";
-//        System.out.println(sql);
-//        RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Login类
-//
-//        List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
-//        for (Login p1 : query) {
-//            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
-//        }
-//
-//       //查找一个数据
-//        String sql2="SELECT * FROM `t_login` where name =?;";
-//        Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
-//        System.out.println(query2.getName()+"--*--"+query2.getPassword());
-//
-////        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
-////            return true;
-////        }
-//        return false;
-//    }
+
 
     //根据登录表查找信息表
     @Override
