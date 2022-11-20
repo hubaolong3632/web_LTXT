@@ -30,4 +30,11 @@ public interface IServiceDao {
 
 
         InfoModel getInfoModel(LoginModel loginModel);
+
+        //根据姓名查询头像
+        List<InfoModel> name_headImg(LoginModel loginModel);
+
+
+        //根据文章主题模糊查询内容
+        List<MyarticleModel> getContent(MyarticleModel theme);
 }
