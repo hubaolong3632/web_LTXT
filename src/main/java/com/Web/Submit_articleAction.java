@@ -18,42 +18,42 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//ÎÄÕÂÌí¼Ó
+//æ–‡ç« æ·»åŠ 
 @Component("Submit_articleAction")
 public class Submit_articleAction extends Action{
     @Resource
-    IServiceDao dao; //Êı¾İ¿â
+    IServiceDao dao; //æ•°æ®åº“
 
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         System.out.println("-------Submit_articleAction-----");
 
-        //»ñÈ¡ÄÚÈİ
-        Myarticle father1 = (Myarticle) father; // ´«ÊäÎÄÕÂ
+        //è·å–å†…å®¹
+        Myarticle father1 = (Myarticle) father; // ä¼ è¾“æ–‡ç« 
         LoginModel login=  (LoginModel)req.getSession().getAttribute("login");
 
-        //»ñÈ¡Ê±¼ä
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//»ñÈ¡Ê±¼ä
+        //è·å–æ—¶é—´
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è·å–æ—¶é—´
         Date date = new Date(System.currentTimeMillis());
 
-
-        //±£´æ²ÎÊı
+        System.out.println("å½“å‰åˆ†åŒºä¸ºï¼š"+father1.getClassify());
+        //ä¿å­˜å‚æ•°
         MyarticleModel myart=new MyarticleModel();
-        myart.setUname(login.getName()); //ĞÕÃû
-        myart.setTheme(father1.getHeadline());  //Ö÷Ìâ
-        myart.setContent(father1.getMessage());  //ÄÚÈİ
-        myart.setClassify(new ClassLfyModel(father1.getClassify())); //·ÖÇø
-        myart.setPostdate(formatter.format(date)); //·¢±íÊ±¼ä
-        myart.setLikenum(0); //µãÔŞÊıÁ¿
-        myart.setCollection(0); //ÊÕ²ØÊıÁ¿
+        myart.setUname(login.getName()); //å§“å
+        myart.setTheme(father1.getHeadline());  //ä¸»é¢˜
+        myart.setContent(father1.getMessage());  //å†…å®¹
+        myart.setClassify(new ClassLfyModel(father1.getClassify())); //åˆ†åŒº
+        myart.setPostdate(formatter.format(date)); //å‘è¡¨æ—¶é—´
+        myart.setLikenum(0); //ç‚¹èµæ•°é‡
+        myart.setCollection(0); //æ”¶è—æ•°é‡
 
 
-        boolean bool=dao.addMyarticle(myart); //Ìí¼ÓÎÄÕÂ
+        boolean bool=dao.addMyarticle(myart); //æ·»åŠ æ–‡ç« 
         if(bool==false){
 
         }
 
 
-        main.processTemplate(pzwj.getLiu(),req,resp); //Ìø×ªÖ¸¶¨ÍøÕ¾
+        main.processTemplate(pzwj.getLiu(),req,resp); //è·³è½¬æŒ‡å®šç½‘ç«™
     }
 }

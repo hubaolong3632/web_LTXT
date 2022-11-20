@@ -151,6 +151,7 @@ public class loginServiceDao implements IServiceDao {
 //        System.out.println(sql);
 //        System.out.println(model.getClassify().getName());
         BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
+        System.out.println("sql1");
         List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getUname());
         return list;
     }

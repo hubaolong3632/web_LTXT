@@ -5,18 +5,18 @@ import java.util.Date;
 import java.util.Objects;
 
 /*
-* ÎÒµÄÎÄÕÂÄ£ĞÍ²ã
+* æˆ‘çš„æ–‡ç« æ¨¡å‹å±‚
 * */
 public class MyarticleModel {
 
-    private int id;//id±àºÅ
-    private String uname; //ÎÄÕÂ·¢±íÈË
-    private String theme; //ÎÄÕÂÖ÷Ìâ
-    private String content; //ÎÄÕÂÄÚÈİ
-    private Integer likenum; //µãÔŞÊı
-    private Integer collection; //ÊÕ²ØÊı
-    private ClassLfyModel  classify ; //·ÖÇø
-    private String postdate; //Ê±¼ä
+    private int id;//idç¼–å·
+    private String uname; //æ–‡ç« å‘è¡¨äºº
+    private String theme; //æ–‡ç« ä¸»é¢˜
+    private String content; //æ–‡ç« å†…å®¹
+    private Integer likenum; //ç‚¹èµæ•°
+    private Integer collection; //æ”¶è—æ•°
+    private ClassLfyModel  classify ; //åˆ†åŒº
+    private String postdate; //æ—¶é—´
 
     public int getId() {
         return id;
