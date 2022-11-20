@@ -26,7 +26,7 @@ public class loginServiceDao implements IServiceDao {
         System.out.println("006: dao-判断账号是否登入成功>");
 //        System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
-            String sql2="SELECT * FROM `t_login` where name =? and password=?;";
+            String sql2="SELECT * FROM `t_login` where name =? and password=?;";//
             RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
             LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
