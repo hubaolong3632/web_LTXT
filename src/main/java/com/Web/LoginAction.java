@@ -33,14 +33,16 @@ public class LoginAction extends Action{
         LoginModel from = dao.user_pwd(loginModel); //放入账号密码进行判断
 
 
-        if(from==null){
-            System.out.println("当前并没有此账号");
+        if(from==null){ //如果数据库不存在当前用户
             req.getSession().setAttribute("no","登入失败当前账号或者密码错误！！！"); //保存账号密码
              main.processTemplate("login",req,resp); //跳转指定网站
         }else{
-            System.out.println(from.getName()+"  ---- "+from.getPassword()); //测试当前账号密码是
+
+
+
+            System.out.println("005-Action: 登入的账号为:"+from.getName()+"  密码为:"+from.getPassword()+"     \n 图片位置为:"+from.getInfo().getHeadimg()); //测试当前账号密码是
             req.getSession().setAttribute("login",from); //保存账号密码
-            System.out.println("1:"+pzwj.getLiu());
+            System.out.println("006-Action: 下一个跳转的网页:"+pzwj.getLiu());
 
             resp.sendRedirect(pzwj.getLiu()); //登入成功跳转到指定网页
 
