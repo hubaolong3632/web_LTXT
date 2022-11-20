@@ -35,7 +35,6 @@ public class InfoAction extends Action{
         LoginModel loginModel=new LoginModel(info.getName(),info.getPassword(),infoModel); //放入账号密码 (登入表)
 
 
-
         if(dao.addInfo(loginModel)==true){  //注册成功判断
 
             //文件上传功能
