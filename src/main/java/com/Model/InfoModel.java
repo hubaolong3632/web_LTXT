@@ -1,14 +1,12 @@
 package com.Model;
 
-import java.util.List;
-
-public class InfoModel {   //×¢²áÀà
+public class InfoModel {   //æ³¨å†Œç±»
     private int id;
-    private String phone; //ÊÖ»úºÅ
-    private String email; //ÓÊ¼ş
-    private String headimg; //Í·Ïñ
-    private int fins; //µãÔŞÊı
-    private String uname; //Ò»¶Ô¶à£¬ÔÚĞ´sqlÓï¾ä¸ù±¾ÓÃ²»ÉÏ
+    private String phone; //æ‰‹æœºå·
+    private String email; //é‚®ä»¶
+    private String headimg; //å¤´åƒ
+    private String fins; //ç‚¹èµæ•°
+    private String uname; //ä¸€å¯¹å¤šï¼Œåœ¨å†™sqlè¯­å¥æ ¹æœ¬ç”¨ä¸ä¸Š
 //    private List<Myantecle> myantecles;
 
 
@@ -49,11 +47,11 @@ public class InfoModel {   //×¢²áÀà
         this.headimg = headimg;
     }
 
-    public int getFins() {
+    public String getFins() {
         return fins;
     }
 
-    public void setFins(int fins) {
+    public void setFins(String fins) {
         this.fins = fins;
     }
 
@@ -73,7 +71,7 @@ public class InfoModel {   //×¢²áÀà
 
     }
 
-    public InfoModel(String phone, String email, String headimg, int fins, String uname) {
+    public InfoModel(String phone, String email, String headimg, String fins, String uname) {
 
         this.phone = phone;
         this.email = email;

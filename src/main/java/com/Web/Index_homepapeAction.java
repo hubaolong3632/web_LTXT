@@ -35,24 +35,31 @@ public class Index_homepapeAction extends Action{
         model.getClassify().setName(clas.getName());
         System.out.println("getName:"+clas.getName());
 
+//        System.out.println(333);
         List<MyarticleModel> models = dao.diArticles(model);//调用数据库层进行数据保存
 
+        System.out.println("集合判断："+models);
+        for (MyarticleModel myarticleModel : models) {
 
+            System.out.println(myarticleModel.getId()+"    "+myarticleModel.getUname());
+        }
+
+
+
+
+//        System.out.println(1111);
         //保存进sinse作用域里面
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
+//        System.out.println(loginModel+"11111");
         loginModel.setModels(models); //保存进入域
+//        System.out.println(2222);
 
-
-
-
-
-
-        req.setAttribute("models",models); //保存
 
 //        for (MyarticleModel myarticleModel : models) {
 //            System.out.println(myarticleModel.getUname()+"  \n  "+myarticleModel.getTheme()+" \n   "+myarticleModel.getContent());
 //        }
 
+        req.setAttribute("models",models); //保存
 
         main.processTemplate(pzwj.getLiu(),req,resp);
 
