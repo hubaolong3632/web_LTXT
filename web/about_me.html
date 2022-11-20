@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"  />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="renderer" content="webkit" />
-    <title>blog_index</title>
+    <title>个人资料</title>
     <meta name="keywords" content="张三的博客">
     <meta name="description" content="张三的博客">
     <link href="css/base.css" rel="stylesheet" type="text/css">
@@ -73,13 +73,13 @@
         <div class="me_box_text">
             <h3 class="me_box_title_title">个人信息设置</h3>
             <div class="me_box_text_div">
-            <form  method="post"  action="index.html"  >
+            <form  method="post"  action="homepage.html"  >
                ID:<text>2</text> <br>
                姓名:<text th:text="${session.userBAsic.nickName}">张1</text><br>
                当前密码:<input name="onepasword" type="text" ><br>
                修改密码:<input name="towpasword" type="text" ><br><br><hr>
                 <input type="submit" value="保存设置">
-                &nbsp &nbsp &nbsp <a href="index.html"> 返回</a>
+                &nbsp &nbsp &nbsp <a href="homepage.html"> 返回</a>
                 </form>
             </div>
         </div>
