@@ -21,13 +21,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.util.*;
 
 @MultipartConfig(location="D:\\",fileSizeThreshold=1024)   //到时上传到服务器要改路径

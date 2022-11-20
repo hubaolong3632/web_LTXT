@@ -2,6 +2,8 @@ package com.Dao;
 
 import com.Iservice.IServiceDao;
 import com.Model.ClassLfyModel;
+import com.Model.InfoModel;
+import com.Model.LoginModel;
 import com.Model.MyarticleModel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,6 +19,8 @@ public class Main {
         IServiceDao login = (IServiceDao) context.getBean("loginDao");
         ClassLfyModel java = login.getCount(new ClassLfyModel("java"));
         List<MyarticleModel> mysql = login.diArticles(new MyarticleModel(new ClassLfyModel("mysql")));
+        InfoModel infoModel = login.getInfoModel(new LoginModel("12", "12"));
+        System.out.println(infoModel.getHeadimg());
     }
 }
 

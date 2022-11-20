@@ -1,10 +1,7 @@
 package com.Iservice;
 
 
-import com.Model.ClassLfyModel;
-import com.Model.GoodFriendModel;
-import com.Model.LoginModel;
-import com.Model.MyarticleModel;
+import com.Model.*;
 
 import java.util.List;
 public interface IServiceDao {
@@ -26,4 +23,8 @@ public interface IServiceDao {
 
         //修改点赞数和收藏数
         Boolean updateNumColl(MyarticleModel model);
+
+
+
+        InfoModel getInfoModel(LoginModel loginModel);
 }

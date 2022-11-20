@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 //多个层都使用一个dao实现
@@ -201,6 +200,12 @@ public class loginServiceDao implements IServiceDao {
 //        return false;
 //    }
 
+    @Override
+    public InfoModel getInfoModel(LoginModel loginModel){
+        String sql = "select id, phone ,email ,headimg, fins  from `t_info` where `uname` = ?";
+        BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>();
+        return  jdbc_link.queryForObject(sql,info,loginModel.getName());
+    }
 @Test
 public void abc(){
     System.out.println("11");
