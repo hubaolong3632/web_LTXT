@@ -1,6 +1,6 @@
 <!--文章的查看-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"  />
@@ -72,13 +72,13 @@
 
                     <div class="article_content_box clearfix">
 
-                        <div class="article_article_title">
-                            <h3>最新模板
-                                <span>您当前的位置：<a href="index.html">首页&gt;</a><a href="#">列表页&gt;</a><a href="#">内容页</a></span>
+                        <div class="article_article_title"  >
+                            <h3 th:text="${session.login.name}">的文章
+                                <span>您当前的位置：<a href="index.html">首页&gt;</a><a href="#">个人文章&gt;</a><a href="#">好友文章</a></span>
                             </h3>
                         </div>
 
-                        <h3 class="article_content_title">标题,要不要出去玩</h3>
+                        <h3 class="article_content_title" th:text="session.">标题,要不要出去玩</h3>
                         <div class="article_author_count_box clearfix">
                             <i class="article_author_img" title="张政"><img src="img/banner1.png"></i><a class="article_author" href="#">张政</a>
                             <p>发表时间：2019-09-08</p><p>查看次数：500</p><p>点赞次数：500</p><p>评论次数：500</p>

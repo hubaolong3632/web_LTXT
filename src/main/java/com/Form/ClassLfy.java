@@ -8,6 +8,10 @@ public class ClassLfy extends Father{
     public ClassLfy() {
     }
 
+    public ClassLfy(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
