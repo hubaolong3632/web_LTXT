@@ -231,10 +231,11 @@ public class loginServiceDao implements IServiceDao {
         String sql = "select content from `t_myarticle` where theme like '%"+theme.getTheme()+"%'";
         return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,theme.getTheme());
     }
+    //
 @Test
 public void abc(){
     System.out.println("11");
-    //////
+//
 }
 
 }
