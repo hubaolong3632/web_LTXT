@@ -141,6 +141,17 @@ public class loginServiceDao implements IServiceDao {
         return list;
     }
 
+    //根据姓名查文章
+    @Override
+    public List<MyarticleModel> queryName(MyarticleModel model) {
+        String sql = "select * FROM t_myarticle where uname = ? ; ";
+//        System.out.println(sql);
+//        System.out.println(model.getClassify().getName());
+        BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
+        List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getUname());
+        return list;
+    }
+
     @Override
     //添加文章方法
     public boolean addMyarticle(MyarticleModel model){
@@ -200,10 +211,12 @@ public class loginServiceDao implements IServiceDao {
 //        return false;
 //    }
 
+    //根据登录表查找信息表
     @Override
     public InfoModel getInfoModel(LoginModel loginModel){
         String sql = "select id, phone ,email ,headimg, fins  from `t_info` where `uname` = ?";
-        BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>();
+        //<泛型约束>，(告诉spring要把哪个类进行spring的注入)
+        BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
         return  jdbc_link.queryForObject(sql,info,loginModel.getName());
     }
 @Test

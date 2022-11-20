@@ -8,7 +8,7 @@ public class InfoModel {   //注册类
     private String email; //邮件
     private String headimg; //头像
     private int fins; //点赞数
-    private String uname; //一对多
+    private String uname; //一对多，在写sql语句根本用不上
 //    private List<Myantecle> myantecles;
 
 
