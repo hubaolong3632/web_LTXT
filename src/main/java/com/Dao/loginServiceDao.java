@@ -1,9 +1,11 @@
 package com.Dao;
 
+import com.Form.Login;
 import com.Iservice.IServiceDao;
 
 import com.Model.*;
 import org.junit.Test;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -137,6 +139,7 @@ public class loginServiceDao implements IServiceDao {
         List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getClassify().getName());
 
         return list;
+
     }
 
     //根据姓名查文章
@@ -187,39 +190,6 @@ public class loginServiceDao implements IServiceDao {
         return true;
         //////
     }
-
-
-    //根据登录表查找信息表
-    @Override
-    public InfoModel getInfoModel(LoginModel loginModel){
-        String sql = "select id, phone ,email ,headimg, fins ,uname from `t_info` where `uname` = ?";
-        //<泛型约束>，(告诉spring要把哪个类进行spring的注入)
-        BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
-        return  jdbc_link.queryForObject(sql,info,loginModel.getName());
-    }
-
-    //根据姓名查询头像
-    @Override
-    public List<InfoModel> name_headImg(LoginModel loginModel){
-        String sql = "select headimg from `t_info` where `uname` = ?";
-        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(),loginModel.getName());
-    }
-
-    //根据文章主题模糊查询内容,返回多篇文章
-    @Override
-    public List<MyarticleModel> getContent(MyarticleModel theme){
-        String sql = "select content from `t_myarticle` where theme like '%"+theme.getTheme()+"%'";
-        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,theme.getTheme());
-    }
-    //
-@Test
-public void abc(){
-    System.out.println("11");
-//
-}
-
-}
-
 //    public boolean password(Login login){  //查询站好密码
 //        //用来遍历数据库所有的   where 指定的
 //        String sql="SELECT * FROM `cheshibiao`";
@@ -241,3 +211,31 @@ public void abc(){
 ////        }
 //        return false;
 //    }
+
+    //根据登录表查找信息表
+    @Override
+    public InfoModel getInfoModel(LoginModel loginModel){
+        String sql = "select id, phone ,email ,headimg, fins  from `t_info` where `uname` = ?";
+        //<泛型约束>，(告诉spring要把哪个类进行spring的注入)
+        BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
+        return  jdbc_link.queryForObject(sql,info,loginModel.getName());
+    }
+
+    @Override
+    public List<InfoModel> name_headImg(LoginModel loginModel) {
+        return null;
+    }
+
+    @Override
+    public List<MyarticleModel> getContent(MyarticleModel theme) {
+        return null;
+    }
+    //
+
+    @Test
+public void abc(){
+    System.out.println("11");
+//
+}
+
+}
