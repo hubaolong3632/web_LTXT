@@ -122,13 +122,14 @@ public class loginServiceDao implements IServiceDao {
         return query;
     }
 
+    //通过分区查询数据
     @Override
     public ClassLfyModel getCount(ClassLfyModel classlfy) {
 //        System.out.println(classlfy.getName());
         String sql = "select count(classify) as 'classify'  from t_myarticle where classify=?;";
         BeanPropertyRowMapper<ClassLfyModel> classflyBean = new BeanPropertyRowMapper<>(ClassLfyModel.class);
         classlfy = jdbc_link.queryForObject(sql, classflyBean,classlfy.getName());
-//        System.out.println(classlfy.getClassify());
+//        System.out.println("classlfy = "+classlfy.getClassify());
         return classlfy;
     }
 
@@ -137,6 +138,7 @@ public class loginServiceDao implements IServiceDao {
     public List<MyarticleModel> diArticles(MyarticleModel model) {
         String sql = "select * FROM t_myarticle where classify = ? ; ";
         System.out.println(sql);
+//        System.out.println(111);
         System.out.println(model.getClassify().getName());
         BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
         List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getClassify().getName());
@@ -151,7 +153,6 @@ public class loginServiceDao implements IServiceDao {
 //        System.out.println(sql);
 //        System.out.println(model.getClassify().getName());
         BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
-        System.out.println("sql1");
         List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getUname());
         return list;
     }
