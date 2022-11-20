@@ -21,10 +21,13 @@ public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
 
+
+
     //判断账号密码的登录
     @Override
     public LoginModel user_pwd(LoginModel pas){
-        System.out.println(pas.getName()+"    "+pas.getPassword());
+        System.out.println("006: dao-判断账号是否登入成功>");
+//        System.out.println(pas.getName()+"    "+pas.getPassword());
         try{
             String sql2="SELECT * FROM `t_login` where name =? and password=?;";
             RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
@@ -63,10 +66,9 @@ public class loginServiceDao implements IServiceDao {
          //传入 手机号 邮箱
         try{
 
-            LoginModel loginModel = user_zc(login); //查询账号密码是否存在  如果抛出了异常那么代表 1.没查询到  2.添加相同的主键了！
-            if(loginModel==null){ //如果不存在当前账号
+//            LoginModel loginModel = user_zc(login); //查询账号密码是否存在  如果抛出了异常那么代表 1.没查询到  2.添加相同的主键了！
+//            if(loginModel==null){ //如果不存在当前账号
                 InfoModel info = login.getInfo(); // 获取个人信息
-
                 String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
                 String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
                 System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
@@ -80,7 +82,7 @@ public class loginServiceDao implements IServiceDao {
                 }
 
 
-            }
+//            }
             System.out.println("注册失败:由于姓名已经存在");
             return false;
         }catch (Exception e){

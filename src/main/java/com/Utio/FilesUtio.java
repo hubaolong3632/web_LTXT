@@ -17,10 +17,8 @@ public class FilesUtio {
 
 
             for (Part part : father.getParts()) {
-                //????????????·??
                 String path1 = main.getServletContext().getRealPath("/");//获得路径保存
 //                String filePath= "file\\image\\" +name+"\\headPortrait"+"\\";  // ???????·??
-//                String filePath=path;  // ???????·??
                 path1+=filePath; //总文件
                 if (part.getName().startsWith("file")) {
                     String header = part.getHeader("Content-Disposition");  //文件格式
@@ -34,7 +32,6 @@ public class FilesUtio {
                     pathName = path1 + fileName;  //获取绝对路径
                     srelativePath = filePath + fileName;//保存到数据库的路径
 
-//                    infoModel.setHeadimg(srelativePath); //???浽??????·??
                     part.write(pathName);  //保存文件
 
                     System.out.println("\n---------path->->----------\n"+"pathName:"+pathName+"\n"+"srelativePath:"+srelativePath+"\n---------path->->----------\n"); //输出
