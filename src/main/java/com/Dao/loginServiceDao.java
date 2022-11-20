@@ -50,7 +50,7 @@ public class loginServiceDao implements IServiceDao {
         }catch (Exception e){ //否则返回的是spring数据库连接错误
 //            e.printStackTrace();
             System.out.println("002 :  查询到当前数据库没有当前用户 进行用户的保存");
-            return null;
+            return null; //
         }
     }
 
