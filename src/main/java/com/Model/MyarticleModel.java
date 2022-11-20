@@ -2,6 +2,7 @@ package com.Model;
 
 import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.Objects;
 
 /*
 * 我的文章模型层
@@ -93,4 +94,16 @@ public class MyarticleModel {
         this.classify = classify;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyarticleModel)) return false;
+        MyarticleModel that = (MyarticleModel) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
