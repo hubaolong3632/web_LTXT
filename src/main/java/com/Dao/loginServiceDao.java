@@ -1,11 +1,9 @@
 package com.Dao;
 
-import com.Form.Login;
 import com.Iservice.IServiceDao;
 
 import com.Model.*;
 import org.junit.Test;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,6 +17,8 @@ import java.util.List;
 public class loginServiceDao implements IServiceDao {
     @Resource
     JdbcTemplate jdbc_link; //注入
+
+
 
     //判断账号密码的登录
     @Override
@@ -60,23 +60,25 @@ public class loginServiceDao implements IServiceDao {
     @Override
     public boolean addInfo(LoginModel login) {
         System.out.println("-----查询------");
-         //传入 手机号 邮箱
+        //传入 手机号 邮箱
         try{
 
 //            LoginModel loginModel = user_zc(login); //查询账号密码是否存在  如果抛出了异常那么代表 1.没查询到  2.添加相同的主键了！
 //            if(loginModel==null){ //如果不存在当前账号
-                InfoModel info = login.getInfo(); // 获取个人信息
-                String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
-                String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
-                System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
+            InfoModel info = login.getInfo(); // 获取个人信息
+            String sqlLogin=" insert into t_login (name,password) VALUES (?,?);"; //插入账号密码的
+            String sqlInfo=" insert into `t_info` (phone,email,headimg,fins,uname) VALUES (?,?,?,?,?);";
+            System.out.println(info.getPhone()+"   "+info.getEmail()+"   "+info.getHeadimg()+"   "+login.getName()+"   "+login.getPassword());
 
-                int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
-                int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),0,login.getName()); //添加个人信息
-                System.out.println(num1);
-                if(num1!=0){ //如果注册成功
-                    System.out.println("注册成功");
-                    return true;
-                }
+            int num = jdbc_link.update(sqlLogin,login.getName(),login.getPassword()); //添加账号密码
+            int num1 = jdbc_link.update(sqlInfo,info.getPhone(),info.getEmail(), info.getHeadimg(),0,login.getName()); //添加个人信息
+            System.out.println(num1);
+            if(num1!=0){ //如果注册成功
+                System.out.println("注册成功");
+                return true;
+            }
+
+
 //            }
             System.out.println("注册失败:由于姓名已经存在");
             return false;
@@ -135,7 +137,6 @@ public class loginServiceDao implements IServiceDao {
         List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getClassify().getName());
 
         return list;
-
     }
 
     //根据姓名查文章
@@ -182,32 +183,59 @@ public class loginServiceDao implements IServiceDao {
             e.printStackTrace();
             return false;
         }
-        ////
         return true;
-        //////
     }
 
 
     //根据登录表查找信息表
     @Override
     public InfoModel getInfoModel(LoginModel loginModel){
-        String sql = "select id, phone ,email ,headimg, fins  from `t_info` where `uname` = ?";
+        String sql = "select id, phone ,email ,headimg, fins ,uname from `t_info` where `uname` = ?";
         //<泛型约束>，(告诉spring要把哪个类进行spring的注入)
         BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
         return  jdbc_link.queryForObject(sql,info,loginModel.getName());
     }
 
+    //根据姓名查询头像
     @Override
-    public List<InfoModel> name_headImg(LoginModel loginModel) {
-        return null;
+    public List<InfoModel> name_headImg(LoginModel loginModel){
+        String sql = "select headimg from `t_info` where `uname` = ?";
+        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(),loginModel.getName());
     }
 
+    //根据文章主题模糊查询内容,返回多篇文章
     @Override
-    public List<MyarticleModel> getContent(MyarticleModel theme) {
-        return null;
+    public List<MyarticleModel> getContent(MyarticleModel theme){
+        String sql = "select content from `t_myarticle` where theme like '%"+theme.getTheme()+"%'";
+        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,theme.getTheme());
     }
     //
-
-
+    @Test
+    public void abc(){
+        System.out.println("11");////
+//
+    }
 
 }
+
+//    public boolean password(Login login){  //查询站好密码
+//        //用来遍历数据库所有的   where 指定的
+//        String sql="SELECT * FROM `cheshibiao`";
+//        System.out.println(sql);
+//        RowMapper<Login> pasword=new BeanPropertyRowMapper(Login.class); //获取Login类
+//
+//        List<Login> query = jdbc_link.query(sql, pasword);  //获取一个list集合包含了数据库对应名称的数据
+//        for (Login p1 : query) {
+//            System.out.println(p1.getId()+"     "+p1.getName()+"  ---  "+p1.getPassword());
+//        }
+//
+//       //查找一个数据
+//        String sql2="SELECT * FROM `t_login` where name =?;";
+//        Login query2 = jdbc_link.queryForObject(sql2, pasword,"李四");
+//        System.out.println(query2.getName()+"--*--"+query2.getPassword());
+//
+////        for (Map<String, Object> map : jdbc_link.queryForList(sql)) {
+////            return true;
+////        }
+//        return false;
+//    }
