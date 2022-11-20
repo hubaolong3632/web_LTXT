@@ -25,15 +25,16 @@ public class loginServiceDao implements IServiceDao {
     @Override
     public LoginModel user_pwd(LoginModel pas) {
         System.out.println("006: dao-判断账号是否登入成功>");
-//        System.out.println(pas.getName()+"    "+pas.getPassword());
         try {
             String sql2 = "SELECT * FROM `t_login` where name =? and password=?;";
             RowMapper<LoginModel> pasword = new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
-            LoginModel query2 = jdbc_link.queryForObject(sql2, pasword, pas.getName(), pas.getPassword()); //查询返回对象
+            pas= jdbc_link.queryForObject(sql2, pasword, pas.getName(), pas.getPassword()); //查询返回对象
 
-            return query2;
+            pas.setInfo(getInfoModel(pas));  //保存个人的信息
+
+            return pas;
         } catch (Exception e) { //否则返回的是spring数据库连接错误
-            System.out.println("当前用户进行了登入但是 账号密码错误了！");
+            System.out.println("异常1:当前用户进行了登入但是 账号密码错误了！/个人信息获取不到");
 //            e.printStackTrace();
             return null;
         }
@@ -49,8 +50,7 @@ public class loginServiceDao implements IServiceDao {
 
             return query2;
         } catch (Exception e) { //否则返回的是spring数据库连接错误
-//            e.printStackTrace();
-            System.out.println("002 :  查询到当前数据库没有当前用户 进行用户的保存");
+            System.out.println("002-Dao :  查询到当前数据库没有当前用户 进行用户的保存");
             return null;
         }
     }
@@ -74,17 +74,17 @@ public class loginServiceDao implements IServiceDao {
             int num1 = jdbc_link.update(sqlInfo, info.getPhone(), info.getEmail(), info.getHeadimg(), 0, login.getName()); //添加个人信息
             System.out.println(num1);
             if (num1 != 0) { //如果注册成功
-                System.out.println("注册成功");
+                System.out.println("007-Dao:注册成功");
                 return true;
             }
 
 
 //            }
-            System.out.println("注册失败:由于姓名已经存在");
+            System.out.println("008-Dao:注册失败由于姓名已经存在!");
             return false;
         } catch (Exception e) {
             e.printStackTrace(); //500错误好看一点
-            System.out.println("注册失败2：未知错误");
+            System.out.println("009-Dao:注册失败2：未知错误");
             return false;
         }
 
@@ -111,7 +111,7 @@ public class loginServiceDao implements IServiceDao {
 
         List<GoodFriendModel> query = jdbc_link.query(sql, new BeanPropertyRowMapper<>(GoodFriendModel.class), login.getName());
         for (GoodFriendModel model : query) {
-            System.out.println("姓名： " + model.getFname() + " 好友id：   " + model.getId());
+            System.out.println("0010-Dao:姓名： " + model.getFname() + " 好友id：   " + model.getId());
         }
 
         return query;
@@ -177,7 +177,7 @@ public class loginServiceDao implements IServiceDao {
 
 
     @Override
-    public InfoModel getInfoModel(LoginModel loginModel) {
+    public InfoModel getInfoModel(LoginModel loginModel) {  //获取实现类
         String sql = "select id, phone ,email ,headimg, fins  from `t_info` where `uname` = ?";
         BeanPropertyRowMapper<InfoModel> info = new BeanPropertyRowMapper<>(InfoModel.class);
         return jdbc_link.queryForObject(sql, info, loginModel.getName());
