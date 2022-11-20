@@ -25,7 +25,12 @@ public class ArticleAction extends Action{
         LoginModel loginModel2 = (LoginModel) req.getSession().getAttribute("login");
 
 
-//        loginModel2.getModels().indexOf();
+        int indexOf = loginModel2.getModels().indexOf(new MyarticleModel(Integer.parseInt(lfy.getId())));//获取他的值通过id去查找他的集合
+        MyarticleModel model = loginModel2.getModels().get(indexOf);//获取内容
+
+        System.out.println("013-Action: 获取到的说说id:"+model.getId()+"   标题:"+model.getTheme());
+
+        req.setAttribute("model",model); //保存当前的说说
 
 //        for (MyarticleModel model2Model : loginModel2.getModels()) {
 //            if()

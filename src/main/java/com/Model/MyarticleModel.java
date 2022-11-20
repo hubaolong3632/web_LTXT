@@ -89,6 +89,10 @@ public class MyarticleModel {
         this.postdate = postdate;
     }
 
+    public MyarticleModel(int id) {
+        this.id = id;
+    }
+
     public MyarticleModel(ClassLfyModel classify) {
 
         this.classify = classify;
