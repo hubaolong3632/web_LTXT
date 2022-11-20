@@ -30,7 +30,12 @@ public class loginServiceDao implements IServiceDao {
             RowMapper<LoginModel> pasword=new BeanPropertyRowMapper(LoginModel.class); //获取Pasowrd类
             LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
-            return query2;
+            InfoModel model = getInfoModel(query2); //查询个信息
+//            System.out.println("当前个人信息:"+model.getHeadimg()+"    "+model.getUname());
+            pas.setInfo(model); //提交上去
+
+
+            return pas;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
             System.out.println("当前用户进行了登入但是 账号密码错误了！");
 //            e.printStackTrace();
