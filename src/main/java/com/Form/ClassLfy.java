@@ -1,9 +1,9 @@
 package com.Form;
-// ÓÃÓÚ±íµ¥ Í³¼Æµ±Ç°ÓÃ»§µÄÊıÁ¿ºÍ µ±Ç°ÎÄÕÂµÄÊıÁ¿
+// ç”¨äºè¡¨å• ç»Ÿè®¡å½“å‰ç”¨æˆ·çš„æ•°é‡å’Œ å½“å‰æ–‡ç« çš„æ•°é‡
 public class ClassLfy extends Father{
     public String id;
-    public String name; //²éÑ¯µ±Ç°ÓÃ»§·¢ËÍÎÄÕÂÊıÁ¿
-    public String classify; // µ±Ç°·ÖÆÚµÄÎÄÕÂÊıÁ¿
+    public String name; //æŸ¥è¯¢å½“å‰ç”¨æˆ·å‘é€æ–‡ç« æ•°é‡
+    public String classify; // å½“å‰åˆ†æœŸçš„æ–‡ç« æ•°é‡
 
     public ClassLfy() {
     }

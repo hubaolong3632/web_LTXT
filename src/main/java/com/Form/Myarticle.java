@@ -2,11 +2,11 @@ package com.Form;
 
 import com.Model.ClassLfyModel;
 
-public class Myarticle extends Father{    //没有关联关系，只有string类型
+public class Myarticle extends Father{    //娌℃湁鍏宠仈鍏崇郴锛屽彧鏈塻tring绫诲瀷
 
-    private String headline; //文章主题
-    private String message; //文章内容 一般来说是一条html代码
-    private String classify; //分区
+    private String headline; //鏂囩珷涓婚
+    private String message; //鏂囩珷鍐呭 涓�鑸潵璇存槸涓�鏉tml浠ｇ爜
+    private String classify; //鍒嗗尯
 
     public Myarticle() {
     }
