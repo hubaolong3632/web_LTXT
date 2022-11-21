@@ -58,12 +58,7 @@ public class Main01Filter extends ViewBaseServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try{
-            String name1 = req.getParameter("name");
-            System.out.println("获取name："+name1);
-        }catch (Exception e){
-            System.out.println("------------");
-        }
+
 
 
         //初始化操作
