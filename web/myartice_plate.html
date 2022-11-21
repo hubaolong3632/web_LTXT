@@ -1,6 +1,6 @@
 <!--文章编写-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>发布文章</title>
@@ -152,7 +152,7 @@
                                                 <option value="java">java</option>
                                                 <option value="mysql">mysql</option>
                                                 <option value="c++">c++</option>
-                                                <option value="HTML">HTML</option>
+                                                <option value="html">html</option>
                                             </select>
                                         </div>
                                     </div>
@@ -180,6 +180,7 @@
 </body>
 <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
+<!--    -->
    //文本编译器初始化操作!
     const { createEditor, createToolbar } = window.wangEditor
 
@@ -219,7 +220,7 @@
        let classify= document.getElementById("classify").value;
        // alert(headline);
        // alert(message);
-       alert(classify);
+       // alert(classify);
         $.ajax({
             type:"post",
             url:"/submit_article.do",

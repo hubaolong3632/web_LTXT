@@ -5,6 +5,7 @@ import com.Form.Father;
 import com.Form.Pzwj;
 import com.Iservice.IServiceDao;
 import com.Model.ClassLfyModel;
+import com.Model.LoginModel;
 import com.Model.MyarticleModel;
 import com.Service.Main01Filter;
 import org.springframework.stereotype.Component;
@@ -15,32 +16,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+//æ–‡ç« è¯´è¯´è·å–(é€šè¿‡åˆ†ç±»è·å–)
 @Component("Index_homepapeAction")
 public class Index_homepapeAction extends Action{
     @Resource
-    IServiceDao dao; //Êı¾İ¿â²ã
-    //Êı¾İµÄÌá½»
+    IServiceDao dao; //æ•°æ®åº“å±‚
+    //æ•°æ®çš„æäº¤
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-        System.out.println("------·ÖÀàÇø------");
+        System.out.println("------åˆ†ç±»åŒº------");
 
-        //±£´æ¶ÔÏófrom²ã
+        //ä¿å­˜å¯¹è±¡fromå±‚
         ClassLfy clas= (ClassLfy) father;
 
-        //±£´æÎÄ¼ş
+        //ä¿å­˜æ–‡ä»¶
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         System.out.println(clas.getName());
         model.getClassify().setName(clas.getName());
         System.out.println("getName:"+clas.getName());
 
-        List<MyarticleModel> models = dao.diArticles(model);//µ÷ÓÃÊı¾İ¿â²ã½øĞĞÊı¾İ±£´æ
-        req.setAttribute("models",models); //±£´æ
+//        System.out.println(333);
+        List<MyarticleModel> models = dao.diArticles(model);//è°ƒç”¨æ•°æ®åº“å±‚è¿›è¡Œæ•°æ®ä¿å­˜
 
+        System.out.println("é›†åˆåˆ¤æ–­ï¼š"+models);
         for (MyarticleModel myarticleModel : models) {
-            System.out.println(myarticleModel.getUname()+"  \n  "+myarticleModel.getTheme()+" \n   "+myarticleModel.getContent());
+
+            System.out.println(myarticleModel.getId()+"    "+myarticleModel.getUname());
         }
 
+
+
+
+//        System.out.println(1111);
+        //ä¿å­˜è¿›sinseä½œç”¨åŸŸé‡Œé¢
+        LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
+//        System.out.println(loginModel+"11111");
+        loginModel.setModels(models); //ä¿å­˜è¿›å…¥åŸŸ
+//        System.out.println(2222);
+
+
+//        for (MyarticleModel myarticleModel : models) {
+//            System.out.println(myarticleModel.getUname()+"  \n  "+myarticleModel.getTheme()+" \n   "+myarticleModel.getContent());
+//        }
+
+        req.setAttribute("models",models); //ä¿å­˜
 
         main.processTemplate(pzwj.getLiu(),req,resp);
 

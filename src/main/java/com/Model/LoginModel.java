@@ -8,6 +8,8 @@ public class LoginModel {
     private String name; //账号
     private String password; //密码
     private InfoModel info; //个人信息
+    private List<MyarticleModel> models; //当前界面的说说
+
 //  private List<>
     public LoginModel() {
     }
@@ -27,6 +29,14 @@ public class LoginModel {
         this.name = name;
         this.password = password;
         this.info = info;
+    }
+
+    public List<MyarticleModel> getModels() {
+        return models;
+    }
+
+    public void setModels(List<MyarticleModel> models) {
+        this.models = models;
     }
 
     public InfoModel getInfo() {

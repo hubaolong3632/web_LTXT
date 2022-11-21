@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true">
+    <file url="file://$PROJECT_DIR$/.gitignore" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Main.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Sdao_jdbc_link.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/loginServiceDao.java" charset="UTF-8" />
@@ -8,16 +9,26 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Login.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Pzwj.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Iservice/IServiceDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/ClassLfyModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/InfoModel.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Model/LoginModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/MyarticleModel.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Service/Main01Filter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Service/test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Utio/FilesUtio.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Utio/ViewBaseServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Action.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/ArticleAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Web/IndexAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Index_homepapeAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/InfoAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/Web/LoginAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Submit_articleAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ljx/Abc.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/jdbc.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/pzwj.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/myartice_plate.html" charset="UTF-8" />
-    <file url="PROJECT" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
