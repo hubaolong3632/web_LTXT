@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--    -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"  />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="renderer" content="webkit" />
-    <title>blog_index</title>
+    <title>论坛首页</title>
     <meta name="keywords" content="张三的博客">
     <meta name="description" content="张三的博客">
     <link href="css/base.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="js/base.js" type="text/javascript"></script>
     <script src="js/jquery.slides.min.js" type="text/javascript"></script>
+
 </head>
 <style>
     <!--    -->
@@ -45,6 +45,7 @@
         width: 100px;
         height: 100px;
         position: relative;
+        bottom: 10px;
 
     }
     /*mysql论坛*/
@@ -144,7 +145,6 @@
         <div class="header_logo">
             <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
         </div>
-
         <div class="header_nav">
             <ul class="clearfix">
                 <li><a href="">个人文章</a></li>
@@ -155,8 +155,6 @@
                         <li><a href="list.html">小红</a></li>
                         <li><a href="list.html">小黄</a></li>
                         <li><a href="list.html">小蓝</a></li>
-                        <li>   <img  th:src="${session.login.info.headimg}" width=300px height=200px/>
-                        </li>
                     </ul>
                 </li>
                 <li><a href="about_me.html.do">个人资料</a></li>
@@ -180,7 +178,7 @@
 <div class="search_box">
     <div class="search">
 
-        <form name="searchform" class="search_form" method="post" action="index.html" target="_blank">
+        <form name="searchform" class="search_form" method="post" action="homepage.html" target="_blank">
             <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索">
             <input type="hidden" name="tbname" value="news">
             <input type="hidden" name="show" value="title,smalltext">
@@ -194,30 +192,30 @@
 
 <div class="plate">
     <div class="plate1">
-        <a href="index_homepape.do?name=java"><img src="img/java.png"></a>
+        <a href="myartice_plate.do?name=java"><img src="img/java图.png "  ></a>
         <br>
-        <a href="index_homepape.do?name=java">java论坛</a>
+        <a href="myartice_plate.do?name=java">java论坛</a>
         <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate2">
-        <a href="index_homepape.do?name=mysql"><img src="img/mysql.png" height="100" width="100"></a>
+        <a href="myartice_plate.do?name=mysql"><img src="img/mysql.png" ></a>
         <br>
-        <a href="index_homepape.do?name=mysql">mysql论坛</a>
+        <a href="myartice_plate.do?name=mysql">mysql论坛</a>
         <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate3">
-        <a href="index_homepape.do?name=c%2B%2B"><img src="img/c++.png" height="100" width="100"></a>
+        <a href="myartice_plate.do?name=c++"><img src="img/c++.png" ></a>
         <br>
-        <a href="index_homepape.do?name=c%2B%2B">c++论坛</a>
+        <a href="myartice_plate.do?name=c++">c++论坛</a>
         <p class="p_plate">文章数量：</p>
     </div>
 
     <div class="plate4">
-        <a href="index_homepape.do?name=html"><img src="img/html.jpg" height="100" width="100"></a>
+        <a href="myartice_plate.do?name=html"><img src="img/html.jpg" ></a>
         <br>
-        <a href="index_homepape.do?name=html">html论坛</a>
+        <a href="myartice_plate.do?name=html">html论坛</a>
         <p class="p_plate">文章数量：</p>
     </div>
 </div>
