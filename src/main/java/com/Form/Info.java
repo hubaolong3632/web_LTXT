@@ -2,13 +2,13 @@ package com.Form;
 
 public class Info extends Father {
     private String id;
-    private String name; //ÕËºÅ
-    private String password; //ÃÜÂë
-    private String phone; //ÊÖ»úºÅ
-    private String email; //ÓÊ¼ş
-    private String headimg; //Í·Ïñ
-//    private String headimg; //Í·Ïñ
-    private int fins; //µãÔŞÊı
+    private String name; //è´¦å·
+    private String password; //å¯†ç 
+    private String phone; //æ‰‹æœºå·
+    private String email; //é‚®ä»¶
+    private String headimg; //å¤´åƒ
+//    private String headimg; //å¤´åƒ
+    private int fins; //ç‚¹èµæ•°
 
 
     public Info() {
