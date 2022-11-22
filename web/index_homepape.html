@@ -81,12 +81,12 @@
     <div class="search">
 
         <form name="searchform" class="search_form" method="post" action="homepage.html" target="_blank">
-            <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索">
+            <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索" id="keyboard">
             <input type="hidden" name="tbname" value="news">
             <input type="hidden" name="show" value="title,smalltext">
             <input type="hidden" name="tempid" value="1">
             <input type="hidden" name="classid" value="1,4,9">
-            <input type="submit" class="search_btn" value="搜索一下">
+            <input type="submit" class="search_btn" value="搜索一下" id="update1">
         </form>
 
     </div>
@@ -102,47 +102,17 @@
     <div class="left">
 <!--        &lt;!&ndash;首页最新模板部分&ndash;&gt;-->
         <div class="article_box_one" >
+
+        </div>
+
+<!--        &lt;!&ndash;首页博文推荐部分&ndash;&gt;-->
+<!--        <div class="article_box_one">-->
 <!--            <div class="index_article_title clearfix">-->
-<!--                <h3 th:text="${models.theme}"></h3>-->
-<!--                <p href="list.html" >更多></p>-->
+<!--                <h3>推荐博文</h3>-->
+<!--                <a href="list.html">更多></a>-->
 <!--            </div>-->
-<!--            <ul class="index_article" >-->
 
-<!--                <input type="hidden" name="idtext" id="hidden1" th:value="${models.id}">-->
-<!--                <li class="clearfix article_list">-->
-
-<!--                    <a th:href="@{'/article.do?id='+${models.id}}" class="article_list_img">-->
-<!--                        <img src="img/bg_5.png" >-->
-<!--&lt;!&ndash;                        <a th:href="@{'/index.do?id='+${models.id}}">跳转9</a>&ndash;&gt;-->
-<!--                    </a>-->
-
-<!--                    <h3  href="" th:text="${models.theme}" >文字标题</h3>-->
-<!--                    <p  th:text="${models.content}">文字介绍</p>-->
-
-<!--                    <div class="article_list_link">-->
-<!--                        <span class="article_list_count">-->
-<!--                            <i class="see_count"></i>-->
-<!--                            <p>时间:</p><p th:text="${models.postdate}"></p>-->
-<!--                        </span>-->
-<!--                        <span class="article_list_like">-->
-<!--                            <i class="like_count"></i>-->
-<!--                           <p> 发布人:</p><p th:text="${models.uname}"></p>-->
-<!--                        </span>-->
-<!--                        <a href="">查看详细+</a>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
-
-        </div>
-
-        <!--首页博文推荐部分-->
-        <div class="article_box_one">
-            <div class="index_article_title clearfix">
-                <h3>推荐博文</h3>
-                <a href="list.html">更多></a>
-            </div>
-
-        </div>
+<!--        </div>-->
 
 
         <div>
@@ -239,33 +209,37 @@
     </div>
 </div>
 </body>
+<script>
 
-\
+</script>
+
+
 <script th:inline="javascript" type="text/javascript">
 
-    // let info={
-    //     data:[
-    //         [# th:each="models : ${models}"]
-    //                  [[${models}]],
-    //     [/]
-    //     ]
-    // }
-
-    /*
-theme
-id
-content
-postdate
-uname
- */
 
 
-
+    alert("111");
 
     $(document).ready(function(){
 
-        function update(){
-                //获取所有的消息
+        function update1(){  //进行数据的更新和初始化
+
+
+            //更新服务器传输过来的消息
+            let hidden1 = document.getElementById("update1").value;
+            alert(hidden1); //输出调试
+            if(hidden1!="输入关键字点击搜索"){
+                $.ajax({
+                    type:"post",
+                    url:"Index_homepape_fuzzyQueryAction.do",
+                    data:{"name":hidden1},
+                    dataType:"json",        //指定响应的data数据类型为JSON对象。
+                });
+                alert("执行查询"); //输出调试
+            }
+
+
+            //获取所有的消息
                 let info=
                     [
                         [# th:each="models : ${models}"]
@@ -280,12 +254,9 @@ uname
                         [/]
                     ]
 
-
-
-
             for(let i=0;i<info.length;i++){
 
-                // alert("theme:"+info[i].theme);
+                // alert("kength:"+i);
                 // alert("id:"+info[i].id);
                 // alert("content:"+info[i].content);
                 // alert("postdate:"+info[i].postdate);
@@ -323,34 +294,20 @@ uname
                     "                </li>\n" +
                     "            </ul>\n" +
                     "\n";
-                // alert(appendAdd);
-                $('.article_box_one').append(appendAdd);//无效果
-
-
-
-
-
+                $('.article_box_one').append(appendAdd);//
             }
-
-
-
-
-
-
         }
-        update(); //执行更新操作
+
+        let id = document.getElementById("update1");
+        id.onclick=update1; //绑定表单
 
 
-
-
-
+      update1(); //第一次执行初始化操作
 
 
 
 
     });
-
-    // <div className="article_content" id="comtent">
 
 
 </script>
