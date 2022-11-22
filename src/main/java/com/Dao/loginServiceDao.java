@@ -215,8 +215,10 @@ public class loginServiceDao implements IServiceDao {
     //根据文章主题模糊查询内容,返回多篇文章
     @Override
     public List<MyarticleModel> getContent(MyarticleModel theme){
-        String sql = "select content from `t_myarticle` where theme like '%"+theme.getTheme()+"%'";
-        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,theme.getTheme());
+
+
+        String sql = "select * from `t_myarticle` where theme like ?";
+        return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,("%"+theme.getTheme()+"%"));
     }
     //
     @Test

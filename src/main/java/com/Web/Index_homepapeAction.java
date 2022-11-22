@@ -59,7 +59,7 @@ public class Index_homepapeAction extends Action{
 //            System.out.println(myarticleModel.getUname()+"  \n  "+myarticleModel.getTheme()+" \n   "+myarticleModel.getContent());
 //        }
 
-        req.setAttribute("models",models); //保存
+        req.getSession().setAttribute("models",models); //保存
 
         main.processTemplate(pzwj.getLiu(),req,resp);
 

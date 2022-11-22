@@ -21,6 +21,14 @@ public class Main {
         List<MyarticleModel> mysql = login.diArticles(new MyarticleModel(new ClassLfyModel("mysql")));
         InfoModel infoModel = login.getInfoModel(new LoginModel("12", "12"));
         System.out.println(infoModel.getHeadimg());
+        MyarticleModel model = new MyarticleModel();
+        model.setTheme("文章");
+        List<MyarticleModel> content = login.getContent(model);
+        for (MyarticleModel myarticleModel : content) {
+            System.out.println(myarticleModel.getId());
+        }
+
+
     }
 }
 

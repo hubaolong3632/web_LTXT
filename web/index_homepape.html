@@ -86,7 +86,7 @@
             <input type="hidden" name="show" value="title,smalltext">
             <input type="hidden" name="tempid" value="1">
             <input type="hidden" name="classid" value="1,4,9">
-            <input type="submit" class="search_btn" value="搜索一下" id="update1">
+            <input type="button" class="search_btn" value="搜索一下" id="update1">
         </form>
 
     </div>
@@ -101,7 +101,7 @@
 <div class="article_box clearfix">
     <div class="left">
 <!--        &lt;!&ndash;首页最新模板部分&ndash;&gt;-->
-        <div class="article_box_one" >
+        <div class="article_box_one" id="articleBox" >
 
         </div>
 
@@ -202,6 +202,7 @@
             </ul>
         </div>
         <div class="footer_text">
+<!--            <p th:each="models:${models}" th:text="${models.id}"></p>-->
             <p><i>站点声明：</i></p>
             <a  href="http://wpa.qq.com/msgrd?v=3&uin=911412667&site=qq&menu=yes"><font color="red">1.点此访问站长:911412667</font></a>
             <p>2.不要搞各种html注入</p>
@@ -218,31 +219,54 @@
 
 
 
-    alert("111");
 
     $(document).ready(function(){
 
         function update1(){  //进行数据的更新和初始化
 
 
-            //更新服务器传输过来的消息
-            let hidden1 = document.getElementById("update1").value;
-            alert(hidden1); //输出调试
-            if(hidden1!="输入关键字点击搜索"){
-                $.ajax({
-                    type:"post",
-                    url:"Index_homepape_fuzzyQueryAction.do",
-                    data:{"name":hidden1},
-                    dataType:"json",        //指定响应的data数据类型为JSON对象。
-                });
-                alert("执行查询"); //输出调试
+            //开始的时候清除div
+            let articleBox = document.getElementById("articleBox");
+            let div1 = document.getElementById("classC3");
+            // alert(articleBox+"    "+div1)
+            if(div1!=null){
+                articleBox.removeChild(div1);
+            }
+
+
+            //创建div
+             let div2=document.createElement("div1"); //创建一个表  创建一个tbody
+             div2.setAttribute("class","classC3"); //绑定他的class
+             div2.setAttribute("id","classC3"); //绑定他的id
+
+            articleBox.appendChild(div2); //保存文件
+
+
+
+
+            //更新服务器传输过来的消息 进行第一次判断是否为空
+            let hidden1 = document.getElementById("keyboard").value;
+            if(hidden1!=""){
+                // $.ajax({
+                //     type:"post",
+                //     url:"Index_homepape_fuzzyQueryAction.do",
+                //     data:{"name":hidden1},
+                //     dataType:"json",        //指定响应的data数据类型为JSON对象。
+                //     xhrFields:{
+                //         withCredentials:true
+                //     },
+                //
+                //
+                // });
+                // // alert("执行查询"); //输出调试
+                location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
             }
 
 
             //获取所有的消息
                 let info=
                     [
-                        [# th:each="models : ${models}"]
+                        [# th:each="models : ${session.models}"]
                             {
                                 theme:[[${models.theme}]],
                                     id:[[${models.id}]],
@@ -255,12 +279,9 @@
                     ]
 
             for(let i=0;i<info.length;i++){
+                console.log(info[i].id);
 
-                // alert("kength:"+i);
-                // alert("id:"+info[i].id);
-                // alert("content:"+info[i].content);
-                // alert("postdate:"+info[i].postdate);
-                // alert("uname:"+info[i].uname);
+
 
                 let appendAdd="   <!--首页最新模板部分2222-->\n" +
 
@@ -294,7 +315,7 @@
                     "                </li>\n" +
                     "            </ul>\n" +
                     "\n";
-                $('.article_box_one').append(appendAdd);//
+                $('.classC3').append(appendAdd);//
             }
         }
 
