@@ -11,17 +11,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-//Ìø×ª½çÃæ
+//è·³è½¬ç•Œé¢
 @Component("ClassLfyAction")
 public class ClassLfyAction extends Action{
 
     @Resource
-    IServiceDao dao; //Êı¾İ¿â²ã
+    IServiceDao dao; //æ•°æ®åº“å±‚
 
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
 
         System.out.println("----------ClassLfyAction-----------");
-        main.processTemplate(pzwj.getLiu(),req,resp); //Ìø×ªÍøÒ³
+        main.processTemplate(pzwj.getLiu(),req,resp); //è·³è½¬ç½‘é¡µ
     }
 }

@@ -22,6 +22,7 @@ public class ArticleAction extends Action{
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         ClassLfy lfy = (ClassLfy) father;//获取他的id
+        req.getSession().setAttribute("getlfy",lfy);
         LoginModel loginModel2 = (LoginModel) req.getSession().getAttribute("login");
 
 
@@ -37,6 +38,7 @@ public class ArticleAction extends Action{
 //            System.out.println("获取到的内容: "+model2Model.getId());
 //        }
         System.out.println("011-Action:跳转到"+pzwj.getLiu()+"界面");
+
         main.processTemplate(pzwj.getLiu(),req,resp); //跳转网页
     }
 }

@@ -29,6 +29,7 @@ public class LoginAction extends Action{
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         Login login= (Login) father; //转换为账号密码类
 
+        req.getSession().setAttribute("username",login.getName());
         LoginModel loginModel=new LoginModel(login.getName(),login.getPassword()); //转换成model层
         LoginModel from = dao.user_pwd(loginModel); //放入账号密码进行判断
 
