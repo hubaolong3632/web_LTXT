@@ -44,6 +44,7 @@ public class Index_homepape_fuzzyQueryAction extends Action{
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
         loginModel.setModels(models); //保存进入域
         req.getSession().setAttribute("models",models); //保存
+        req.getSession().setAttribute("str","数据"); //保存第二个数据
 
         main.processTemplate(pzwj.getLiu(),req,resp);
 

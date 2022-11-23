@@ -247,19 +247,30 @@
             //更新服务器传输过来的消息 进行第一次判断是否为空
             let hidden1 = document.getElementById("keyboard").value;
             if(hidden1!=""){
-                // $.ajax({
-                //     type:"post",
-                //     url:"Index_homepape_fuzzyQueryAction.do",
-                //     data:{"name":hidden1},
-                //     dataType:"json",        //指定响应的data数据类型为JSON对象。
-                //     xhrFields:{
-                //         withCredentials:true
-                //     },
-                //
-                //
-                // });
-                // // alert("执行查询"); //输出调试
-                location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
+                $.ajax({
+                    type:"post",
+                    url:"Index_homepape_fuzzyQueryAction.do",
+                    data:{"name":hidden1},
+                    dataType:"json",        //指定响应的data数据类型为JSON对象。
+                    xhrFields:{
+                        withCredentials:true
+                    },
+                    crossDomain: true,
+
+
+                    success:function(result){
+                        alert("test");
+                    },
+
+
+                });
+
+                let ac=[[${session.str}]];
+                alert("输出的值"+ac);
+
+
+                // alert("执行查询"); //输出调试
+                // location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
             }
 
 
@@ -278,6 +289,12 @@
                         [/]
                     ]
 
+
+
+
+
+
+
             for(let i=0;i<info.length;i++){
                 console.log(info[i].id);
 
@@ -286,7 +303,7 @@
                 let appendAdd="   <!--首页最新模板部分2222-->\n" +
 
                     "            <div class=\"index_article_title clearfix\">\n" +
-                    "                <h3>"+info[i].theme+"</h3>\n" +
+                    "                <h3>文章标题:"+info[i].theme+"</h3>\n" +
                     "                <p href=\"list.html\" >更多></p>\n" +
                     "            </div>\n" +
                     "            <ul class=\"index_article\" >\n" +
@@ -298,19 +315,19 @@
                     "                        <img src=\"img/bg_5.png\" >\n" +
                     "                    </a>\n" +
                     "\n" +
-                    "                    <h3  href=\"\"  >"+info[i].theme+"</h3>\n" +
-                    "                    <p  text=\"\">"+info[i].content+"</p>\n" +
+                    "                    <h3  href=\"\"  >文章标题:"+info[i].theme+"</h3>\n" +
+                    "                    <p  text=\"\">文章内容:"+info[i].content+"</p>\n" +
                     "\n" +
                     "                    <div class=\"article_list_link\">\n" +
                     "                        <span class=\"article_list_count\">\n" +
                     "                            <i class=\"see_count\"></i>\n" +
-                    "                            <p>时间:</p><p >"+info[i].postdate+"</p>\n" +
+                    "                            <p>发布时间:</p><p >"+info[i].postdate+"</p>\n" +
                     "                        </span>\n" +
                     "                        <span class=\"article_list_like\">\n" +
                     "                            <i class=\"like_count\"></i>\n" +
                     "                           <p> 发布人:</p><p>"+info[i].uname+"</p>\n" +
                     "                        </span>\n" +
-                    "                        <a href=\"\">查看详细+</a>\n" +
+                    "                        <a href=\"article.do?id="+info[i].id+"\">查看详细+</a>\n" +
                     "                    </div>\n" +
                     "                </li>\n" +
                     "            </ul>\n" +

@@ -61,6 +61,7 @@ public class Main01Filter extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("当前访问的作用域:"+req.getSession().getId());
 
 
         //初始化操作
@@ -131,11 +132,6 @@ public class Main01Filter extends ViewBaseServlet {
             super.processTemplate("cccc.html",req,resp); //出现异常跳转的界面
             e.printStackTrace();
         }
-
-
-
-
-
 
 
     }
