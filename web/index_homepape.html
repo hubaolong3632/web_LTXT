@@ -41,61 +41,49 @@
     //
 </script>
 <body>
-<iframe  src="http://localhost:9090/Index_homepape_fuzzyQueryAction.do?name=1" style="height:800px;width:800px" title="Iframe Example"  frameborder="0">
-    <p>你好    啊啊啊啊啊 </p>
-</iframe>
-
-
-<!--<iframe height="800" width="1000">-->
-<!--    <p>进入了传输界面</p>-->
-<!--    <form  method="post"  action="Index_homepape_fuzzyQueryAction.do">-->
-<!--        <input name="1" type="text" >-->
-<!--        <input type="submit" value="提交">-->
-<!--    </form>-->
-
-
-<!--    <script th:inline="javascript" type="text/javascript">-->
-
-<!--        let ac=[[${session.str}]];-->
-<!--        alert("输出的值"+ac);-->
-
-<!--    </script>-->
-
-
+<!--<iframe  src="http://localhost:9090/Index_homepape_fuzzyQueryAction.do?name=1" style="height:800px;width:800px" title="Iframe Example"  frameborder="0">-->
+<!--    <p>你好    啊啊啊啊啊 </p>-->
 <!--</iframe>-->
-
-<div class="head_box">
-    <div class="header">
-        <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
-        </div>
-        <div class="header_nav">
-            <ul class="clearfix">
-                <li><a href="">个人文章</a></li>
-                <li><a href="myartice_plate.do">文章编写</a></li>
-                <li class="have_second">
-                    <a href="">好友列表</a>
-                    <ul class="nav_second">
-                        <li><a href="list.html">小红</a></li>
-                        <li><a href="list.html">小黄</a></li>
-                        <li><a href="list.html">小蓝</a></li>
-                    </ul>
-                </li>
-                <li><a href="index_homepape.do">个人资料设置</a></li>
-                <li><a href="login.html">退出登入</a></li>
-            </ul>
-        </div>
-        <div class="header_search">
-            <a href="javascript:void(0);" class="header_search_btn">
-
-                <i></i>
-            </a>
-        </div>
-        <div class="header_nav_small_btn">
-            <span class="small_btn"></span>
-        </div>
-    </div>
+<!--引入头模板-->
+<div id="page1" >
+    <script>
+        $("#page1").load("headline.html");  //拷贝头
+    </script>
 </div>
+
+
+<!--<div class="head_box">-->
+<!--    <div class="header">-->
+<!--        <div class="header_logo">-->
+<!--            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>-->
+<!--        </div>-->
+<!--        <div class="header_nav">-->
+<!--            <ul class="clearfix">-->
+<!--                <li><a href="">个人文章</a></li>-->
+<!--                <li><a href="myartice_plate.do">文章编写</a></li>-->
+<!--                <li class="have_second">-->
+<!--                    <a href="">好友列表</a>-->
+<!--                    <ul class="nav_second">-->
+<!--                        <li><a href="list.html">小红</a></li>-->
+<!--                        <li><a href="list.html">小黄</a></li>-->
+<!--                        <li><a href="list.html">小蓝</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li><a href="index_homepape.do">个人资料设置</a></li>-->
+<!--                <li><a href="login.html">退出登入</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="header_search">-->
+<!--            <a href="javascript:void(0);" class="header_search_btn">-->
+
+<!--                <i></i>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="header_nav_small_btn">-->
+<!--            <span class="small_btn"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="nav_hidden_zhanwei"></div>
 
@@ -142,69 +130,7 @@
         </div>
 
     </div>
-    <!--异步获取文章-->
 
-
-    <!--        <div class="right">-->
-    <!--        &lt;!&ndash;个人介绍部分&ndash;&gt;-->
-    <!--            <div class="self_info right_box">-->
-    <!--                <img src="img/self.jpg">-->
-    <!--                <div class="self_info_text">-->
-    <!--                    <h3 text="${session.userBAsic.nickName}">张4</h3>-->
-    <!--                    <div>-->
-
-
-    <!--                        <p>天将降大任于斯人也，必先苦其心志、磨其胫骨、饿其体肤</p>-->
-    <!--                    </div>-->
-    <!--                    <a href="#">关注(当前并没有做)</a>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            &lt;!&ndash;个人介绍隐藏部分，只在右侧被翻到最上面显示&ndash;&gt;-->
-    <!--            <div class="self_info_scroll_bottom right_box">-->
-    <!--                <img src="img/self.jpg">-->
-    <!--                <div class="self_info_text">-->
-    <!--                    <h3>大青牛爱穿山甲</h3>-->
-    <!--                    <div>-->
-    <!--                        <p>以彼之长，增长自身</p>-->
-
-    <!--                    </div>-->
-    <!--                    <a href="#">Read More</a>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--&lt;!&ndash;微信二维码部分&ndash;&gt;-->
-    <!--            <div class="self_erweima right_box">-->
-    <!--                <h3>微信二维码</h3>-->
-    <!--                <div>-->
-    <!--                    <img src="img/self_weixin_erweima.png">-->
-    <!--                </div>-->
-    <!--            </div>-->
-
-    <!--&lt;!&ndash;qq二维码部分&ndash;&gt;-->
-    <!--            <div class="self_erweima right_box">-->
-    <!--                <h3>QQ二维码</h3>-->
-    <!--                <div>-->
-    <!--                    <img src="img/self_qq_erweima.png">-->
-    <!--                </div>-->
-    <!--            </div>-->
-
-    <!--&lt;!&ndash;座右铭目的把div对齐最多只能2行字，多了就高了&ndash;&gt;-->
-    <!--            <div class="self_zuoyoum right_box">-->
-    <!--                <h3>这里或许能做些什么东西</h3>-->
-
-    <!--            </div>-->
-
-    <!--&lt;!&ndash;模板推荐&ndash;&gt;-->
-    <!--            <div class="right_box tuijian_moban">-->
-    <!--                <h3>最近的说说</h3>-->
-    <!--                <div>-->
-    <!--                    <ul>-->
-    <!--                        <li><a href="#">这个是标题</a></li>-->
-    <!--                        <li><a href="#">这个是标题1</a></li>-->
-    <!--                        <li><a href="#">这个是标题2</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
 </div>
 
 
@@ -373,3 +299,67 @@
 
 </script>
 </html>
+
+<!--异步获取文章-->
+
+
+<!--        <div class="right">-->
+<!--        &lt;!&ndash;个人介绍部分&ndash;&gt;-->
+<!--            <div class="self_info right_box">-->
+<!--                <img src="img/self.jpg">-->
+<!--                <div class="self_info_text">-->
+<!--                    <h3 text="${session.userBAsic.nickName}">张4</h3>-->
+<!--                    <div>-->
+
+
+<!--                        <p>天将降大任于斯人也，必先苦其心志、磨其胫骨、饿其体肤</p>-->
+<!--                    </div>-->
+<!--                    <a href="#">关注(当前并没有做)</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;个人介绍隐藏部分，只在右侧被翻到最上面显示&ndash;&gt;-->
+<!--            <div class="self_info_scroll_bottom right_box">-->
+<!--                <img src="img/self.jpg">-->
+<!--                <div class="self_info_text">-->
+<!--                    <h3>大青牛爱穿山甲</h3>-->
+<!--                    <div>-->
+<!--                        <p>以彼之长，增长自身</p>-->
+
+<!--                    </div>-->
+<!--                    <a href="#">Read More</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;微信二维码部分&ndash;&gt;-->
+<!--            <div class="self_erweima right_box">-->
+<!--                <h3>微信二维码</h3>-->
+<!--                <div>-->
+<!--                    <img src="img/self_weixin_erweima.png">-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;qq二维码部分&ndash;&gt;-->
+<!--            <div class="self_erweima right_box">-->
+<!--                <h3>QQ二维码</h3>-->
+<!--                <div>-->
+<!--                    <img src="img/self_qq_erweima.png">-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;座右铭目的把div对齐最多只能2行字，多了就高了&ndash;&gt;-->
+<!--            <div class="self_zuoyoum right_box">-->
+<!--                <h3>这里或许能做些什么东西</h3>-->
+
+<!--            </div>-->
+
+<!--&lt;!&ndash;模板推荐&ndash;&gt;-->
+<!--            <div class="right_box tuijian_moban">-->
+<!--                <h3>最近的说说</h3>-->
+<!--                <div>-->
+<!--                    <ul>-->
+<!--                        <li><a href="#">这个是标题</a></li>-->
+<!--                        <li><a href="#">这个是标题1</a></li>-->
+<!--                        <li><a href="#">这个是标题2</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
