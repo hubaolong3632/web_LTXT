@@ -7,7 +7,7 @@ public class Pzwj  extends Father {
     private String er;/// 1
     private String san;///login.jsp
     private String si;// 1
-    private String wu;///LoginAction
+    private String wu;;///LoginAction
     private String liu;// /WEB-INF/main.jsp
 
 

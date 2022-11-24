@@ -41,6 +41,28 @@
     //
 </script>
 <body>
+<iframe  src="http://localhost:9090/Index_homepape_fuzzyQueryAction.do?name=1" style="height:800px;width:800px" title="Iframe Example"  frameborder="0">
+    <p>你好    啊啊啊啊啊 </p>
+</iframe>
+
+
+<!--<iframe height="800" width="1000">-->
+<!--    <p>进入了传输界面</p>-->
+<!--    <form  method="post"  action="Index_homepape_fuzzyQueryAction.do">-->
+<!--        <input name="1" type="text" >-->
+<!--        <input type="submit" value="提交">-->
+<!--    </form>-->
+
+
+<!--    <script th:inline="javascript" type="text/javascript">-->
+
+<!--        let ac=[[${session.str}]];-->
+<!--        alert("输出的值"+ac);-->
+
+<!--    </script>-->
+
+
+<!--</iframe>-->
 
 <div class="head_box">
     <div class="header">
@@ -80,13 +102,13 @@
 <div class="search_box">
     <div class="search">
 
-        <form name="searchform" class="search_form" method="post" action="homepage.html" target="_blank">
-            <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索">
+        <form name="searchform" class="search_form" method="post" action="index.html" target="_blank">
+            <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索" id="keyboard">
             <input type="hidden" name="tbname" value="news">
             <input type="hidden" name="show" value="title,smalltext">
             <input type="hidden" name="tempid" value="1">
             <input type="hidden" name="classid" value="1,4,9">
-            <input type="submit" class="search_btn" value="搜索一下">
+            <input type="button" class="search_btn" value="搜索一下" id="update1">
         </form>
 
     </div>
@@ -101,48 +123,18 @@
 <div class="article_box clearfix">
     <div class="left">
 <!--        &lt;!&ndash;首页最新模板部分&ndash;&gt;-->
-        <div class="article_box_one" >
+        <div class="article_box_one" id="articleBox" >
+
+        </div>
+
+<!--        &lt;!&ndash;首页博文推荐部分&ndash;&gt;-->
+<!--        <div class="article_box_one">-->
 <!--            <div class="index_article_title clearfix">-->
-<!--                <h3 th:text="${models.theme}"></h3>-->
-<!--                <p href="list.html" >更多></p>-->
+<!--                <h3>推荐博文</h3>-->
+<!--                <a href="list.html">更多></a>-->
 <!--            </div>-->
-<!--            <ul class="index_article" >-->
 
-<!--                <input type="hidden" name="idtext" id="hidden1" th:value="${models.id}">-->
-<!--                <li class="clearfix article_list">-->
-
-<!--                    <a th:href="@{'/article.do?id='+${models.id}}" class="article_list_img">-->
-<!--                        <img src="img/bg_5.png" >-->
-<!--&lt;!&ndash;                        <a th:href="@{'/index.do?id='+${models.id}}">跳转9</a>&ndash;&gt;-->
-<!--                    </a>-->
-
-<!--                    <h3  href="" th:text="${models.theme}" >文字标题</h3>-->
-<!--                    <p  th:text="${models.content}">文字介绍</p>-->
-
-<!--                    <div class="article_list_link">-->
-<!--                        <span class="article_list_count">-->
-<!--                            <i class="see_count"></i>-->
-<!--                            <p>时间:</p><p th:text="${models.postdate}"></p>-->
-<!--                        </span>-->
-<!--                        <span class="article_list_like">-->
-<!--                            <i class="like_count"></i>-->
-<!--                           <p> 发布人:</p><p th:text="${models.uname}"></p>-->
-<!--                        </span>-->
-<!--                        <a href="">查看详细+</a>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
-
-        </div>
-
-        <!--首页博文推荐部分-->
-        <div class="article_box_one">
-            <div class="index_article_title clearfix">
-                <h3>推荐博文</h3>
-                <a href="list.html">更多></a>
-            </div>
-
-        </div>
+<!--        </div>-->
 
 
         <div>
@@ -232,43 +224,83 @@
             </ul>
         </div>
         <div class="footer_text">
+<!--            <p th:each="models:${models}" th:text="${models.id}"></p>-->
             <p><i>站点声明：</i></p>
             <a  href="http://wpa.qq.com/msgrd?v=3&uin=911412667&site=qq&menu=yes"><font color="red">1.点此访问站长:911412667</font></a>
             <p>2.不要搞各种html注入</p>
         </div>
     </div>
+
 </div>
 </body>
+<script>
 
-\
+</script>
+
+
 <script th:inline="javascript" type="text/javascript">
-
-    // let info={
-    //     data:[
-    //         [# th:each="models : ${models}"]
-    //                  [[${models}]],
-    //     [/]
-    //     ]
-    // }
-
-    /*
-theme
-id
-content
-postdate
-uname
- */
 
 
 
 
     $(document).ready(function(){
 
-        function update(){
-                //获取所有的消息
+        function update1(){  //进行数据的更新和初始化
+            let ac=[[${session.str}]];
+            // alert("输出的值"+ac);
+            //开始的时候清除div
+            let articleBox = document.getElementById("articleBox");
+            let div1 = document.getElementById("classC3");
+            // alert(articleBox+"    "+div1)
+            if(div1!=null){
+                articleBox.removeChild(div1);
+            }
+
+
+            //创建div
+             let div2=document.createElement("div1"); //创建一个表  创建一个tbody
+             div2.setAttribute("class","classC3"); //绑定他的class
+             div2.setAttribute("id","classC3"); //绑定他的id
+
+            articleBox.appendChild(div2); //保存文件
+
+
+
+
+            //更新服务器传输过来的消息 进行第一次判断是否为空
+            let hidden1 = document.getElementById("keyboard").value;
+            if(hidden1!=""){
+                $.ajax({
+                    type:"post",
+                    url:"Index_homepape_fuzzyQueryAction.do",
+                    data:{"name":hidden1},
+                    dataType:"json",        //指定响应的data数据类型为JSON对象。
+                    xhrFields:{
+                        withCredentials:true
+                    },
+                    crossDomain: true,
+
+
+                    success:function(result){
+                        alert("test");
+                    },
+
+
+                });
+
+                let ac=[[${session.str}]];
+                // alert("输出的值"+ac);
+
+
+                // alert("执行查询"); //输出调试
+                // location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
+            }
+
+
+            //获取所有的消息
                 let info=
                     [
-                        [# th:each="models : ${models}"]
+                        [# th:each="models : ${session.models}"]
                             {
                                 theme:[[${models.theme}]],
                                     id:[[${models.id}]],
@@ -283,18 +315,18 @@ uname
 
 
 
-            for(let i=0;i<info.length;i++){
 
-                // alert("theme:"+info[i].theme);
-                // alert("id:"+info[i].id);
-                // alert("content:"+info[i].content);
-                // alert("postdate:"+info[i].postdate);
-                // alert("uname:"+info[i].uname);
+
+
+            for(let i=0;i<info.length;i++){
+                console.log(info[i].id);
+
+
 
                 let appendAdd="   <!--首页最新模板部分2222-->\n" +
 
                     "            <div class=\"index_article_title clearfix\">\n" +
-                    "                <h3>"+info[i].theme+"</h3>\n" +
+                    "                <h3>文章标题:"+info[i].theme+"</h3>\n" +
                     "                <p href=\"list.html\" >更多></p>\n" +
                     "            </div>\n" +
                     "            <ul class=\"index_article\" >\n" +
@@ -306,51 +338,37 @@ uname
                     "                        <img src=\"img/bg_5.png\" >\n" +
                     "                    </a>\n" +
                     "\n" +
-                    "                    <h3  href=\"\"  >"+info[i].theme+"</h3>\n" +
-                    "                    <p  text=\"\">"+info[i].content+"</p>\n" +
+                    "                    <h3  href=\"\"  >文章标题:"+info[i].theme+"</h3>\n" +
+                    "                    <p  text=\"\">文章内容:"+info[i].content+"</p>\n" +
                     "\n" +
                     "                    <div class=\"article_list_link\">\n" +
                     "                        <span class=\"article_list_count\">\n" +
                     "                            <i class=\"see_count\"></i>\n" +
-                    "                            <p>时间:</p><p >"+info[i].postdate+"</p>\n" +
+                    "                            <p>发布时间:</p><p >"+info[i].postdate+"</p>\n" +
                     "                        </span>\n" +
                     "                        <span class=\"article_list_like\">\n" +
                     "                            <i class=\"like_count\"></i>\n" +
                     "                           <p> 发布人:</p><p>"+info[i].uname+"</p>\n" +
                     "                        </span>\n" +
-                    "                        <a href=\"\">查看详细+</a>\n" +
+                    "                        <a href=\"article.do?id="+info[i].id+"\">查看详细+</a>\n" +
                     "                    </div>\n" +
                     "                </li>\n" +
                     "            </ul>\n" +
                     "\n";
-                // alert(appendAdd);
-                $('.article_box_one').append(appendAdd);//无效果
-
-
-
-
-
+                $('.classC3').append(appendAdd);//
             }
-
-
-
-
-
-
         }
-        update(); //执行更新操作
+
+        let id = document.getElementById("update1");
+        id.onclick=update1; //绑定表单
 
 
-
-
-
+      update1(); //第一次执行初始化操作
 
 
 
 
     });
-
-    // <div className="article_content" id="comtent">
 
 
 </script>

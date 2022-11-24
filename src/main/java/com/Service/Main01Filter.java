@@ -2,11 +2,13 @@ package com.Service;
 
 
 
+import com.Form.ClassLfy;
 import com.Form.Father;
 import com.Form.Pzwj;
 import com.Utio.IP;
 import com.Utio.ViewBaseServlet;
 import com.Web.Action;
+import com.Web.Index_homepapeAction;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -59,6 +61,7 @@ public class Main01Filter extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+//        System.out.println("当前访问的作用域:"+req.getSession().getId());
 
 
         //初始化操作
@@ -73,15 +76,12 @@ public class Main01Filter extends ViewBaseServlet {
         System.out.println("获取的ip:"+ip);
 
         try{
-
             Pzwj pzwj1 =map.get(target); //查找map对应里面的数据
             if(pzwj1==null){    //如果为空执行的地方
                 System.out.println("空------------->");
                 super.processTemplate("cccc.html",req,resp); //如果跳转的是还没有设置的界面
                 return;
             }
-
-
             Father instance=null;
             if(!pzwj1.getYi().equals("null")) {  //如果当前进入的为空那么就跳转直接执行
                 Class<?> aClass = Class.forName(pzwj1.getYi());  //创建指定的类  -Model.PasWord
@@ -92,7 +92,6 @@ public class Main01Filter extends ViewBaseServlet {
                     System.out.println("001-执行了文件上传功能！");
                     instance.setParts(req.getParts());  //获取到文件 --- 放入父类
                 }
-
                 Enumeration<String> parameterNames = req.getParameterNames();  //数据的处理
                 while (parameterNames.hasMoreElements()) {
 
@@ -113,10 +112,7 @@ public class Main01Filter extends ViewBaseServlet {
                             }
                         }
                     }
-
-
                 }
-
 
                 //支持spring依赖
                 if (pzwj1.getSi().equals("1")) {
@@ -124,20 +120,18 @@ public class Main01Filter extends ViewBaseServlet {
                     ServletContext servletContext = this.getServletContext();
                     WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
                     Action action = (Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
+
+                    System.out.println("action==="+action);
+                    System.out.println("instance==="+instance);
+//                  ClassLfy cl=(ClassLfy) instance;
+//                  System.out.println("ClassLfy.name is null ？？"+cl.getName());
                     action.execute(instance, pzwj1, req, resp, this); //调用此方法 执行代码
                     //   父类名称    走下去的线    req 和resp请求
                 }
-
-
         }catch (Exception e){
             super.processTemplate("cccc.html",req,resp); //出现异常跳转的界面
             e.printStackTrace();
         }
-
-
-
-
-
 
 
     }
