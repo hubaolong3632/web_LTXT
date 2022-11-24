@@ -1,5 +1,5 @@
 html,body,ul,li,figure{ margin:0; padding:0;border: none;}
-body{background: #f2f2f2;font:16px "PingFang SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;color: #FFF;}
+body{background: #f2f2f2;font:16px "PingFang SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;color: black;}
 body * {box-sizing: border-box;}
 li{ list-style-type:none; }
 img { border:none; }
@@ -422,53 +422,53 @@ p{text-align: justify;}
 
 
 
-.about_me_info_touxiang{height: 80px;background: #414d55;position: relative;}
+/*.about_me_info_touxiang{height: 80px;background: #414d55;position: relative;}*/
 
-.about_me_line{display: block;position: absolute;width: 80px;height: 80px;left: 50%;margin-left: -40px;top:80px;margin-top: -40px;
-    border-radius: 50%;overflow: hidden;
-    border-width: 3px;
-    border-style: solid;
-    border-top-color: #f25022;
-    border-right-color: #f25022;
-    border-bottom-color: #ffb901;
-    border-left-color: #ffb901;
-    transform: rotate(-45deg);
-}
+/*.about_me_line{display: block;position: absolute;width: 80px;height: 80px;left: 50%;margin-left: -40px;top:80px;margin-top: -40px;*/
+/*    border-radius: 50%;overflow: hidden;*/
+/*    border-width: 3px;*/
+/*    border-style: solid;*/
+/*    border-top-color: #f25022;*/
+/*    border-right-color: #f25022;*/
+/*    border-bottom-color: #ffb901;*/
+/*    border-left-color: #ffb901;*/
+/*    transform: rotate(-45deg);*/
+/*}*/
 
-.about_me_info_touxiang img{display: block;position: absolute;width: 74px;height: 74px;left: 50%;margin-left: -37px;top:80px;margin-top: -37px;border-radius: 50%;overflow: hidden;}
+/*.about_me_info_touxiang img{display: block;position: absolute;width: 74px;height: 74px;left: 50%;margin-left: -37px;top:80px;margin-top: -37px;border-radius: 50%;overflow: hidden;}*/
 
-.about_me_text{background: #3c85b9;padding: 55px 20px 20px 20px;font-size: 13px;text-align: center}
-.about_me_text h3{text-align: center;font-size: 22px;font-weight: normal;margin-bottom: 20px;}
-
-
-.about_me_text p{text-align: center;line-height: 30px;}
-
-.about_me_text img{margin-top: 20px;}
+/*.about_me_text{background: #3c85b9;padding: 55px 20px 20px 20px;font-size: 13px;text-align: center}*/
+/*.about_me_text h3{text-align: center;font-size: 22px;font-weight: normal;margin-bottom: 20px;}*/
 
 
-/*关于我界面*/
-.me_box{width: 1100px;margin: 30px auto;    background: #f8f8fa;
-    box-shadow: 0 1px 3px #ddd;
-    border: 1px #fff solid;
-    -webkit-box-shadow: 0 1px 3px #ddd;}
+/*.about_me_text p{text-align: center;line-height: 30px;}*/
 
-/*.me_box1{padding: 20px;}*/
-
-.me_box_title{
-    height: 100px;background: #414d55;line-height: 100px;padding: 0 20px;
-}
-.me_box_title>img{float: left;display: inline-block;width: 80px;height: 80px;border-radius: 50%;overflow: hidden;margin-top: 10px;border: 3px solid rgba(255,255,255,.9)}
-.me_box_title>h3{display: inline-block;margin-left: 15px;float: left;font-size: 22px;}
+/*.about_me_text img{margin-top: 20px;}*/
 
 
-.me_box_text{
-    background:#d7d7d7;
-}
-.me_box_title_title{padding: 10px 30px;background: #3c85b9;font-size: 18px;}
+/*!*关于我界面*!*/
+/*.me_box{width: 1100px;margin: 30px auto;    background: #f8f8fa;*/
+/*    box-shadow: 0 1px 3px #ddd;*/
+/*    border: 1px #fff solid;*/
+/*    -webkit-box-shadow: 0 1px 3px #ddd;}*/
 
-.me_box_text_div{padding: 10px 30px;color: #555;font-size: 14px;line-height: 25px;}
+/*!*.me_box1{padding: 20px;}*!*/
 
-.me_box_text_div img{max-width: 100%;}
+/*.me_box_title{*/
+/*    height: 100px;background: #414d55;line-height: 100px;padding: 0 20px;*/
+/*}*/
+/*.me_box_title>img{float: left;display: inline-block;width: 80px;height: 80px;border-radius: 50%;overflow: hidden;margin-top: 10px;border: 3px solid rgba(255,255,255,.9)}*/
+/*.me_box_title>h3{display: inline-block;margin-left: 15px;float: left;font-size: 22px;}*/
+
+
+/*.me_box_text{*/
+/*    background:#d7d7d7;*/
+/*}*/
+/*.me_box_title_title{padding: 10px 30px;background: #3c85b9;font-size: 18px;}*/
+
+/*.me_box_text_div{padding: 10px 30px;color: #555;font-size: 14px;line-height: 25px;}*/
+
+/*.me_box_text_div img{max-width: 100%;}*/
 
 
 
