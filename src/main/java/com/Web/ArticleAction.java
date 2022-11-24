@@ -25,7 +25,7 @@ public class ArticleAction extends Action{
         req.getSession().setAttribute("getlfy",lfy);
         LoginModel loginModel2 = (LoginModel) req.getSession().getAttribute("login");
 
-
+        System.out.println("需要查询的id"+lfy.getId());
         int indexOf = loginModel2.getModels().indexOf(new MyarticleModel(Integer.parseInt(lfy.getId())));//获取他的值通过id去查找他的集合
         MyarticleModel model = loginModel2.getModels().get(indexOf);//获取内容
 

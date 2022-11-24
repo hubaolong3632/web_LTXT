@@ -61,7 +61,7 @@ public class Main01Filter extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("当前访问的作用域:"+req.getSession().getId());
+//        System.out.println("当前访问的作用域:"+req.getSession().getId());
 
 
         //初始化操作

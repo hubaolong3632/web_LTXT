@@ -41,6 +41,28 @@
     //
 </script>
 <body>
+<iframe  src="http://localhost:9090/Index_homepape_fuzzyQueryAction.do?name=1" style="height:800px;width:800px" title="Iframe Example"  frameborder="0">
+    <p>你好    啊啊啊啊啊 </p>
+</iframe>
+
+
+<!--<iframe height="800" width="1000">-->
+<!--    <p>进入了传输界面</p>-->
+<!--    <form  method="post"  action="Index_homepape_fuzzyQueryAction.do">-->
+<!--        <input name="1" type="text" >-->
+<!--        <input type="submit" value="提交">-->
+<!--    </form>-->
+
+
+<!--    <script th:inline="javascript" type="text/javascript">-->
+
+<!--        let ac=[[${session.str}]];-->
+<!--        alert("输出的值"+ac);-->
+
+<!--    </script>-->
+
+
+<!--</iframe>-->
 
 <div class="head_box">
     <div class="header">
@@ -208,6 +230,7 @@
             <p>2.不要搞各种html注入</p>
         </div>
     </div>
+
 </div>
 </body>
 <script>
@@ -223,8 +246,8 @@
     $(document).ready(function(){
 
         function update1(){  //进行数据的更新和初始化
-
-
+            let ac=[[${session.str}]];
+            // alert("输出的值"+ac);
             //开始的时候清除div
             let articleBox = document.getElementById("articleBox");
             let div1 = document.getElementById("classC3");
@@ -266,7 +289,7 @@
                 });
 
                 let ac=[[${session.str}]];
-                alert("输出的值"+ac);
+                // alert("输出的值"+ac);
 
 
                 // alert("执行查询"); //输出调试
