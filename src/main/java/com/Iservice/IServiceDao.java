@@ -34,4 +34,7 @@ public interface IServiceDao {
 
         //根据文章主题模糊查询内容
         List<MyarticleModel> getContent(MyarticleModel theme);
+
+        //查询所有的好友集合
+        List<GoodFriendModel> getFriend(GoodFriendModel name);
 }

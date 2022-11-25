@@ -212,6 +212,9 @@ public class loginServiceDao implements IServiceDao {
         return jdbc_link.query(sql,new BeanPropertyRowMapper<>(InfoModel.class),loginModel.getName());
     }
 
+
+
+
     //根据文章主题模糊查询内容,返回多篇文章
     @Override
     public List<MyarticleModel> getContent(MyarticleModel theme){
@@ -219,6 +222,19 @@ public class loginServiceDao implements IServiceDao {
 
         String sql = "select * from `t_myarticle` where theme like ?";
         return jdbc_link.query(sql,new BeanPropertyRowMapper<>(MyarticleModel.class) ,("%"+theme.getTheme()+"%"));
+    }
+
+    //查询所有的好友集合
+    @Override
+    public  List<GoodFriendModel> getFriend(GoodFriendModel name){
+        try {
+            String sql = "select fname FROM t_goodfriend where uname = ?;";
+            return jdbc_link.query(sql,new BeanPropertyRowMapper<>(GoodFriendModel.class),(name.getFname()));
+        }catch (Exception e){
+            System.out.println("查询好友集合异常");
+            return null;
+        }
+
     }
     //
     @Test
@@ -228,7 +244,6 @@ public class loginServiceDao implements IServiceDao {
     }
 
 }
-
 //    public boolean password(Login login){  //查询站好密码
 //        //用来遍历数据库所有的   where 指定的
 //        String sql="SELECT * FROM `cheshibiao`";
