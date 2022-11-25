@@ -166,8 +166,8 @@
 <form  method="post"  action="login.do">
 
 
-      <p><i class="iconfont">账号:</i><input type="text" name="name" placeholder="Username"></p>
-      <p><i class="iconfont" >密码:</i><input type="text" name="password" placeholder="Password"></p>
+      <p><i class="iconfont">账号:</i><input type="text" name="name" placeholder="Username" th:value="${nologin.class1.name}"></p>
+      <p><i class="iconfont" >密码:</i><input type="text" name="password" placeholder="Password" th:value="${nologin.class1.password}"></p>
     <br>
 <!--      <p class="logIn_btn">-->
 <!--        <span class="left_line" id="left_line"></span>-->
@@ -177,7 +177,7 @@
     <button class="btn" type="submit">登陆</button>
     <br>
       <a class="login" href="register.html" name="a_register" id="a_register"><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
-    <p style ="color:red" th:text="${session.no}"></p>
+    <p style ="color:red" th:text="${nologin.no}"></p>
 </form>
 
   </div>

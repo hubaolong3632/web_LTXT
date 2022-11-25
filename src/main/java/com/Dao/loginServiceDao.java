@@ -38,7 +38,7 @@ public class loginServiceDao implements IServiceDao {
             return pas;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
             System.out.println("当前用户进行了登入但是 账号密码错误了！");
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -231,6 +231,7 @@ public class loginServiceDao implements IServiceDao {
             String sql = "select fname FROM t_goodfriend where uname = ?;";
             return jdbc_link.query(sql,new BeanPropertyRowMapper<>(GoodFriendModel.class),(name.getFname()));
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("查询好友集合异常");
             return null;
         }

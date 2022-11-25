@@ -16,52 +16,16 @@
 
 <body>
 
-<div class="head_box">
-    <div class="header">
-        <div class="header_logo">
-            <a th:href="@{/main(operate='index')}"><h2 th:text="${session.userBAsic.nickName}">张政</h2><h4>の博客|天行健,君子自强不息</h4></a>
 
-        </div>
-        <div class="header_nav">
-            <ul class="clearfix">
-                <li><a href="list.html">个人博客模板分享</a></li>
-                <li class="have_second"><a href="list.html">企业官网模板分享</a>
-
-                    <ul class="nav_second">
-                        <i></i>
-                        <li><a href="list.html">模板分享</a></li>
-                        <li><a href="list.html">模板分享</a></li>
-                        <li><a href="list.html">模板分享</a></li>
-                    </ul>
-
-                </li>
-                <li class="have_second">
-                    <a href="list.html">学习笔记分享</a>
-                    <ul class="nav_second">
-                        <i></i>
-                        <li><a href="list.html">CSS笔记</a></li>
-                        <li><a href="list.html">JS笔记</a></li>
-                        <li><a href="list.html">Jquery笔记</a></li>
-                    </ul>
-                </li>
-                <li><a href="list.html">我的博文</a></li>
-                <li><a href="about_me.html">关于我</a></li>
-            </ul>
-        </div>
-        <div class="header_search">
-            <a href="javascript:void(0);" class="header_search_btn">
-                <!--<img src="img/search.png">-->
-                <i></i>
-            </a>
-        </div>
-
-        <div class="header_nav_small_btn">
-            <span class="small_btn"></span>
-        </div>
-
-    </div>
-
+<div id="page1" >
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $("#page1").load("headline.html");  //拷贝头
+    </script>
 </div>
+<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
+
 
 <div class="nav_hidden_zhanwei"></div>
 

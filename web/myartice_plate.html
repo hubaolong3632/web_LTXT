@@ -68,38 +68,15 @@
 <body style="background-color: whitesmoke">
 
 <div class="head_box">
-    <div class="header">
-        <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
-            <!--            <h4>天行健,君子自强不息</h4>-->
-        </div>
-        <div class="header_nav">
-            <ul class="clearfix">
-                <li><a href="">个人文章</a></li>
-                <li><a href="myartice_plate.html">文章编写</a></li>
-                <li class="have_second">
-                    <a href="list.html">好友列表</a>
-                    <ul class="nav_second">
-                        <li><a href="list.html">小红</a></li>
-                        <li><a href="list.html">小黄</a></li>
-                        <li><a href="list.html">小蓝</a></li>
-                    </ul>
-                    <!--                    -->
-                </li>
-                <li><a href="">个人资料</a></li>
-                <li><a href="login.html">退出登入</a></li>
-            </ul>
-        </div>
-        <div class="header_search">
-            <a href="javascript:void(0);" class="header_search_btn">
-                <!--<img src="img/search.png">-->
-                <i></i>
-            </a>
-        </div>
-        <div class="header_nav_small_btn">
-            <span class="small_btn"></span>
-        </div>
+
+    <div id="page1" >
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $("#page1").load("headline.html");  //拷贝头
+        </script>
     </div>
+    <div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
 
 
     <div class="container-fluid">
@@ -216,11 +193,8 @@
 
     function scwj() {
        let headline= document.getElementById("titleInput").value;
-       let message=editor.getHtml();
+       let message=editor.getHtml();//获取名称
        let classify= document.getElementById("classify").value;
-       // alert(headline);
-       // alert(message);
-       // alert(classify);
         $.ajax({
             type:"post",
             url:"/submit_article.do",
@@ -229,13 +203,6 @@
 
         });
 
-        // $.ajax({
-        //     type:"post",
-        //     url:"/submit_article.do",
-        //     data:{"headline":headline,"message":message,"classify":classify},
-        //     dataType:"json",        //指定响应的data数据类型为JSON对象。
-        //
-        // });
 
       alert("发表文章成功!")
     }

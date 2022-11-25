@@ -9,6 +9,7 @@ public class LoginModel {
     private String password; //密码
     private InfoModel info; //个人信息
     private List<MyarticleModel> models; //当前界面的说说
+    private List<GoodFriendModel> getFriend; //自己的所有好友
 
 //  private List<>
     public LoginModel() {
@@ -29,6 +30,16 @@ public class LoginModel {
         this.name = name;
         this.password = password;
         this.info = info;
+    }
+
+
+
+    public List<GoodFriendModel> getGetFriend() {
+        return getFriend;
+    }
+
+    public void setGetFriend(List<GoodFriendModel> getFriend) {
+        this.getFriend = getFriend;
     }
 
     public List<MyarticleModel> getModels() {
