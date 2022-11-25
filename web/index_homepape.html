@@ -27,18 +27,20 @@
 
   }
 
-
-
-    //
 </script>
 <body>
+
 
 <div id="page1" >
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script>
-    $("#page1").load("headline.html");  //拷贝头
+        $("#page1").load("headline.html");  //拷贝头
     </script>
 </div>
+<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
+
+
 
 
 
@@ -154,30 +156,30 @@
             //更新服务器传输过来的消息 进行第一次判断是否为空
             let hidden1 = document.getElementById("keyboard").value;
             if(hidden1!=""){
-                $.ajax({
-                    type:"post",
-                    url:"Index_homepape_fuzzyQueryAction.do",
-                    data:{"name":hidden1},
-                    dataType:"json",        //指定响应的data数据类型为JSON对象。
-                    xhrFields:{
-                        withCredentials:true
-                    },
-                    crossDomain: true,
-
-
-                    success:function(result){
-                        alert("test");
-                    },
-
-
-                });
-
-                let ac=[[${session.str}]];
+            //     $.ajax({
+            //         type:"post",
+            //         url:"Index_homepape_fuzzyQueryAction.do",
+            //         data:{"name":hidden1},
+            //         dataType:"json",        //指定响应的data数据类型为JSON对象。
+            //         xhrFields:{
+            //             withCredentials:true
+            //         },
+            //         crossDomain: true,
+            //
+            //
+            //         success:function(result){
+            //             alert("test");
+            //         },
+            //
+            //
+            //     });
+            //
+            //     let ac=[[${session.str}]];
                 // alert("输出的值"+ac);
 
 
                 // alert("执行查询"); //输出调试
-                // location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
+                location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
             }
 
 
@@ -195,11 +197,6 @@
                             },
                         [/]
                     ]
-
-
-
-
-
 
 
             for(let i=0;i<info.length;i++){

@@ -2,15 +2,26 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!--&lt;!&ndash; 新 Bootstrap 核心 CSS 文件 &ndash;&gt;-->
+<!--<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<!--&lt;!&ndash; jQuery文件。务必在bootstrap.min.js 之前引入 &ndash;&gt;-->
+<!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--&lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+<!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+
+<link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+<style>
+    #editor—wrapper {
+        border: 1px solid #ccc;
+        z-index: 100; /* 按需定义 */
+    }
+    #toolbar-container { border-bottom: 1px solid #ccc; }
+    #editor-container { height: 500px; }
+</style>
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"  />
@@ -31,38 +42,14 @@
 <!---->
 <body>
 
-<div class="head_box">
-    <div class="header">
-        <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|天行健,君子自强不息</h4></a>
-        </div>
-        <div class="header_nav">
-            <ul class="clearfix">
-                <li><a href="">个人文章</a></li>
-                <li><a href="myartice_plate.do">文章编写</a></li>
-                <li class="have_second">
-                    <a href="">好友列表</a>
-                    <ul class="nav_second">
-                        <li><a href="list.html">小红</a></li>
-                        <li><a href="list.html">小黄</a></li>
-                        <li><a href="list.html">小蓝</a></li>
-                    </ul>
-                </li>
-                <li><a href="index_homepape.do">个人资料设置</a></li>
-                <li><a href="login.html">退出登入</a></li>
-            </ul>
-        </div>
-        <div class="header_search">
-            <a href="javascript:void(0);" class="header_search_btn">
-                <!--<img src="img/search.png">-->
-                <i></i>
-            </a>
-        </div>
-        <div class="header_nav_small_btn">
-            <span class="small_btn"></span>
-        </div>
-    </div>
+<div id="page1" >
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $("#page1").load("headline.html");  //拷贝头
+    </script>
 </div>
+<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
 
 <div class="nav_hidden_zhanwei"></div>
 

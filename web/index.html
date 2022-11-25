@@ -99,14 +99,16 @@
 
 
 <body>
+
 <div id="page1" >
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script>
         $("#page1").load("headline.html");  //拷贝头
     </script>
 </div>
-
 <div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
+
 <div class="nav_hidden_zhanwei"></div>
 
 <div class="search_box">

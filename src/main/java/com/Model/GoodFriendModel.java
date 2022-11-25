@@ -9,6 +9,10 @@ public class GoodFriendModel {
     public GoodFriendModel() {
     }
 
+    public GoodFriendModel(String fname) {
+        this.fname = fname;
+    }
+
     public GoodFriendModel(int id, String fname) {
         this.id = id;
         this.fname = fname;
