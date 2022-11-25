@@ -191,38 +191,16 @@
 <body>
 <!-- 遮罩层 -->
 <div class="shade"></div>
-<div class="head_box">
-    <div class="header">
-        <div class="header_logo">
-            <a href="index.do"><h2 th:text="${session.login.name}">姓名测试点</h2><h4>|@技术论坛</h4></a>
-        </div>
-        <div class="header_nav">
-            <ul class="clearfix">
-                <li><a href="">个人文章</a></li>
-                <li><a href="myartice_plate.do">文章编写</a></li>
-                <li class="have_second">
-                    <a href="">好友列表</a>
-                    <ul class="nav_second">
-                        <li><a href="list.html">小红</a></li>
-                        <li><a href="list.html">小黄</a></li>
-                        <li><a href="list.html">小蓝</a></li>
-                    </ul>
-                </li>
-                <li><a href="index_homepape.do">个人资料</a></li>
-                <li><a href="login.html">退出登入</a></li>
-            </ul>
-        </div>
-        <div class="header_search">
-            <a href="javascript:void(0);" class="header_search_btn">
-<!--                <img src="img/search.png">-->
-                <i></i>
-            </a>
-        </div>
-        <div class="header_nav_small_btn">
-            <span class="small_btn"></span>
-        </div>
-    </div>
+
+
+<div id="page1" >
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $("#page1").load("headline.html");  //拷贝头
+    </script>
 </div>
+<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
 <!--搜索框-->
 <div class="nav_hidden_zhanwei"></div>
 <div class="search_box">
