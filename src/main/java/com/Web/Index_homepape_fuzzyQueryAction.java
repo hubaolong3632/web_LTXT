@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 通过分类查询
+ */
 @Component("Index_homepape_fuzzyQueryAction")
 public class Index_homepape_fuzzyQueryAction extends Action{
 
@@ -26,7 +29,7 @@ public class Index_homepape_fuzzyQueryAction extends Action{
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         ClassLfy clas= (ClassLfy) father;
-
+//
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
 //        model.getClassify().setName(clas.getName());

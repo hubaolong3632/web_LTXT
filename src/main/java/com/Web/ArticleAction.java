@@ -33,10 +33,6 @@ public class ArticleAction extends Action{
 
         req.setAttribute("model",model); //保存当前的说说
 
-//        for (MyarticleModel model2Model : loginModel2.getModels()) {
-//            if()
-//            System.out.println("获取到的内容: "+model2Model.getId());
-//        }
         System.out.println("011-Action:跳转到"+pzwj.getLiu()+"界面");
 
         main.processTemplate(pzwj.getLiu(),req,resp); //跳转网页
