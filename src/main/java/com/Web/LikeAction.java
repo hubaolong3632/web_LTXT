@@ -8,6 +8,7 @@ import com.Model.LikeModio;
 import com.Model.LoginModel;
 import com.Model.NoModel;
 import com.Service.Main01Filter;
+//import com.Utio.Utio;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -24,18 +25,18 @@ public class LikeAction extends Action{
     //点赞功能
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-        ClassLfy lfy = (ClassLfy) father;
-        LoginModel login = (LoginModel) req.getSession().getAttribute("login");
-
-        if(!dao.like(new LikeModio(login.getName(), lfy.getClassify()))){//执行添加一条记录
-            System.out.println("008-已经点赞！"+login.getName()+"  给文章  "+lfy.getClassify());
-            req.getSession().setAttribute("json",new NoModel("你已经点过赞了！！！",null));
-        }else{
-            System.out.println("009-点赞成功!"+login.getName()+"  给文章  "+lfy.getClassify());
-            req.getSession().setAttribute("json",new NoModel("点赞成功",null));
-        }
-
-        main.processTemplate(pzwj.getLiu(),req,resp); //跳转网页
+//        ClassLfy lfy = (ClassLfy) father;
+//        LoginModel login = (LoginModel) req.getSession().getAttribute("login");
+//
+//        if(!dao.like(new LikeModio(login.getName(), lfy.getClassify()))){//执行添加一条记录
+//            System.out.println("008-已经点赞！"+login.getName()+"  给文章  "+lfy.getClassify());
+//            req.getSession().setAttribute("json",Utio.JSON(new NoModel("点赞失败",null)));
+//        }else{
+//            System.out.println("009-点赞成功!"+login.getName()+"  给文章  "+lfy.getClassify());
+//            req.getSession().setAttribute("json",Utio.JSON(new NoModel("点赞成功",null)));
+//        }
+//
+//        main.processTemplate(pzwj.getLiu(),req,resp); //跳转网页
 
     }
 }
