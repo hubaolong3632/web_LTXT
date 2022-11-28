@@ -1,4 +1,6 @@
 <!--用于目录的放入1-->
+
+
 <div th:fragment="myfooter">
 <div class="head_box">
     <div class="header">
@@ -7,14 +9,14 @@
         </div>
         <div class="header_nav">
             <ul class="clearfix">
-                <li><a href="index_homepape.do?name=myself">个人文章</a></li>
+                <li><a href="index_homepape.do?classify=myself">个人文章</a></li>
                 <li><a href="myartice_plate.do">文章编写</a></li>
                 <li class="have_second">
                     <a href="list.html">好友列表</a>
                     <ul class="nav_second">
 <!--                        <li><a href="list.html" >小红43521</a></li>-->
 
-                        <li ><a th:each="getFriend:${session.login.getFriend}"  th:text="${getFriend.fname}"  th:href="@{/main(operate=${getFriend.fname})}">李1</a></li>
+                        <li ><a th:each="getFriend:${session.login.getFriend}"  th:text="${getFriend.fname}"  th:href="@{/index_homepape.do(classify='name',name=${getFriend.fname})}">李1</a></li>
 <!--                        <li><a href="list.html">小红43521</a></li>-->
 <!--                        <li><a href="list.html">小黄1</a></li>-->
 <!--                        <li><a href="list.html">小蓝1</a></li>-->
@@ -23,7 +25,7 @@
                     </ul>
                 </li>
                 <li><a href="about_me.html.do">个人资料</a></li>
-                <li>   <img  th:src="${session.login.info.headimg}" width=200px height=200px/>
+                <li>   <img  th:src="${session.login.info.headimg}" width=20px height=20px/>
                 <li><a href="login.html">退出登入</a></li>
             </ul>
         </div>
@@ -38,4 +40,38 @@
         </div>
     </div>
 </div>
+
+    <div class="nav_hidden_zhanwei"></div>
+
+    <div class="search_box">
+        <div class="search">
+
+            <form name="searchform" class="search_form" method="post" action="index.html" target="_blank">
+                <input type="text" class="search_text" name="keyboard" placeholder="输入关键字点击搜索" id="keyboard">
+                <input type="hidden" name="tbname" value="news">
+                <input type="hidden" name="show" value="title,smalltext">
+                <input type="hidden" name="tempid" value="1">
+                <input type="hidden" name="classid" value="1,4,9">
+                <input type="button" class="search_btn" value="搜索一下" id="update1">
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        function update1(){
+            //更新服务器传输过来的消息 进行第一次判断是否为空
+            let hidden1 = document.getElementById("keyboard").value;
+            if(hidden1!=""){
+                location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
+            }
+        }
+
+        let id = document.getElementById("update1");
+        id.onclick=update1; //绑定表单
+
+    </script>
+
 </div>
+
+

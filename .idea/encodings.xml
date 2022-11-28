@@ -30,9 +30,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/a1/Web/LoginAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/a1/Web/Submit_articleAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ljx/Abc.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/jdbc.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/pzwj.properties" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/myartice_plate.html" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
