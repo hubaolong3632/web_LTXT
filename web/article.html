@@ -111,10 +111,11 @@
                         </div>
 
 
-                        <div class="article_like_box">
-                            <a href="#" onclick="alert('没做你点了也没用')">点赞</a>
+                        <div class="article_like_box" >
+                            <a  onclick=ajaxJson()>点赞</a>
                             <a href="#"  onclick="alert('害都说了没用了')">转发</a>
                         </div>
+
 
 
 
@@ -127,6 +128,7 @@
 
 
                     <div class="pinglun_box">
+                        <a  onclick=ajaxJson()>点赞111111111111111</a>
                         <div class="article_article_title">
                             <h3>文章评论</h3>
                         </div>
@@ -153,22 +155,39 @@
 
 <script th:inline="javascript" type="text/javascript">
 
+    // @{/like.do(classify=$)}
+    function ajaxJson(){
+        // $.ajax({
+        //     type:"post",
+        //     url:"like.do",
+        //     data:{"classify":[[${model.id}]]},
+        //     dataType:"json",        //指定响应的data数据类型为JSON对象。
+        //
+        //     success:function(data){ //回调函数
+        //         // console.log(data)
+        //         alert(data.on);
+        //      // alert(data.on);
+        // );
+
+        $.ajax({
+            type:"post",
+            url:"like.do", //nginx开启
+            data:{"classify":[[${model.id}]]},
+            dataType:"json",
+            success:function(data){ //回调函数
+                alert(data);
+            },
+        })
+
+    }
+
 
      $(document).ready(function(){
-         // let html = new Array();
-         //
-         // html.push('<div class="schedule_box_item"><div class="date">1</div>');
-         // $('.article_content').append("张三");//无效果
-
-
          let appendAdd=[[${model.content}]];
-         // alert(appendAdd);
          $('.article_content').append(appendAdd);//无效果
 
-d
-     });
 
-     // <div className="article_content" id="comtent">
+     });
 
 
 </script>

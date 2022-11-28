@@ -5,6 +5,8 @@ import com.Model.*;
 
 import java.util.List;
 public interface IServiceDao {
+        boolean like(LikeModio like);
+
         LoginModel user_pwd (LoginModel login); //判断账号用户名的登录
 
         LoginModel user_zc(LoginModel pas); //注册

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-//文章说说获取(通过分类获取)
+//文章说说获取(通过分类/姓名获取)
 @Component("Index_homepapeAction")
 public class Index_homepapeAction extends Action{
     @Resource
@@ -34,44 +34,29 @@ public class Index_homepapeAction extends Action{
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.getClassify().setName(clas.getName());
-        String username = (String) req.getSession().getAttribute("username");
-        model.setUname(username);
-        System.out.println("model.getUname="+model.getUname());
 
-        List<MyarticleModel> models = new ArrayList<>();//调用数据库层进行数据保存
-        if(clas.getName().equals("myself"))
+
+
+        List<MyarticleModel> models;//调用数据库层进行数据保存
+        if(clas.getClassify()!=null&&clas.getClassify().equals("myself"))
         {
+            System.out.println("查找个人的个人信息");
+            String username = (String) req.getSession().getAttribute("username");  //查找到自己姓名
+            model.setUname(username);
             models=dao.queryName(model);
-            System.out.println("集合判断："+models);
-            for (MyarticleModel myarticleModel : models) {
-                System.out.println(myarticleModel.getId()+"    "+myarticleModel.getUname());
-            }
 
+        }else if(clas.getClassify()!=null&&clas.getClassify().equals("name")){
+            System.out.println("0002_通过姓名查找内容");
+            model.setUname(clas.getName());//放入别人的姓名
+            models=dao.queryName(model);
         }
         else{
             models=dao.diArticles(model);
-            System.out.println("集合判断："+models);
-            for (MyarticleModel myarticleModel : models) {
-
-                System.out.println(myarticleModel.getId()+"    "+myarticleModel.getUname());
-            }
         }
-//        System.out.println(333);
-//        System.out.println(1111);
-        //保存进sinse作用域里面
+
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
-//        System.out.println(loginModel+"11111");
         loginModel.setModels(models); //保存进入域
-//        System.out.println(2222);
-
-
-//        for (MyarticleModel myarticleModel : models) {
-//            System.out.println(myarticleModel.getUname()+"  \n  "+myarticleModel.getTheme()+" \n   "+myarticleModel.getContent());
-//        }
-
-        req.getSession().setAttribute("models",models); //保存
-
+        req.setAttribute("models",models); //保存
         main.processTemplate(pzwj.getLiu(),req,resp);
-
     }
 }
