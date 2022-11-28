@@ -2,8 +2,8 @@ package coma.Form;
 // 用于表单 统计当前用户的数量和 当前文章的数量
 public class ClassLfy extends Father{
     public String id;
-    public String classify; // 当前分期的文章数量
     public String name; //查询当前用户发送文章数量
+    public String classify; // 当前分期的文章数量
 
     public ClassLfy() {
     }

@@ -51,7 +51,7 @@ public class Index_homepape_fuzzyQueryAction extends Action{
         //保存进sinse作用域里面
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
         loginModel.setModels(models); //保存进入域
-        req.setAttribute("models",models); //保存
+        req.getSession().setAttribute("models",models); //保存
         req.getSession().setAttribute("str","数据"); //保存第二个数据
 
 

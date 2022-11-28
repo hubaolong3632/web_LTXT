@@ -19,12 +19,12 @@
 //
 ////@WebServlet("/index.do")
 //public class IndexFiter extends ViewBaseServlet {
-//    private Map<String, Pzwj> map=new HashMap<>(); //±£´æÊı¾İµÄ¼¯ºÏ
+//    private Map<String, Pzwj> map=new HashMap<>(); //ä¿å­˜æ•°æ®çš„é›†åˆ
 //
 //    @Override
 //    public void init() throws ServletException {
 //      super.init();
-//        System.out.println("ÄãºÃ°¡°¡°¡°¡");
+//        System.out.println("ä½ å¥½å•Šå•Šå•Šå•Š");
 //    }
 //
 //    //
@@ -34,7 +34,7 @@
 //
 //        req.getSession().setAttribute("no"," is not char");
 //
-////        req.getRequestDispatcher("cccc").forward(req,resp);//Ìø×ª
+////        req.getRequestDispatcher("cccc").forward(req,resp);//è·³è½¬
 //
 //        super.processTemplate("cccc.html",req,resp);
 //    }

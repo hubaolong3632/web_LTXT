@@ -37,9 +37,10 @@ public class Main01Filter extends ViewBaseServlet {
         Enumeration<String> keys = pzwj.getKeys();
 
         while (keys.hasMoreElements()) {
+
                     String key = keys.nextElement();//获取键
                     String value=pzwj.getString(key); //获取值
-                    String[] split = value.split("=");
+            String[] split = value.split("=");
 //            System.out.println(key+"   "+split[0]+"  - - "+split[1]+"  - - "+split[2]+"  - - "+split[3]+"  - - "+split[4]+"  - - "+split[5]);
             map.put(key,new Pzwj(value,split[0],split[1],split[2],split[3],split[4],split[5])); //保存集合
 
@@ -55,11 +56,13 @@ public class Main01Filter extends ViewBaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //        System.out.println("当前访问的作用域:"+req.getSession().getId());
+
+
         //初始化操作
-        req.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8"); //
         String path=req.getRequestURL().toString(); //获取一整条URL
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
-        System.out.println("----doPost----<    "+target+"   >-------------");
+        System.out.println("----doPost----<----"+target+"---->-------------");
 
 
         //登入用户的ip地址
@@ -112,6 +115,10 @@ public class Main01Filter extends ViewBaseServlet {
                     WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
                     Action action = (Action) applicationContext.getBean(pzwj1.getWu()); //找到是需要跳转到那个父类
 
+                    System.out.println("action==="+action);
+                    System.out.println("instance==="+instance);
+//                  ClassLfy cl=(ClassLfy) instance;
+//                  System.out.println("ClassLfy.name is null ？？"+cl.getName());
                     action.execute(instance, pzwj1, req, resp, this); //调用此方法 执行代码
                     //   父类名称    走下去的线    req 和resp请求
                 }
