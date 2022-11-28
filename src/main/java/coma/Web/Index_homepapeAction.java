@@ -29,7 +29,7 @@ public class Index_homepapeAction extends Action{
         ClassLfy clas= (ClassLfy) father;
 
         System.out.println("getName:"+clas.getName());
-
+//
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.getClassify().setName(clas.getName());
