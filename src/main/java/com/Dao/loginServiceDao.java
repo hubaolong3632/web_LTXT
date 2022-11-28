@@ -1,5 +1,6 @@
 package com.Dao;
 
+import com.Form.ClassLfy;
 import com.Iservice.IServiceDao;
 
 import com.Model.*;
@@ -19,6 +20,18 @@ public class loginServiceDao implements IServiceDao {
     JdbcTemplate jdbc_link; //注入
 
 
+    @Override
+    public boolean like(LikeModio like){ //点赞判断
+        String sql="INSERT INTO t_like (login_name, myarticle_id) \n" +
+                "SELECT ?, ?\n" +
+                "from DUAL  \n" +
+                "where not exists(SELECT * FROM t_like where login_name=? and myarticle_id=?); ";
+        int num = jdbc_link.update(sql,like.getLogin_name(),like.getMyarticle_id(),like.getLogin_name(),like.getMyarticle_id()); //添加一条点赞数量
+
+        return num==0?false:true;
+    }
+
+
 
     //判断账号密码的登录
     @Override
@@ -31,14 +44,12 @@ public class loginServiceDao implements IServiceDao {
             LoginModel  query2 = jdbc_link.queryForObject(sql2, pasword,pas.getName(),pas.getPassword()); //查询返回对象
 
             InfoModel model = getInfoModel(query2); //查询个信息
-//            System.out.println("当前个人信息:"+model.getHeadimg()+"    "+model.getUname());
             pas.setInfo(model); //提交上去
 
 
             return pas;
         }catch (Exception e){ //否则返回的是spring数据库连接错误
             System.out.println("当前用户进行了登入但是 账号密码错误了！");
-//            e.printStackTrace();
             return null;
         }
     }

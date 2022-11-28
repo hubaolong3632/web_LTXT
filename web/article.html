@@ -111,10 +111,11 @@
                         </div>
 
 
-                        <div class="article_like_box">
-                            <a href="#" onclick="alert('没做你点了也没用')">点赞</a>
+                        <div class="article_like_box" >
+                            <a th:href="@{/like.do(classify=${model.id})}" th:onclick="alert(${session.nologin.no})">点赞</a>
                             <a href="#"  onclick="alert('害都说了没用了')">转发</a>
                         </div>
+
 
 
 
@@ -153,22 +154,24 @@
 
 <script th:inline="javascript" type="text/javascript">
 
+    // @{/like.do(classify=$)}
+    function abc(){
+        $.ajax({
+            type:"post",
+            url:"like.do",
+            data:{"classify":[[${model.id}]]},
+            dataType:"json",        //指定响应的data数据类型为JSON对象。
+        });
+
+    }
+
 
      $(document).ready(function(){
-         // let html = new Array();
-         //
-         // html.push('<div class="schedule_box_item"><div class="date">1</div>');
-         // $('.article_content').append("张三");//无效果
-
-
          let appendAdd=[[${model.content}]];
-         // alert(appendAdd);
          $('.article_content').append(appendAdd);//无效果
 
-d
-     });
 
-     // <div className="article_content" id="comtent">
+     });
 
 
 </script>
