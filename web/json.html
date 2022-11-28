@@ -6,6 +6,25 @@
 <body>
 <!--    返回json格式-->
         <pre style="word-wrap: break-word; white-space: pre-wrap;" th:text="${session.json}">
+<!--            {"no":"点赞成功11"}-->
         </pre>
 </body>
+
+<script th:inline="javascript" type="text/javascript">
+    localStorage.setItem("userinfoList", JSON.stringify([[${session.json}]]));
+
+    // List<Dept> deptList = deptService.list();
+    // JSONArray array = new JSONArray();
+    // if(deptList != null && deptList.size()>0) {
+    //     for (Dept dept : deptList) {
+    //         JSONObject obj = new JSONObject();
+    //         obj.put("deptno", dept.getDeptno());
+    //         obj.put("deptname", dept.getDeptname());
+    //         array.add(obj);
+    //     }
+    // }
+    // PrintWriter out = response.getWriter();
+    out.print([[${session.json}]]);//直接返回json数组对象
+
+</script>
 </html>

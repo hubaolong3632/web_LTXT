@@ -2,33 +2,33 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/.gitignore" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Main.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/Sdao_jdbc_link.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Dao/loginServiceDao.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/ClassLfy.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Father.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Info.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Login.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Myarticle.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Form/Pzwj.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Iservice/IServiceDao.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/ClassLfyModel.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/InfoModel.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/LoginModel.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Model/MyarticleModel.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Service/Main01Filter.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Service/test.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Utio/FilesUtio.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Utio/ViewBaseServlet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Action.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/ArticleAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/ClassLfyAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/EmailServlet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/IndexAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Index_homepapeAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/InfoAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/LoginAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/Web/Submit_articleAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Dao/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Dao/Sdao_jdbc_link.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Dao/loginServiceDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/ClassLfy.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/Father.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/Info.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/Login.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/Myarticle.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Form/Pzwj.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Iservice/IServiceDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Model/ClassLfyModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Model/InfoModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Model/LoginModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Model/MyarticleModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Service/Main01Filter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Service/test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Utio/FilesUtio.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Utio/ViewBaseServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/Action.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/ArticleAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/ClassLfyAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/EmailServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/IndexAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/Index_homepapeAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/InfoAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/LoginAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/Submit_articleAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ljx/Abc.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/jdbc.properties" charset="UTF-8" />

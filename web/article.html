@@ -136,7 +136,9 @@
                             <font color="red">
                                 <p >张三评论:文章不错</p>
                                 <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;李四回复了:是啊</p>
-
+                                <a  onclick=ajaxJson()>点赞</a>
+                                <a  onclick=ajaxJson()>点赞</a>
+                                <a  onclick=ajaxJson()>点赞</a>
                             </font>
                         </div>
 
@@ -171,11 +173,12 @@
 
         $.ajax({
             type:"post",
-            url:"like.do", //nginx开启
+            // url:"json.do", //nginx开启
+            url:"json.do", //nginx开启
             data:{"classify":[[${model.id}]]},
             dataType:"json",
             success:function(data){ //回调函数
-                alert(data);
+                alert(data.no);
             },
         })
 
