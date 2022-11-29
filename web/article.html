@@ -177,8 +177,9 @@
             url:"json.do", //nginx开启
             data:{"classify":[[${model.id}]]},
             dataType:"json",
-            success:function(data){ //回调函数
-                alert(data.no);
+            success:function(json){ //回调函数
+                // {"code":1,"data":{"no":"点赞成功!!恭喜你"},"msg":"成功"}
+                alert(json.data.no);
             },
         })
 

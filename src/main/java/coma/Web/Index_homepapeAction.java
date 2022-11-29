@@ -7,7 +7,11 @@ import coma.Iservice.IServiceDao;
 import coma.Model.ClassLfyModel;
 import coma.Model.LoginModel;
 import coma.Model.MyarticleModel;
+import coma.Model.NoModel;
 import coma.Service.Main01Filter;
+import coma.Utio.Result;
+import coma.Utio.ResultCode;
+import coma.Utio.Utio;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -55,7 +59,11 @@ public class Index_homepapeAction extends Action{
 
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
         loginModel.setModels(models); //保存进入域
+//        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("点赞成功!!恭喜你",null))));
+        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS, models)));
+
         req.setAttribute("models",models); //保存
+
         main.processTemplate(pzwj.getLiu(),req,resp);
     }
 }

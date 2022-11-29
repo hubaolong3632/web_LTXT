@@ -21,11 +21,18 @@ public class loginServiceDao implements IServiceDao {
 
     @Override
     public boolean like(LikeModio like){ //点赞判断
+//        if(like.getMyarticle_id()!=null&&like.getLogin_name().equals(""))   return false;//如果数据为空的话直接退出
         String sql="INSERT INTO t_like (login_name, myarticle_id) \n" +
                 "SELECT ?, ?\n" +
                 "from DUAL  \n" +
                 "where not exists(SELECT * FROM t_like where login_name=? and myarticle_id=?); ";
-        int num = jdbc_link.update(sql,like.getLogin_name(),like.getMyarticle_id(),like.getLogin_name(),like.getMyarticle_id()); //添加一条点赞数量
+
+        int num=0;
+        try{
+          num = jdbc_link.update(sql,like.getLogin_name(),like.getMyarticle_id(),like.getLogin_name(),like.getMyarticle_id()); //添加一条点赞数量
+        }catch (Exception e){} //如果为空默认返回0
+
+
 //        System.out.println("当前操作的数据为:"+num);
         return (num==0)?false:true;
     }
