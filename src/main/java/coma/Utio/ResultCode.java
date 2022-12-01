@@ -94,8 +94,7 @@ public enum ResultCode { //8
     public static void main(String[] args) {
 
 
-        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("点赞成功!!恭喜你",null))));
-        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new LoginModel("张三","111"))));
+        System.out.println(Utio.JSON(Result.failure(ResultCode.USER_NOT_EXIST,new NoModel("点赞成功!!恭喜你",null))));
 
 
     }

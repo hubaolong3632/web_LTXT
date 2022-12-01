@@ -52,7 +52,7 @@
                 <input type="hidden" name="show" value="title,smalltext">
                 <input type="hidden" name="tempid" value="1">
                 <input type="hidden" name="classid" value="1,4,9">
-                <input type="button" class="search_btn" value="搜索一下" id="update1">
+                <input type="button" class="search_btn" value="搜索一下" id="update1" name="update1">
             </form>
 
         </div>
@@ -61,7 +61,7 @@
     <script>
         function update1(){
             //更新服务器传输过来的消息 进行第一次判断是否为空
-            let hidden1 = document.getElementById("keyboard").value;
+            let hidden1 = document.getElementsByName("keyboard").value;
             if(hidden1!=""){
                 location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
             }
