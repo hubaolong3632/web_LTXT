@@ -37,6 +37,19 @@ public class loginServiceDao implements IServiceDao {
         return (num==0)?false:true;
     }
 
+    @Override
+    public boolean collection(Collection collection){ //收藏判断
+        String sql = "insert into t_collection (uname,myarticle) SELECT '?','?' FROM dual where not exists (SELECT * FROM t_collection WHERE\n" +
+                "uname = '?' AND myarticle = '?');";
+        int num = 0;//返回是成功
+        try {
+            num = jdbc_link.update(sql,collection.getUname(),collection.getMyarticle(),collection.getUname(),collection.getMyarticle());
+        }catch (Exception e){
+            //为false反悔失败
+        }
+        return (num == 0)?false:true;
+    }
+
 
 
     //判断账号密码的登录
