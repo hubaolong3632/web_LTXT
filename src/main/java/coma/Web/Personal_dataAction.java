@@ -43,16 +43,14 @@ public class Personal_dataAction extends Action{
                 break;
             case "phone":   //修改手机号
                 String[] split = personalData.getContent().split("=");
-                System.out.println(split[0]+"    "+split[1]);
+                System.out.println(split[0]+"    "+split[1]+"    "+login.getInfo().getPhone());
                 if(login.getInfo().getPhone().equals(split[0])){ //如果手机号一样
 
                     LoginModel model = new LoginModel();
                     model.setName(login.getName()); //设置名称
                     model.setInfo(new InfoModel(split[1])); //设置需要修改的手机号
                     if(dao.changePhone(model)){
-                        login.getInfo().setPhone(split[1]);
-
-
+                        login.getInfo().setPhone(split[1]); //修改以前session作用于保存的内容
                         failure= Result.failure(ResultCode.SUCCESS, "手机号修改成功!"); //成功
                     }else{
                         failure= Result.failure(ResultCode.NOSUCCESS, "手机号修改失败,数据库异常"); //失败
