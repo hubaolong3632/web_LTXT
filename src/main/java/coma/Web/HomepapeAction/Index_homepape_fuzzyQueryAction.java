@@ -25,6 +25,7 @@ import java.util.List;
 /**
  * 通过分类查询
  */
+//http://localhost:9090/Index_homepape_fuzzyQueryAction.do?name=1
 @Component("Index_homepape_fuzzyQueryAction")
 public class Index_homepape_fuzzyQueryAction extends Action {
 
@@ -63,7 +64,7 @@ public class Index_homepape_fuzzyQueryAction extends Action {
 
         System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models))));
         resp.setContentType("text/json; charset=utf-8"); //设置编码格式和数据类型
-        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models)))); //打印模糊查询
+        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("通过名称查询成功",models)))); //打印模糊查询
 
 
 //        main.processTemplate(pzwj.getLiu(),req,resp);

@@ -63,8 +63,8 @@ public class EmailServlet extends HttpServlet {
             //根据 Session 获取邮件传输对象
             transport = session.getTransport();
             //使用邮箱账号和密码连接邮件服务器
-            transport.connect("3448589962@qq.com", "caavteyqffpydabi");
-            message.setFrom(new InternetAddress("3448589962@qq.com"));
+            transport.connect("911412667@qq.com", "canfxtezgowlbbhh");
+            message.setFrom(new InternetAddress("911412667@qq.com"));
             //发送邮件
             transport.sendMessage(message, message.getAllRecipients());
             //关闭连接
