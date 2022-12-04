@@ -200,12 +200,10 @@
          let itecode={ //页码
              "bengin":(page-1)*set, //设置开始页
              "end":(class1.length>((page-1)*set+10))?(page-1)*set+10:class1.length, //设置结束页
-
-         //    15>10?10:15
          }
 
 
-         alert((page-1)*set+10+"   "+class1.length+"    "+(class1.length>((page-1)*set+10))+"      "+"开始:"+itecode.bengin+"     "+"结束"+itecode.end);
+         // alert((page-1)*set+10+"   "+class1.length+"    "+(class1.length>((page-1)*set+10))+"      "+"开始:"+itecode.bengin+"     "+"结束"+itecode.end);
         // console.log(class1);
 
     for(let i=itecode.bengin;i<itecode.end;i++){
