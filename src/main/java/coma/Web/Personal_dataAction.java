@@ -20,7 +20,7 @@ public class Personal_dataAction extends Action{
 
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-        LoginModel login = (LoginModel) req.getSession().getAttribute("login"); //个人信息
+        LoginModel login = (LoginModel) req.getSession().getAttribute("login"); //个人信息````
         System.out.println("---------------进入个人资料界面-------------------");
         main.processTemplate(pzwj.getLiu(),req,resp); //跳转网页
     }
