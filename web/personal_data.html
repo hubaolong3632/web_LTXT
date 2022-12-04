@@ -230,12 +230,12 @@
                             </div>
                             <form>
                                 <div class="modal-body">
-                                    旧手机号：<input type="tel" name="phone" id="jphone" placeholder="请输入手机号" /><br /><br />
-                                    新手机号：<input type="tel" name="phone" id="xphone" placeholder="请输入手机号" /><br /><br />
+                                    旧手机号：<input type="tel" name="phone" id="jphone" placeholder="请输入旧手机号" /><br /><br />
+                                    新手机号：<input type="tel" name="phone" id="xphone" placeholder="请输入新手机号" /><br /><br />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <input  type="button" value="确定" id="yes">
+                                    <input  type="button" value="确定修改密码" id="yes" onclick=" modificationPhone()">
                                 </div>
                             </form>
                         </div>
@@ -308,13 +308,24 @@ function modificationPasword(){ //修改密码
 
 }
 
+function modificationPhone(){ //修改手机号
+    let jphone = document.getElementById("jphone").value;//获取旧手机号
+    let xphone = document.getElementById("xphone").value;//获取新手机号
+
+    $.ajax({
+        type:"post",
+        url:"personal_data_json.do",
+        data:{"name":"phone","content":jphone+"="+xphone},
+        dataType:"json",
+        success:function(json){ //回调函数
+            alert(json.data); //弹出当前返回回来的功能
+        },
+    })
+
+}
 
 
-    function ajks(){ //ajks通信
 
-
-
-     }
 
 
 </script>

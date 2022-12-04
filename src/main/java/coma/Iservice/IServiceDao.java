@@ -8,6 +8,10 @@ import java.util.List;
 public interface IServiceDao {
         boolean like(LikeModio like);
 
+        boolean changePassword(LoginModel login);
+
+        boolean changePhone(LoginModel login);
+
         boolean collection(Collection collection);
 
         LoginModel user_pwd (LoginModel login); //判断账号用户名的登录
