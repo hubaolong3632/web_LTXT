@@ -172,14 +172,14 @@
 
 <!--                                    <svg t="1586146995954" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3403" width="23" height="23"><path d="M512 128a170.666667 170.666667 0 0 0-170.666667 170.666667v128h341.333334V298.666667a170.666667 170.666667 0 0 0-162.133334-170.453334L512 128z m298.666667 384H213.333333a42.666667 42.666667 0 0 0-42.666666 42.666667v298.666666a42.666667 42.666667 0 0 0 42.666666 42.666667h597.333334a42.666667 42.666667 0 0 0 42.666666-42.666667v-298.666666a42.666667 42.666667 0 0 0-42.666666-42.666667zM512 42.666667a256 256 0 0 1 256 256v128h42.666667a128 128 0 0 1 128 128v298.666666a128 128 0 0 1-128 128H213.333333a128 128 0 0 1-128-128v-298.666666a128 128 0 0 1 128-128h42.666667V298.666667a256 256 0 0 1 246.4-255.829334L512 42.666667z" p-id="3404"></path></svg>-->
 
-                                    &nbsp;&nbsp;新密码：<input type="password" name="password" id="password1" placeholder="密码:6-12位" /><span id="passspan"style="color: red;"></span><br /><br />
+                                    &nbsp;&nbsp;新密码：<input type="text" name="password" id="password1" placeholder="密码:6-12位" /><span id="passspan"style="color: red;"></span><br /><br />
 <!--                                    <svg t="1586146995954" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3403" width="23" height="23"><path d="M512 128a170.666667 170.666667 0 0 0-170.666667 170.666667v128h341.333334V298.666667a170.666667 170.666667 0 0 0-162.133334-170.453334L512 128z m298.666667 384H213.333333a42.666667 42.666667 0 0 0-42.666666 42.666667v298.666666a42.666667 42.666667 0 0 0 42.666666 42.666667h597.333334a42.666667 42.666667 0 0 0 42.666666-42.666667v-298.666666a42.666667 42.666667 0 0 0-42.666666-42.666667zM512 42.666667a256 256 0 0 1 256 256v128h42.666667a128 128 0 0 1 128 128v298.666666a128 128 0 0 1-128 128H213.333333a128 128 0 0 1-128-128v-298.666666a128 128 0 0 1 128-128h42.666667V298.666667a256 256 0 0 1 246.4-255.829334L512 42.666667z" p-id="3404"></path></svg>-->
-                                    确认密码：<input type="password" name="password2" id="zcpassword2" placeholder="请再次确认密码" /><span id="passrspan"style="color: red;"></span><br /><br />
+                                    确认密码：<input type="text" name="password2" id="zcpassword2" placeholder="请再次确认密码" /><span id="passrspan"style="color: red;"></span><br /><br />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 <!--                                    <button type="button" class="btn btn-primary">保存</button>-->
-                                    <input  type="submit" value="确定" id="">
+                                    <input  type="button" value="确定修改" onclick="modificationPasword()">
                                 </div>
                             </form>
                         </div>
@@ -193,7 +193,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel">
+                                <h4 class="modal-title" id="myModalLabel1">
                                     修改邮箱
                                 </h4>
                             </div>
@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <input  type="submit" value="确定" id="">
+                                    <input  type="button" value="确定" id="a1">
                                 </div>
                             </form>
                         </div>
@@ -235,7 +235,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <input  type="submit" value="确定" id="">
+                                    <input  type="button" value="确定" id="yes">
                                 </div>
                             </form>
                         </div>
@@ -258,24 +258,19 @@
 
                     <div class="me_box_text_div" >
                         <form  method="post"  action="homepage.html"  >
-                            <!--                        <ul class="message">-->
-                            <!--&lt;!&ndash;                            <li>ID:<text>2</text></li><br>&ndash;&gt;-->
-                            <!--                            <li>账号: &nbsp;<text th:text="${session.userBAsic.nickName}">张1</text></li><br>-->
-                            <!--                            <li>邮箱: &nbsp;<text th:text="${session.userBAsic.nickName}">1682232679@qq.com</text></li><br>-->
-                            <!--                            <li>电话: &nbsp;<text th:text="${session.userBAsic.nickName}">19073265361</text></li><br>-->
-                            <!--                        </ul>-->
+
                             <table border="1" class="table_xingxi">
                                 <tr>
                                     <td>账号：</td>
-                                    <td><text text="张1">张1</text></td>
+                                    <td><text text="张1" id="name_p">张1</text></td>
                                 </tr>
                                 <tr>
                                     <td>邮箱: </td>
-                                    <td><text  text="1682232679@qq.com">1682232679@qq.com</text></td>
+                                    <td><text  text="1682232679@qq.com" id="mail_p">1682232679@qq.com</text></td>
                                 </tr>
                                 <tr>
                                     <td>电话: </td>
-                                    <td><text text="19073265361">19073265361</text></td>
+                                    <td><text text="19073265361" id="phone_p">19073265361</text></td>
                                 </tr>
                             </table>
 <!--                            <a href="homepage.html"> 返回</a>-->
@@ -291,8 +286,35 @@
 </body>
 <script>
 
-     //ajks
 
+function modificationPasword(){ //修改密码
+    let password1 = document.getElementById("password1").value;//获取密码
+    let zcpassword2 = document.getElementById("zcpassword2").value;//获取第二次输入的密码
+
+    if(password1!=zcpassword2){
+        alert("两次密码不一致");
+        return;
+    }
+
+    $.ajax({
+        type:"post",
+        url:"personal_data_json.do", //
+        data:{"name":"pasword","content":password1},
+        dataType:"json",
+        success:function(json){ //回调函数
+            alert(json.data); //弹出当前返回回来的功能
+        },
+    })
+
+}
+
+
+
+    function ajks(){ //ajks通信
+
+
+
+     }
 
 
 </script>
