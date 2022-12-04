@@ -42,11 +42,6 @@ public class LoginAction extends Action {
             req.setAttribute("nologin",new NoModel("登入失败当前账号或者密码错误！！！",loginModel));
             System.out.println("登入失败!");
 
-
-
-
-//            req.setAttribute("nologin",loginModel);//登入失败放在上面用的东西
-//            req.setAttribute("no","登入失败当前账号或者密码错误！！！"); //输出错误提示
              main.processTemplate("login",req,resp); //跳转指定网站
         }else{
             System.out.println("查找到的头像:"+from.getInfo().getHeadimg());
