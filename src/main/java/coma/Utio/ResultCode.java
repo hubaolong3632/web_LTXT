@@ -14,6 +14,7 @@ public enum ResultCode { //8
 
     /* 成功状态码 */
     SUCCESS(1, "成功"),  //传输1 和成功
+    NOSUCCESS(2, "失败"),  //传输1 和成功
 
     /* 参数错误：10001-19999 */
     PARAM_IS_INVALID(10001, "参数无效"),
@@ -93,7 +94,7 @@ public enum ResultCode { //8
     //校验重复的code值
     public static void main(String[] args) {
 
-
+        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS, "修改密码成功")));
         System.out.println(Utio.JSON(Result.failure(ResultCode.USER_NOT_EXIST,new NoModel("点赞成功!!恭喜你",null))));
 
 
