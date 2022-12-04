@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-//
+//通过名称获取好友的说说
 @Component("ArticleAction")
 public class ArticleAction extends Action{
     @Resource

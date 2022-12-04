@@ -1,4 +1,4 @@
-package coma.Web.HomepapeAction;
+package coma.Web.JSON;
 
 import coma.Form.ClassLfy;
 import coma.Form.Father;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-//刚刚开始用于初始化的API文档(文章显示)
+//刚刚开始用于初始化的Json文档  (文章显示)
 @Component("Index_iniTializeAction")
 public class Index_iniTializeAction extends Action {
 
@@ -38,7 +38,7 @@ public class Index_iniTializeAction extends Action {
 
 
         System.out.println("getName:"+clas.getName());
-//1
+
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.getClassify().setName(clas.getName());
@@ -59,6 +59,7 @@ public class Index_iniTializeAction extends Action {
             models=dao.queryName(model);
         }
         else{
+            System.out.println("通过分区查询");
             models=dao.diArticles(model);
         }
 

@@ -23,6 +23,7 @@ import java.util.Properties;
  * @StartTime Start
  * @EndTime End
  */
+//邮件发送界面
 @WebServlet(name = "EmailServlet",urlPatterns = "/email.action")
 public class EmailServlet extends HttpServlet {
     @Override
