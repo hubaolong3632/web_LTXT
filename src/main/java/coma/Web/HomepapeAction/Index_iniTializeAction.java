@@ -1,4 +1,4 @@
-package coma.Web;
+package coma.Web.HomepapeAction;
 
 import coma.Form.ClassLfy;
 import coma.Form.Father;
@@ -12,6 +12,7 @@ import coma.Service.Main01Filter;
 import coma.Utio.Result;
 import coma.Utio.ResultCode;
 import coma.Utio.Utio;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -20,17 +21,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-//文章说说获取(通过分类/姓名获取)
-@Component("Index_homepapeAction")
-public class Index_homepapeAction extends Action{
+
+//刚刚开始用于初始化的API文档(文章显示)
+@Component("Index_iniTializeAction")
+public class Index_iniTializeAction extends Action {
+
     @Resource
     IServiceDao dao; //数据库层
-    //数据的提交
+
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
-        System.out.println("------分类区------");
         //保存对象from层
         ClassLfy clas= (ClassLfy) father;
+
+        System.out.println("ccc3");
+
 
         System.out.println("getName:"+clas.getName());
 //1
@@ -59,13 +64,14 @@ public class Index_homepapeAction extends Action{
 
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
         loginModel.setModels(models); //保存进入域
-//        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("点赞成功!!恭喜你",null))));
-//        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS, models)));
-
         req.setAttribute("models",models); //保存
 
-        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("你是啊",models))));
+        System.out.println("JSON-2-Index_iniTializeAction:初始化文章的json格式被调用");
+        resp.setContentType("text/json; charset=utf-8"); //设置编码格式和数据类型
+        System.out.println("cc1");
+        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models)))); //打印模糊查询
+        System.out.println("ccc4");
 
-        main.processTemplate(pzwj.getLiu(),req,resp);
     }
+
 }

@@ -1,4 +1,4 @@
-package coma.Web;
+package coma.Web.JSON;
 
 import com.alibaba.fastjson.JSONObject;
 import coma.Form.ClassLfy;
@@ -13,6 +13,7 @@ import coma.Service.Main01Filter;
 import coma.Utio.Result;
 import coma.Utio.ResultCode;
 import coma.Utio.Utio;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component("LikeAction")
-public class LikeAction extends Action{
+public class LikeAction extends Action {
 
     @Resource
     IServiceDao dao; //数据库层

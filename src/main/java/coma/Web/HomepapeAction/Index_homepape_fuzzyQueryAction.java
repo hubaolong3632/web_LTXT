@@ -1,4 +1,4 @@
-package coma.Web;
+package coma.Web.HomepapeAction;
 
 import coma.Form.ClassLfy;
 import coma.Form.Father;
@@ -12,6 +12,7 @@ import coma.Service.Main01Filter;
 import coma.Utio.Result;
 import coma.Utio.ResultCode;
 import coma.Utio.Utio;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -25,7 +26,7 @@ import java.util.List;
  * 通过分类查询
  */
 @Component("Index_homepape_fuzzyQueryAction")
-public class Index_homepape_fuzzyQueryAction extends Action{
+public class Index_homepape_fuzzyQueryAction extends Action {
 
     @Resource
     IServiceDao dao; //数据库层
@@ -36,7 +37,6 @@ public class Index_homepape_fuzzyQueryAction extends Action{
 //
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
-//        model.getClassify().setName(clas.getName());
         model.setTheme(clas.getName());
         System.out.println("getName:"+model.getTheme());
 
@@ -61,7 +61,12 @@ public class Index_homepape_fuzzyQueryAction extends Action{
 
 
 
-        main.processTemplate(pzwj.getLiu(),req,resp);
+        System.out.println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models))));
+        resp.setContentType("text/json; charset=utf-8"); //设置编码格式和数据类型
+        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models)))); //打印模糊查询
+
+
+//        main.processTemplate(pzwj.getLiu(),req,resp);
 
     }
 }

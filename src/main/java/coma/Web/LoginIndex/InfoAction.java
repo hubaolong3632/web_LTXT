@@ -1,4 +1,4 @@
-package coma.Web;
+package coma.Web.LoginIndex;
 
 import coma.Form.Father;
 import coma.Form.Info;
@@ -8,6 +8,7 @@ import coma.Model.InfoModel;
 import coma.Model.LoginModel;
 import coma.Service.Main01Filter;
 import coma.Utio.FilesUtio;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,7 +19,7 @@ import java.io.IOException;
 
 //注册界面
 @Component("InfoAction")
-public class InfoAction extends Action{
+public class InfoAction extends Action {
     @Resource
     IServiceDao dao; //数据库
     @Override

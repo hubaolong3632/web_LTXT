@@ -1,4 +1,4 @@
-package coma.Web;
+package coma.Web.LoginIndex;
 
 import coma.Form.Father;
 import coma.Form.Login;
@@ -9,6 +9,7 @@ import coma.Model.GoodFriendModel;
 import coma.Model.LoginModel;
 import coma.Model.NoModel;
 import coma.Service.Main01Filter;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 
 @Component("LoginAction")
-public class LoginAction extends Action{
+public class LoginAction extends Action {
 
     @Resource
     IServiceDao dao; //数据库层

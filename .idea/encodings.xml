@@ -24,10 +24,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/ArticleAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/ClassLfyAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/EmailServlet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/IndexAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/Index_homepapeAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/InfoAction.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/LoginAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/HomepapeAction/Index_homepapeAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/LoginIndex/IndexAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/LoginIndex/InfoAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/LoginIndex/LoginAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/coma/Web/Submit_articleAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ljx/Abc.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" charset="UTF-8" />

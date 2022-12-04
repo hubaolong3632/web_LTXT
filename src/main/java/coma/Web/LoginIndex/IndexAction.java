@@ -1,9 +1,10 @@
-package coma.Web;
+package coma.Web.LoginIndex;
 
 import coma.Form.Father;
 import coma.Form.Pzwj;
 import coma.Iservice.IServiceDao;
 import coma.Service.Main01Filter;
+import coma.Web.Action;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,7 +19,7 @@ import java.io.IOException;
  */
 
 @Component("IndexAction")
-public class IndexAction extends Action{
+public class IndexAction extends Action {
 
     @Resource
     IServiceDao dao; //数据库层

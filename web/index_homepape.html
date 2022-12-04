@@ -30,14 +30,14 @@
 </script>
 <body>
 
-
+<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
 <div id="page1" >
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script>
         $("#page1").load("headline.html");  //拷贝头
     </script>
 </div>
-<div th:replace="headline :: myfooter"></div> <!--引入首页头-->
+
 
 <!--<div class="nav_hidden_zhanwei"></div>-->
 
@@ -113,9 +113,7 @@
 
 </div>
 </body>
-<script>
 
-</script>
 
 
 <script th:inline="javascript" type="text/javascript">
@@ -126,7 +124,7 @@
     $(document).ready(function(){
 
         function update1(){  //进行数据的更新和初始化
-            let ac=[[${session.str}]];
+            // let ac=[[${session.str}]];
             // alert("输出的值"+ac);
             //开始的时候清除div
             let articleBox = document.getElementById("articleBox");
@@ -145,95 +143,66 @@
             articleBox.appendChild(div2); //保存文件
 
 
-
-
             //更新服务器传输过来的消息 进行第一次判断是否为空
             let hidden1 = document.getElementById("keyboard").value;
-            if(hidden1!=""){
+            if(hidden1!=""){ //信息查询
+                //这里错了
                 $.ajax({
                     type:"post",
-                    url:"Index_homepape_fuzzyQueryAction.do",
+                    url:"Index_homepape_fuzzyQueryAction.do", //获取数据传输过来的json格式数据
                     data:{"name":hidden1},
                     dataType:"json",        //指定响应的data数据类型为JSON对象。
-                    xhrFields:{
-                        withCredentials:true
+                    success:function(json){ //回调函数
+                        // {"code":1,"data":{"no":"点赞成功!!恭喜你"},"msg":"成功"}
+
+                        alert(json.data);
                     },
-                    crossDomain: true,
+                })
+            }else{  //初始化查询
+                // alert("初始化功能");
+                console.log("初始化功能");
+
+                $.ajax({
+                    type:"post",
+                    url:"Index_iniTializeAction.do",
+                    data:{"name":hidden1},
+                    dataType:"json",        //指定响应的data数据类型为JSON对象。
+                    success:function(json){ //回调函数
+                        // {"code":1,"data":{"no":"点赞成功!!恭喜你"},"msg":"成功"}
+
+                        if(json.code=="1"){
 
 
-                    success:function(result){
-                        alert("test");
+                                 alert("成功!");
+
+                        }else{
+                            alert("查询失败请检查各个功能是否成功");
+                        }
+
                     },
-                });
-                //     let ac=[[${session.str}]];
-                // alert("输出的值"+ac);
-                // alert("执行查询"); //输出调试
-                // location.href="Index_homepape_fuzzyQueryAction.do?name="+hidden1;
-            }
-            //
-            //
-            //获取所有的消息
-                let info=
-                    [
-                        [# th:each="models : ${models}"]
-                            {
-                                theme:[[${models.theme}]],
-                                    id:[[${models.id}]],
-                                content:[[${models.content}]],
-                                postdate:[[${models.postdate}]],
-                                uname:[[${models.uname}]],
+                })
 
-                            },
-                        [/]
-                    ]
-
-
-            for(let i=0;i<info.length;i++){
-                console.log(info[i].id);
-
-
-
-                let appendAdd="   <!--首页最新模板部分2222-->\n" +
-
-                    "            <div class=\"index_article_title clearfix\">\n" +
-                    "                <h3>文章标题:"+info[i].theme+"</h3>\n" +
-                    "                <p href=\"list.html\" >更多></p>\n" +
-                    "            </div>\n" +
-                    "            <ul class=\"index_article\" >\n" +
-                    "\n" +
-                    "                <input type=\"hidden\" name=\"idtext\" id=\"hidden1\" value=\""+info[i].id+"\">\n" +
-                    "                <li class=\"clearfix article_list\">\n" +
-                    "\n" +
-                    "                    <a href=\"article.do?id="+info[i].id+"\" class=\"article_list_img\">\n" +
-                    "                        <img src=\"img/bg_5.png\" >\n" +
-                    "                    </a>\n" +
-                    "\n" +
-                    "                    <h3  href=\"\"  >文章标题:"+info[i].theme+"</h3>\n" +
-                    "                    <p  text=\"\">文章内容:"+info[i].content+"</p>\n" +
-                    "\n" +
-                    "                    <div class=\"article_list_link\">\n" +
-                    "                        <span class=\"article_list_count\">\n" +
-                    "                            <i class=\"see_count\"></i>\n" +
-                    "                            <p>发布时间:</p><p >"+info[i].postdate+"</p>\n" +
-                    "                        </span>\n" +
-                    "                        <span class=\"article_list_like\">\n" +
-                    "                            <i class=\"like_count\"></i>\n" +
-                    "                           <p> 发布人:</p><p>"+info[i].uname+"</p>\n" +
-                    "                        </span>\n" +
-                    "                        <a href=\"article.do?id="+info[i].id+"\">查看详细+</a>\n" +
-                    "                    </div>\n" +
-                    "                </li>\n" +
-                    "            </ul>\n" +
-                    "\n";
-                $('.classC3').append(appendAdd);//
             }
         }
 
-        // let id = document.getElementById("update1");
-        // id.onclick=update1; //绑定表单
+        let id = document.getElementById("update1");
+        id.onclick=update1; //绑定表单
 
 
       update1(); //第一次执行初始化操作
+
+
+
+
+
+
+
+
+
+
+
+
+        //生成表单数据的方法
 
 
 
@@ -242,68 +211,8 @@
 
 
 </script>
+
+
+
+
 </html>
-
-<!--异步获取文章-->
-
-
-<!--        <div class="right">-->
-<!--        &lt;!&ndash;个人介绍部分&ndash;&gt;-->
-<!--            <div class="self_info right_box">-->
-<!--                <img src="img/self.jpg">-->
-<!--                <div class="self_info_text">-->
-<!--                    <h3 text="${session.userBAsic.nickName}">张4</h3>-->
-<!--                    <div>-->
-
-
-<!--                        <p>天将降大任于斯人也，必先苦其心志、磨其胫骨、饿其体肤</p>-->
-<!--                    </div>-->
-<!--                    <a href="#">关注(当前并没有做)</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;个人介绍隐藏部分，只在右侧被翻到最上面显示&ndash;&gt;-->
-<!--            <div class="self_info_scroll_bottom right_box">-->
-<!--                <img src="img/self.jpg">-->
-<!--                <div class="self_info_text">-->
-<!--                    <h3>大青牛爱穿山甲</h3>-->
-<!--                    <div>-->
-<!--                        <p>以彼之长，增长自身</p>-->
-
-<!--                    </div>-->
-<!--                    <a href="#">Read More</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--&lt;!&ndash;微信二维码部分&ndash;&gt;-->
-<!--            <div class="self_erweima right_box">-->
-<!--                <h3>微信二维码</h3>-->
-<!--                <div>-->
-<!--                    <img src="img/self_weixin_erweima.png">-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--&lt;!&ndash;qq二维码部分&ndash;&gt;-->
-<!--            <div class="self_erweima right_box">-->
-<!--                <h3>QQ二维码</h3>-->
-<!--                <div>-->
-<!--                    <img src="img/self_qq_erweima.png">-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--&lt;!&ndash;座右铭目的把div对齐最多只能2行字，多了就高了&ndash;&gt;-->
-<!--            <div class="self_zuoyoum right_box">-->
-<!--                <h3>这里或许能做些什么东西</h3>-->
-
-<!--            </div>-->
-
-<!--&lt;!&ndash;模板推荐&ndash;&gt;-->
-<!--            <div class="right_box tuijian_moban">-->
-<!--                <h3>最近的说说</h3>-->
-<!--                <div>-->
-<!--                    <ul>-->
-<!--                        <li><a href="#">这个是标题</a></li>-->
-<!--                        <li><a href="#">这个是标题1</a></li>-->
-<!--                        <li><a href="#">这个是标题2</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
