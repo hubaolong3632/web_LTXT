@@ -15,6 +15,10 @@ public class InfoModel {   //注册类
     public InfoModel() {
     }
 
+    public InfoModel(String phone) {
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }

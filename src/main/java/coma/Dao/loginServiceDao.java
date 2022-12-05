@@ -20,6 +20,29 @@ public class loginServiceDao implements IServiceDao {
 
 
     @Override
+    public boolean changePassword(LoginModel login){ //修改密码
+        String sql="UPDATE t_login SET password =? WHERE name=?;";
+        int num=0;
+        try{
+            num = jdbc_link.update(sql,login.getPassword(),login.getName()); //修改秘密
+        }catch (Exception e){} //如果为空默认返回0
+        return (num==0)?false:true;
+    }
+
+    @Override
+    public boolean changePhone(LoginModel login){ //修改手机号
+        String sql="UPDATE t_info SET phone =? WHERE uname=?;";
+        int num=0;
+        try{
+            num = jdbc_link.update(sql,login.getInfo().getPhone(),login.getName()); //修改手机号
+            System.out.println("修改手机号:"+num);
+        }catch (Exception e){} //如果为空默认返回0
+        return (num==0)?false:true;
+    }
+
+
+
+    @Override
     public boolean like(LikeModio like){ //点赞判断
 //        if(like.getMyarticle_id()!=null&&like.getLogin_name().equals(""))   return false;//如果数据为空的话直接退出
         String sql="INSERT INTO t_like (login_name, myarticle_id) \n" +

@@ -61,6 +61,7 @@ public class Main01Filter extends ViewBaseServlet {
         //初始化操作
         req.setCharacterEncoding("UTF-8"); //
         String path=req.getRequestURL().toString(); //获取一整条URL
+        System.out.println(path);
         String target=path.substring(path.lastIndexOf("/")+1); // 获取末尾的值 如 aaa.do
         System.out.println("----doPost----<----"+target+"---->-------------");
 

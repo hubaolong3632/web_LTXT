@@ -6,7 +6,11 @@ import coma.Model.*;
 
 import java.util.List;
 public interface IServiceDao {
-        boolean like(LikeModio like);
+    boolean changePassword(LoginModel login);
+
+    boolean changePhone(LoginModel login);
+
+    boolean like(LikeModio like);
 
         boolean collection(Collection collection);
 
