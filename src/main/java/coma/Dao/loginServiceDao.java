@@ -4,7 +4,6 @@ import coma.Iservice.IServiceDao;
 
 import coma.Model.*;
 import org.junit.Test;
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -35,28 +34,6 @@ public class loginServiceDao implements IServiceDao {
 
 
 //        System.out.println("当前操作的数据为:"+num);
-        return (num==0)?false:true;
-    }
-
-
-    @Override
-    public boolean changePassword(LoginModel login){ //修改密码
-        String sql="UPDATE t_login SET password =? WHERE name=?;";
-        int num=0;
-        try{
-            num = jdbc_link.update(sql,login.getPassword(),login.getName()); //修改秘密
-        }catch (Exception e){} //如果为空默认返回0
-        return (num==0)?false:true;
-    }
-
-    @Override
-    public boolean changePhone(LoginModel login){ //修改手机号
-        String sql="UPDATE t_info SET phone =? WHERE uname=?;";
-        int num=0;
-        try{
-            num = jdbc_link.update(sql,login.getInfo().getPhone(),login.getName()); //修改手机号
-            System.out.println("修改手机号:"+num);
-        }catch (Exception e){} //如果为空默认返回0
         return (num==0)?false:true;
     }
 
