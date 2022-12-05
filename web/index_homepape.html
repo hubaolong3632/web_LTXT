@@ -10,23 +10,32 @@
     <meta name="keywords" content="张三的博客">
     <meta name="description" content="张三的博客">
     <link href="css/base.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="js/base.js" type="text/javascript"></script>
-    <script src="js/jquery.slides.min.js" type="text/javascript"></script>
+<!--    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>-->
+<!--    <script src="js/base.js" type="text/javascript"></script>-->
+<!--    <script src="js/jquery.slides.min.js" type="text/javascript"></script>-->
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<script>
-  function  hidden1(){
+<!--<script>-->
+<!--  function  hidden1(){-->
 
-      let hidden1 = document.getElementById("hidden1").value;
-      console.log(hidden1); //输出调试
+<!--      let hidden1 = document.getElementById("hidden1").value;-->
+<!--      console.log(hidden1); //输出调试-->
 
-      //跳转
-     location.href='article.do?id='+hidden1;
+<!--      //跳转-->
+<!--     location.href='article.do?id='+hidden1;-->
 
-  }
+<!--  }-->
 
-</script>
+<!--</script>-->
 <body>
 
 <div th:replace="headline :: myfooter"></div> <!--引入首页头-->
@@ -36,8 +45,6 @@
 <!--        $("#page1").load("headline.html");  //拷贝头-->
 <!--    </script>-->
 <!--</div>-->
-
-
 
 <div class="banner_box">
 
@@ -103,14 +110,12 @@
 </body>
 
 <script>
-       // $(document).ready(function(){
+
     let class1=[]; //文章放的数组
     let set=10; //设置多少为一页
 
-    // alert("成不成功")
     function update1(){  //进行数据的更新和初始化
         //开始的时候清除div
-        alert("执行成功2次")
 
         let articleBox = document.getElementById("articleBox");
         let div1 = document.getElementById("classC3");
@@ -147,7 +152,6 @@
                 },
             })
         }else{  //初始化查询
-            alert("执行成功3次")
 
             $.ajax({
                 type:"post",
@@ -171,14 +175,8 @@
         }
     }
 
-    let id = document.getElementById("update1");
-    id.onclick=update1; //绑定表单
-
-
-
-
-
-
+    let id1 = document.getElementById("update1");
+    id1.onclick=update1; //绑定表单
 
 
     //生成表单数据的方法
@@ -194,17 +192,12 @@
         let length=class1.length/set; //求出可以分多生页
         let button_sz=[]; //存储设置的
         for(let i=0;i<length;i++){ //创建按钮
-            button_sz.push("<input type=\"button\" className=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
+            button_sz.push("<input  type=\"button\" class=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
+
         }
 
         document.getElementsByTagName("")
-        for(let i=0;i<length;i++){
-            button_sz.push("<input type=\"button\" className=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
-        }
-
         divButton.innerHTML=button_sz.join(''); //存储模板
-
-
     }
 
     function clsj(page){ //传入第几页  显示数据的
@@ -213,11 +206,9 @@
             "bengin":(page-1)*set, //设置开始页
             "end":(class1.length>((page-1)*set+10))?(page-1)*set+10:class1.length, //设置结束页
         }
-
-
-
+        let appendAdd="";
         for(let i=itecode.bengin;i<itecode.end;i++){
-            let appendAdd="   <!--首页最新模板部分2222-->\n" +
+            appendAdd+="   <!--首页最新模板部分2222-->\n" +
                 "            <div class=\"index_article_title clearfix\">\n" +
                 "                <h3>文章标题:"+class1[i].theme+"</h3>\n" +
                 "                <p href=\"list.html\" >更多></p>\n" +
@@ -248,13 +239,24 @@
                 "                </li>\n" +
                 "            </ul>\n" +
                 "\n\n<br><br><br><br>";
-            $('.classC3').append(appendAdd);//添加
+            // $('.classC3').append(appendAdd);//添加
         }
+        console.log(document.getElementById("classC3"));
+
+        document.getElementById("classC3").innerHTML=appendAdd;//添加网站
+
+
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; //滑动到主页
+        let timer = setInterval(() => {
+            scrollTop -= 100;
+            window.scrollTo(0, scrollTop)
+            if (scrollTop <= 0) {
+                clearInterval(timer)
+            }
+        }, 16.7)
     }
 
-    alert("执行成功1次")
     update1(); //第一次执行初始化操作
-       // });
 
 
 
@@ -262,163 +264,6 @@
 
 
 
-<!--<script th:inline="javascript" type="text/javascript">-->
-
-<!--// 做一个每次往服务器请求100条数据 然后进行分页功能如果点击的超过100页那么重新请求第二页的数据 每10页分一条数据-->
-
-<!--    $(document).ready(function(){-->
-<!--        let class1=[]; //文章放的数组-->
-<!--        let set=10; //设置多少为一页-->
-
-<!--        function update1(){  //进行数据的更新和初始化-->
-<!--            //开始的时候清除div-->
-<!--            let articleBox = document.getElementById("articleBox");-->
-<!--            let div1 = document.getElementById("classC3");-->
-
-<!--            if(div1!=null){-->
-<!--                articleBox.removeChild(div1);-->
-<!--            }-->
-
-
-<!--            //创建div-->
-<!--             let div2=document.createElement("div1"); //创建一个表  创建一个tbody-->
-<!--             div2.setAttribute("class","classC3"); //绑定他的class-->
-<!--             div2.setAttribute("id","classC3"); //绑定他的id-->
-
-<!--            articleBox.appendChild(div2); //保存文件-->
-
-
-<!--            //更新服务器传输过来的消息 进行第一次判断是否为空-->
-<!--            let hidden1 = document.getElementById("keyboard").value;-->
-<!--            if(hidden1!=""){ //信息查询-->
-<!--                //这里错了-->
-<!--                $.ajax({-->
-<!--                    type:"post",-->
-<!--                    url:"Index_homepape_fuzzyQueryAction.do", //获取数据传输过来的json格式数据-->
-<!--                    data:{"name":hidden1},  //设置根据数据查找-->
-<!--                    dataType:"json",        //指定响应的data数据类型为JSON对象。-->
-<!--                    success:function(json){ //回调函数-->
-<!--                        if(json.code=="1"){-->
-<!--                            initialize1(json.data.class1); //一开始显示前10条数据(第一页)-->
-
-<!--                        }else{-->
-<!--                            alert("查询失败不存在当前名称");-->
-<!--                        }-->
-<!--                    },-->
-<!--                })-->
-<!--            }else{  //初始化查询-->
-
-<!--                $.ajax({-->
-<!--                    type:"post",-->
-<!--                    url:"Index_iniTializeAction.do"+window.location.search, //放入参数-->
-<!--                    // data:{"name":"java},  //设置根据数据查找-->
-<!--                    // data:, //设置传输的参数-->
-<!--                    dataType:"json",        //指定响应的data数据类型为JSON对象。-->
-<!--                    success:function(json){ //回调函数-->
-<!--                        // {"code":1,"data":{"no":"点赞成功!!恭喜你"},"msg":"成功"}-->
-<!--                        if(json.code=="1"){-->
-
-<!--                            initialize1(json.data.class1); //一开始显示前10条数据(第一页)-->
-
-<!--                        }else{-->
-<!--                            alert("查询失败当前并不存在此分区");-->
-<!--                        }-->
-
-<!--                    },-->
-<!--                })-->
-
-<!--            }-->
-<!--        }-->
-
-<!--        let id = document.getElementById("update1");-->
-<!--        id.onclick=update1; //绑定表单-->
-
-
-<!--      update1(); //第一次执行初始化操作-->
-
-
-
-
-
-<!--        //生成表单数据的方法-->
-
-<!--        function  initialize1(jsonClass1){ //初始化操作-->
-<!--            class1=jsonClass1; // 保存json格式-->
-<!--            clsj(1);//打开第一页-->
-
-
-<!--          let divButton= document.getElementById("button_1");-->
-
-
-<!--          let length=class1.length/set; //求出可以分多生页-->
-<!--          let button_sz=[]; //存储设置的-->
-<!--          for(let i=0;i<length;i++){ //创建按钮-->
-<!--              button_sz.push("<input type=\"button\" className=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")-->
-<!--          }-->
-<!--            -->
-<!--          document.getElementsByTagName("")-->
-<!--            for(let i=0;i<length;i++){-->
-<!--                button_sz.push("<input type=\"button\" className=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")-->
-<!--            }-->
-
-<!--          divButton.innerHTML=button_sz.join(''); //存储模板-->
-
-
-<!--        }-->
-
-<!--        function clsj(page){ //传入第几页  显示数据的-->
-
-<!--         let itecode={ //页码-->
-<!--             "bengin":(page-1)*set, //设置开始页-->
-<!--             "end":(class1.length>((page-1)*set+10))?(page-1)*set+10:class1.length, //设置结束页-->
-<!--         }-->
-
-
-<!--         // alert((page-1)*set+10+"   "+class1.length+"    "+(class1.length>((page-1)*set+10))+"      "+"开始:"+itecode.bengin+"     "+"结束"+itecode.end);-->
-<!--        // console.log(class1);-->
-
-<!--    for(let i=itecode.bengin;i<itecode.end;i++){-->
-<!--        let appendAdd="   &lt;!&ndash;首页最新模板部分2222&ndash;&gt;\n" +-->
-<!--            "            <div class=\"index_article_title clearfix\">\n" +-->
-<!--            "                <h3>文章标题:"+class1[i].theme+"</h3>\n" +-->
-<!--            "                <p href=\"list.html\" >更多></p>\n" +-->
-<!--            "            </div>\n" +-->
-<!--            "            <ul class=\"index_article\" >\n" +-->
-<!--            "\n" +-->
-<!--            "                <input type=\"hidden\" name=\"idtext\" id=\"hidden1\" value=\""+class1[i].id+"\">\n" +-->
-<!--            "                <li class=\"clearfix article_list\">\n" +-->
-<!--            "\n" +-->
-<!--            "                    <a href=\"article.do?id="+class1[i].id+"\" class=\"article_list_img\">\n" +-->
-<!--            "                        <img src=\"img/bg_5.png\" >\n" +-->
-<!--            "                    </a>\n" +-->
-<!--            "\n" +-->
-<!--            "                    <h3  href=\"\"  >文章标题:"+class1[i].theme+"</h3>\n" +-->
-<!--            "                    <p  text=\"\">文章内容:"+class1[i].content+"</p>\n" +-->
-<!--            "\n" +-->
-<!--            "                    <div class=\"article_list_link\">\n" +-->
-<!--            "                        <span class=\"article_list_count\">\n" +-->
-<!--            "                            <i class=\"see_count\"></i>\n" +-->
-<!--            "                            <p>发布时间:</p><p >"+class1[i].postdate+"</p>\n" +-->
-<!--            "                        </span>\n" +-->
-<!--            "                        <span class=\"article_list_like\">\n" +-->
-<!--            "                            <i class=\"like_count\"></i>\n" +-->
-<!--            "                           <p> 发布人:</p><p>"+class1[i].uname+"</p>\n" +-->
-<!--            "                        </span>\n" +-->
-<!--            "                        <a href=\"article.do?id="+class1[i].id+"\">查看详细+</a>\n" +-->
-<!--            "                    </div>\n" +-->
-<!--            "                </li>\n" +-->
-<!--            "            </ul>\n" +-->
-<!--            "\n\n<br><br><br><br>";-->
-<!--        $('.classC3').append(appendAdd);//添加-->
-<!--            }-->
-<!--        }-->
-
-
-
-<!--    });-->
-
-
-<!--</script>-->
 
 
 
