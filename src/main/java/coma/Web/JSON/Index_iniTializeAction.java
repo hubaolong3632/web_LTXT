@@ -39,9 +39,12 @@ public class Index_iniTializeAction extends Action {
 
         System.out.println("getName:"+clas.getName());
 
+
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.getClassify().setName(clas.getName());
+//        model.getClassify().setClassify();
+
 
 
 
@@ -50,8 +53,15 @@ public class Index_iniTializeAction extends Action {
         {
             System.out.println("查找个人的个人信息");
             String username = (String) req.getSession().getAttribute("username");  //查找到自己姓名
+            System.out.println("传输进来的姓名:"+username);
             model.setUname(username);
             models=dao.queryName(model);
+
+            for (MyarticleModel myarticleModel : models) {
+                System.out.println("文章:"+myarticleModel.getClassify().getName()+"     "+myarticleModel.getClassify().getId());
+            }
+
+
 
         }else if(clas.getClassify()!=null&&clas.getClassify().equals("name")){
             System.out.println("0002_通过姓名查找内容");

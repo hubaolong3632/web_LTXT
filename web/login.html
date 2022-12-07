@@ -182,7 +182,7 @@
 <!--        <input type="submit" value="登入">-->
 <!--        <span class="right_line"></span>-->
 <!--      </p>-->
-    <button class="btn" type="submit">登陆</button>
+    <button class="btn" type="submit" id="dr_button">登陆</button>
     <br>
       <a class="login" href="register.html" name="a_register" id="a_register"><span>&nbsp;&nbsp;&nbsp;&nbsp;注册博客 </span></a>
     <p style ="color:red" th:text="${nologin.no}"></p>
@@ -193,3 +193,7 @@
 
 </body>
 </html>
+<script>
+
+document.getElementById("dr_button").focus(); //按鈕點擊
+</script>
