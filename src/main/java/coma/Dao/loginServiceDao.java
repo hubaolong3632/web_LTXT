@@ -41,6 +41,27 @@ public class loginServiceDao implements IServiceDao {
     }
 
 
+    //传入指定页数判断能分多少页
+    @Override
+    public int pageTotal(int pageTotal){
+
+        try{
+            String sql="SELECT CEIL(COUNT(*) /?) AS pageTotal FROM t_myarticle;";
+            RowMapper<MyarticleModel> pasword=new BeanPropertyRowMapper(MyarticleModel.class); //获取Pasowrd类
+            MyarticleModel  query2 = jdbc_link.queryForObject(sql,pasword,pageTotal); //查询返回对象
+
+            return query2.getPageTotal(); //返回总页数
+        }catch (Exception e){ //否则返回的是spring数据库连接错误
+            System.out.println("当前用户进行了登入但是 账号密码错误了！");
+            return 0;
+        }
+
+
+
+    }
+
+
+
 
     @Override
     public boolean like(LikeModio like){ //点赞判断
@@ -202,11 +223,10 @@ public class loginServiceDao implements IServiceDao {
     //根据姓名查文章
     @Override
     public List<MyarticleModel> queryName(MyarticleModel model) {
-        String sql = "select * FROM t_myarticle where uname = ? ; ";
-//        System.out.println(sql);
-//        System.out.println(model.getClassify().getName());
+//        String sql = "select * FROM t_myarticle where uname = ? ; ";
+        String sql = "SELECT * FROM t_myarticle  where uname=?  LIMIT ?  OFFSET ? ; ";
         BeanPropertyRowMapper<MyarticleModel> myarticlemodel = new BeanPropertyRowMapper<>(MyarticleModel.class);
-        List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getUname());
+        List<MyarticleModel> list= jdbc_link.query(sql,myarticlemodel,model.getUname(),model.getEnd(),model.getBegin());
         return list;
     }
 

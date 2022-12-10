@@ -31,36 +31,37 @@ public class Index_iniTializeAction extends Action {
 
     @Override
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
+        resp.setContentType("text/json; charset=utf-8"); //设置编码格式和数据类型
         //保存对象from层
         ClassLfy clas= (ClassLfy) father;
-
-        System.out.println("ccc3");
-
-
-        System.out.println("getName:"+clas.getName());
-
-
+        System.out.println("传输进来的页数:"+clas.getPage());
+        System.out.println("Name值:"+clas.getName());
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.getClassify().setName(clas.getName());
-//        model.getClassify().setClassify();
+
+//        if(Integer.parseInt(clas.getPage())>dao.pageTotal(30)){ //如果传输进来的分页数量大于当前分页数量
+//            resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.DATA_IS_WRONG,new NoModel("已经为查询的最大值",null)))); //打印模糊查询
+//            System.out.println("提交过来的超过最大分页数");
+//            return;
+//        }
 
 
+       int begin=Integer.parseInt(clas.getPage())*3+10; //开始页
+       int end=begin+10; //结束页
+        model.setBegin(begin);
+        model.setEnd(end);
 
 
+//        model.setPage(Integer.parseInt(clas.getPage())); //设置页数
         List<MyarticleModel> models;//调用数据库层进行数据保存
         if(clas.getClassify()!=null&&clas.getClassify().equals("myself"))
         {
-            System.out.println("查找个人的个人信息");
+            System.out.println("0001_查找个人的个人信息");
             String username = (String) req.getSession().getAttribute("username");  //查找到自己姓名
             System.out.println("传输进来的姓名:"+username);
             model.setUname(username);
             models=dao.queryName(model);
-
-            for (MyarticleModel myarticleModel : models) {
-                System.out.println("文章:"+myarticleModel.getClassify().getName()+"     "+myarticleModel.getClassify().getId());
-            }
-
 
 
         }else if(clas.getClassify()!=null&&clas.getClassify().equals("name")){
@@ -69,19 +70,18 @@ public class Index_iniTializeAction extends Action {
             models=dao.queryName(model);
         }
         else{
-            System.out.println("通过分区查询");
+            System.out.println("0003_通过分区查询");
             models=dao.diArticles(model);
         }
 
+        //不需要的三句话
         LoginModel loginModel = (LoginModel) req.getSession().getAttribute("login");
         loginModel.setModels(models); //保存进入域
         req.setAttribute("models",models); //保存
 
         System.out.println("JSON-2-Index_iniTializeAction:初始化文章的json格式被调用");
-        resp.setContentType("text/json; charset=utf-8"); //设置编码格式和数据类型
-        System.out.println("cc1");
-        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel("查询到了分页",models)))); //打印模糊查询
-        System.out.println("ccc4");
+
+        resp.getWriter().println(Utio.JSON(Result.failure(ResultCode.SUCCESS,new NoModel(String.valueOf(dao.pageTotal(30)),models)))); //打印模糊查询
 
     }
 

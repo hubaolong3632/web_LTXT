@@ -6,6 +6,7 @@ package coma.Model;
  * @StartTime Start
  * @EndTime End
  */
+//邮件表
 public class EmailModel {
     private String Email;
     private int emailnum;

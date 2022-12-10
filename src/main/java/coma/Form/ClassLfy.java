@@ -4,8 +4,17 @@ public class ClassLfy extends Father{
     public String id;
     public String name; //查询当前用户发送文章数量
     public String classify; // 当前分期的文章数量
+    public String page;
 
     public ClassLfy() {
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 
     public ClassLfy(String id) {

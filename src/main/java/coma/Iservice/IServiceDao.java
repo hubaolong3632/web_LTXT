@@ -10,6 +10,9 @@ public interface IServiceDao {
 
     boolean changePhone(LoginModel login);
 
+    //传入指定页数判断能分多少页
+    int pageTotal(int pageTotal);
+
     boolean like(LikeModio like);
 
         boolean collection(Collection collection);

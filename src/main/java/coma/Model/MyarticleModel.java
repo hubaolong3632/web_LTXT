@@ -15,6 +15,33 @@ public class MyarticleModel {
     private Integer collection; //收藏数
     private ClassLfyModel  classify ; //分区
     private String postdate; //时间
+    private int begin; //开始页
+    private int end; //结束页
+    private int pageTotal; //最大分页数量
+
+    public int getPageTotal() {
+        return pageTotal;
+    }
+
+    public void setPageTotal(int pageTotal) {
+        this.pageTotal = pageTotal;
+    }
+
+    public int getBegin() {
+        return begin;
+    }
+
+    public void setBegin(int begin) {
+        this.begin = begin;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
 
     public int getId() {
         return id;

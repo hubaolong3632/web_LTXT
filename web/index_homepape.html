@@ -59,25 +59,13 @@
 
         </div>
 
-<!--        &lt;!&ndash;首页博文推荐部分&ndash;&gt;-->
-<!--        <div class="article_box_one">-->
-<!--            <div class="index_article_title clearfix">-->
-<!--                <h3>推荐博文</h3>-->
-<!--                <a href="list.html">更多></a>-->
-<!--            </div>-->
-
-<!--        </div>-->
 
 
         <div>
-            <input type="button"  class="more"  value="上一章" onclick="" style="display:inline-block;">
+            <input type="button"  class="more"  value="上一章" onclick="previousPage()" style="display:inline-block;" id="previousPage">
            <div id="button_1">
-<!--               <input type="button"  class="more"  value="第一页" onclick="alert('当前暂时没有更多文章')" style="display:inline-block;">-->
-<!--               <input type="button"  class="more"  value="第二页" onclick="alert('当前暂时没有更多文章')"  style="display:inline-block;">-->
-<!--               <input type="button"  class="more"  value="第三页" onclick="alert('当前暂时没有更多文章')" style="display:inline-block;">-->
-<!--               <input type="button"  class="more"  value="第四页" onclick="alert('当前暂时没有更多文章')" style="display:inline-block;">-->
            </div>
-            <input type="button"  class="more"  value="下一章" onclick="alert('当前暂时没有更多文章')" style="display:inline-block;">
+            <input type="button"  class="more"  value="下一章" onclick="pageDown()" style="display:inline-block;" id="pageDown">
         </div>
 
     </div>
@@ -113,10 +101,37 @@
 
 <script>
 
+    let max_1; //最大
     let class1=[]; //文章放的数组
-    let set=5; //设置多少为一页
+    let set=3; //设置多少为一页
+    let page_sum=0; //设置传输到服务器里面需要到第几页
+    let previous = document.getElementById("pageDown"); //上一页
+    let page = document.getElementById("previousPage"); //下一页
+     previous.disabled=true; //一开始默认上一页不可点击
 
-    function update1(){  //进行数据的更新和初始化
+    function previousPage(){ //上一页
+        if (page_sum - 1 >=0) {
+            page_sum--;
+            page.disabled=false; //设置下一页可点击
+            update1(page_sum);
+        }else{
+            previous.disabled=true; //设置上一页不可点击
+        }
+    }
+
+    function pageDown(){ //下一页
+        alert("当前最大页数为:"+page_sum);
+        if(parseInt(page_sum)+1<=max_1){
+            page_sum++;
+            previous.disabled=false; //设置上一页可点击
+            update1(page_sum);
+        }else{
+            page.disabled=true; //设置下一页不可点击
+        }
+    }
+
+
+    function update1(page){  //进行数据的更新和初始化
         //开始的时候清除div
 
         let articleBox = document.getElementById("articleBox");
@@ -135,74 +150,62 @@
 
         //更新服务器传输过来的消息 进行第一次判断是否为空
         let hidden1 = document.getElementById("keyboard").value;
+        let strURL="";
         if(hidden1!=""){ //信息查询
-            //这里错了
-            $.ajax({
-                type:"post",
-                url:"Index_homepape_fuzzyQueryAction.do", //获取数据传输过来的json格式数据
-                data:{"name":hidden1},  //设置根据数据查找
-                dataType:"json",        //指定响应的data数据类型为JSON对象。
-                success:function(json){ //回调函数
-                    if(json.code=="1"){
-                        initialize1(json.data.class1); //一开始显示前10条数据(第一页)
-
-                    }else{
-                        alert("查询失败不存在当前名称");
-                    }
-                },
-            })
+            strURL=`Index_homepape_fuzzyQueryAction.do?name=${hidden1}&page=page`;
         }else{  //初始化查询
-
-            $.ajax({
-                type:"post",
-                url:"Index_iniTializeAction.do"+window.location.search, //放入参数
-                // data:{"name":"java},  //设置根据数据查找
-                // data:, //设置传输的参数
-                dataType:"json",        //指定响应的data数据类型为JSON对象。
-                success:function(json){ //回调函数
-                    if(json.code=="1"){
-                        initialize1(json.data.class1); //一开始显示前10条数据(第一页)
-
-                    }else{
-                        alert("查询失败当前并不存在此分区");
-                    }
-
-                },
-            })
-
+            strURL=`Index_iniTializeAction.do${window.location.search}&page=${page}`;
         }
+
+        $.ajax({  //用来通过ajks通信
+            type:"post",
+            url:strURL, //获取数据传输过来的json格式数据
+            dataType:"json",        //指定响应的data数据类型为JSON对象。
+            success:function(json){ //回调函数
+                if(json.code=="1"){
+                    alert(json.no); //输出值
+                    max_1=json.no; //获取最大的页数
+                    initialize1(json.data.class1,page); //一开始显示前i(10)条数据(第一页)
+                }
+                else{
+                    alert(json.data.no); //返回错误码
+                    return;
+                }
+            },
+        })
     }
 
-    let id1 = document.getElementById("update1");
-    id1.onclick=update1; //绑定表单
 
+    let id1 = document.getElementById("update1"); //查询按钮和更新按钮
+    id1.onclick=update1; //绑定按钮
 
+    let bool_huadon=false;
     //生成表单数据的方法
-
-    function  initialize1(jsonClass1){ //初始化操作
+    function  initialize1(jsonClass1,page){ //初始化操作
         class1=jsonClass1; // 保存json格式
-        clsj(1);//打开第一页
 
+        bool_huadon=false; //设置翻页的时候不动
+        clsj(1);//打开第一页
+        // alert("执行了n次")
+        bool_huadon=true; //设置翻页的时候不动
 
         let divButton= document.getElementById("button_1");
-
-
         let length=class1.length/set; //求出可以分多生页
         let button_sz=[]; //存储设置的
         for(let i=0;i<length;i++){ //创建按钮
-            button_sz.push("<input  type=\"button\" class=\"more\" value=\"第"+(i+1)+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
+            button_sz.push("<input  type=\"button\" class=\"more\" value=\"第"+parseInt((page-1)*10+(i+1))+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
 
         }
-        document.getElementsByTagName("")
-        divButton.innerHTML=button_sz.join(''); //存储模板
+        divButton.innerHTML=button_sz.join(''); //存储模板 按钮的
     }
 
-    function clsj(page){ //传入第几页  显示数据的
 
+    function clsj(page){ //传入第几页  显示数据的
         let itecode={ //页码
             "bengin":(page-1)*set, //设置开始页
-            "end":(class1.length>((page-1)*set+10))?(page-1)*set+10:class1.length, //设置结束页
+            "end":(class1.length>((page-1)*set+set))?(page-1)*set+set:class1.length, //设置结束页
         }
+
         let appendAdd="";
         for(let i=itecode.bengin;i<itecode.end;i++){
             appendAdd+=`<div class=\"index_article_title clearfix\">
@@ -232,32 +235,29 @@
                            </ul>
                             <br><br><br><br>`;
         }
-        console.log(document.getElementById("classC3"));
-
         document.getElementById("classC3").innerHTML=appendAdd;//添加网站
 
+        // alert(bool_huadon);
+        if(bool_huadon==true){
+            huadon();
+        }
 
+
+    }
+
+    function huadon(){ //滑动到上面
         //滑动到主页
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         let timer = setInterval(() => {
             scrollTop -= 100;
             window.scrollTo(0, scrollTop)
-            if (scrollTop <= 0) {
+            if (scrollTop <= 50) {
                 clearInterval(timer)
             }
-        }, 16.7)
+        }, 16.7);
     }
 
-    update1(); //第一次执行初始化操作
-
-
+    update1(page_sum); //第一次执行初始化操作 刚刚开始默认page_sum为第一页
 
 </script>
-
-
-
-
-
-
-
 </html>

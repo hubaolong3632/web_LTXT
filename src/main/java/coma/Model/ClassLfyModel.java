@@ -1,5 +1,5 @@
 package coma.Model;
-// ???????????
+// 个人文章
 public class ClassLfyModel {
     private String id;
     private String name; //姓名
