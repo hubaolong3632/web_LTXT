@@ -62,10 +62,12 @@
 
 
         <div>
-            <input type="button"  class="more"  value="上一章" onclick="previousPage()" style="display:inline-block;" id="previousPage">
+<!--            <input type="button"  class="more"  value="上一章" onclick="previousPage()" style="display:inline-block;" id="previousPage">-->
+            <input type="button"  class="more"  value="上一章"  style="display:inline-block;" id="previousPage">
            <div id="button_1">
            </div>
-            <input type="button"  class="more"  value="下一章" onclick="pageDown()" style="display:inline-block;" id="pageDown">
+<!--            <input type="button"  class="more"  value="下一章" onclick="pageDown()" style="display:inline-block;" id="pageDown">-->
+            <input type="button"  class="more"  value="下一章" style="display:inline-block;" id="pageDown">
         </div>
 
     </div>
@@ -105,11 +107,12 @@
     let class1=[]; //文章放的数组
     let set=3; //设置多少为一页
     let page_sum=0; //设置传输到服务器里面需要到第几页
-    let previous = document.getElementById("pageDown"); //上一页
-    let page = document.getElementById("previousPage"); //下一页
+    let previous = document.getElementById("previousPage"); //上一页
+    let page = document.getElementById("pageDown"); //下一页
      previous.disabled=true; //一开始默认上一页不可点击
 
     function previousPage(){ //上一页
+        // alert("当前页数为:"+page_sum+" 最大页数:"+max_1+"  上一页");
         if (page_sum - 1 >=0) {
             page_sum--;
             page.disabled=false; //设置下一页可点击
@@ -120,8 +123,8 @@
     }
 
     function pageDown(){ //下一页
-        alert("当前最大页数为:"+page_sum);
-        if(parseInt(page_sum)+1<=max_1){
+        // alert("当前页数为:"+page_sum+" 最大页数:"+max_1+"  下一页");
+        if(parseInt(page_sum)+1<max_1){
             page_sum++;
             previous.disabled=false; //设置上一页可点击
             update1(page_sum);
@@ -130,6 +133,9 @@
         }
     }
 
+    //绑定按钮
+    previous.onclick=previousPage;
+    page.onclick=pageDown;
 
     function update1(page){  //进行数据的更新和初始化
         //开始的时候清除div
@@ -163,8 +169,8 @@
             dataType:"json",        //指定响应的data数据类型为JSON对象。
             success:function(json){ //回调函数
                 if(json.code=="1"){
-                    alert(json.no); //输出值
-                    max_1=json.no; //获取最大的页数
+                    // alert(json.data.no); //输出值
+                    max_1=json.data.no; //获取最大的页数
                     initialize1(json.data.class1,page); //一开始显示前i(10)条数据(第一页)
                 }
                 else{
@@ -193,8 +199,7 @@
         let length=class1.length/set; //求出可以分多生页
         let button_sz=[]; //存储设置的
         for(let i=0;i<length;i++){ //创建按钮
-            button_sz.push("<input  type=\"button\" class=\"more\" value=\"第"+parseInt((page-1)*10+(i+1))+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
-
+            button_sz.push("<input  type=\"button\" class=\"more\" value=\"第"+parseInt((page)*10+(i+1))+"页\" onClick=\"clsj("+(i+1)+")\" style=\"display:inline-block;\">")
         }
         divButton.innerHTML=button_sz.join(''); //存储模板 按钮的
     }

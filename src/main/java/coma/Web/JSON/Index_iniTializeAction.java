@@ -47,11 +47,11 @@ public class Index_iniTializeAction extends Action {
 //        }
 
 
-       int begin=Integer.parseInt(clas.getPage())*3+10; //开始页
-       int end=begin+10; //结束页
-        model.setBegin(begin);
-        model.setEnd(end);
-
+       int begin=Integer.parseInt(clas.getPage())*30; //开始页
+//       int end=begin+30; //结束页
+        model.setBegin(30); //取出30条数据
+        model.setEnd(begin); //从当前指定的开始
+//  select * FROM t_myarticle where classify ="java"  LIMIT 30  OFFSET 60 ; #跳过 前60条取出后30条的数据
 
 //        model.setPage(Integer.parseInt(clas.getPage())); //设置页数
         List<MyarticleModel> models;//调用数据库层进行数据保存
@@ -70,7 +70,7 @@ public class Index_iniTializeAction extends Action {
             models=dao.queryName(model);
         }
         else{
-            System.out.println("0003_通过分区查询");
+//            System.out.println("0003_通过分区查询  从:"+begin+"    到:"+end);
             models=dao.diArticles(model);
         }
 

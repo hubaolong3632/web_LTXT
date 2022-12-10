@@ -1,6 +1,7 @@
 package coma.Dao;
 
 import coma.Iservice.IServiceDao;
+import coma.Model.ClassLfyModel;
 import coma.Model.LikeModio;
 import coma.Model.MyarticleModel;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +18,22 @@ public class Main {
         IServiceDao login = (IServiceDao) context.getBean("loginDao");
 
         System.out.println(login.pageTotal(30));
+
+
+//        for(int i=1;i<100;i++){1
+//            MyarticleModel myart=new MyarticleModel();
+//            myart.setUname("1"); //姓名
+//            myart.setTheme(String.valueOf(i));  //主题
+//            myart.setContent(String.valueOf(i));  //内容
+//            myart.setClassify(new ClassLfyModel("java")); //分区
+//            myart.setPostdate("2020-12-10-1-03"); //发表时间
+//            myart.setLikenum(0); //点赞数量
+//            myart.setCollection(0); //收藏数量
+//
+//
+//             boolean bol=login.addMyarticle(myart);
+//            System.out.println("第"+i+"条判断:"+bol);
+//        }
 
 //
 //

@@ -36,10 +36,19 @@ public class Index_homepape_fuzzyQueryAction extends Action {
     public void execute(Father father, Pzwj pzwj, HttpServletRequest req, HttpServletResponse resp, Main01Filter main) throws ServletException, IOException {
         ClassLfy clas= (ClassLfy) father;
         System.out.println("传输进来的页数"+clas.getPage());
+
+
+
 //
         //保存文件
         MyarticleModel model = new MyarticleModel(new ClassLfyModel());
         model.setTheme(clas.getName());
+
+
+        int begin=Integer.parseInt(clas.getPage())*30; //开始页
+        model.setBegin(30); //取出30条数据
+        model.setEnd(begin); //从当前指定的开始
+
         System.out.println("getName:"+model.getTheme());
 
         List<MyarticleModel> models = dao.getContent(model);//调用数据库层进行数据保存

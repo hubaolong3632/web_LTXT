@@ -6,16 +6,19 @@ import coma.Model.*;
 
 import java.util.List;
 public interface IServiceDao {
+
+    //修改密码
     boolean changePassword(LoginModel login);
 
+    //修改手机号
     boolean changePhone(LoginModel login);
 
     //传入指定页数判断能分多少页
     int pageTotal(int pageTotal);
 
-    boolean like(LikeModio like);
+    boolean like(LikeModio like); //点赞判断
 
-        boolean collection(Collection collection);
+        boolean collection(Collection collection); //收藏判断
 
         LoginModel user_pwd (LoginModel login); //判断账号用户名的登录
 
